@@ -1,0 +1,5 @@
+<%# locals: filename %>
+<%=
+  erb(:chart, :layout => false, :locals => { :chartid => 1, :heightpct => 45, :filename => filename }) +
+  erb(:chart, :layout => false, :locals => { :chartid => 2, :heightpct => 45, :filename => filename })
+%>

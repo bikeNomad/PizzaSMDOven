@@ -1,0 +1,89 @@
+<%# amline script; locals: chartid, heightpct, filename, follow, since, pattern %>
+<div class="chart">
+<div id="flashcontent<%= chartid %>">
+  <strong>You need to upgrade your Flash Player</strong>
+</div>
+</div>
+<script type="text/javascript">
+  var so = new SWFObject("<%= request.script_name %>/amline.swf", "chartid<%= chartid %>", "100%", "100%", "8", "#FFFFFF");
+  so.addVariable("path", "<%= request.script_name %>/");
+  so.addVariable("settings_file", escape("<%= request.script_name %>/amline_settings.xml/<%= filename %>"));
+  so.addVariable("data_file", escape("<%= request.script_name %>/data/<%= filename %>"));
+  so.addVariable("chart_id", "chartid<%= chartid %>");
+  so.addVariable("preloader_color", "#999999");
+  so.write("flashcontent<%= chartid %>");
+<% if follow %>
+  console.log("following after",<%= more %>, <%= since %>);
+  var flashMovie;
+  var since;
+  var zoomed = null;
+  var extent_from = null;
+  var extent_to = null;
+  var savedData = '';
+  var savedLines = 0;
+  function amChartInited(chart_id) {
+    flashMovie = document.getElementById(chart_id);
+    since = <%= mtimeString(filename) %>;
+    console.log("init",flashMovie,chart_id,since);
+    $.get('<%= request.script_name %>/data/<%= filename %>?since=' + since <% if wait %><%= " + '&wait=#{wait}'" %><% end %>,
+      function(data, stat){ newDataAvailable(data, stat); });
+  }
+  function newDataAvailable(data, stat){
+    console.log("new data:", stat, data);
+    // new since is first line
+    var ix = data.indexOf('\n');
+    if (ix >= 0) {
+      since = data.slice(0, ix);
+      data = data.slice(ix+1);
+      nlines = data.replace(/[^\n]/g, '').length;
+      console.log("since", since, nlines)
+      if (data.length > 0) {
+        if (zoomed) {
+          savedData = savedData + data;
+          savedLines = savedLines + nlines;
+        } else {
+          flashMovie.appendData(savedData + data, String(savedLines + nlines));
+          savedData = '';
+          savedLines = 0;
+        }
+      }
+    }
+    $.get('<%= request.script_name %>/data/<%= filename %>?since=' + since<% if wait %><%= " + '&wait=#{wait}'" %><% end %>,
+      function(data, stat){ newDataAvailable(data, stat); });
+    console.log("nda exit", savedData, savedLines);
+  }
+  function amProcessCompleted(chart_id, process_name){
+    console.log('ampc', chart_id, process_name);
+  }
+  function amGetZoom(chart_id, from_str, to_str){
+    from = parseFloat(from_str);
+    if (isNaN(from)) { from = from_str; }
+    to = parseFloat(to_str);
+    if (isNaN(to)) { to = to_str; }
+    console.log('amgz', zoomed, from, to, extent_from, extent_to);
+    if (zoomed == null) {
+      extent_from = from;
+      extent_to = to;
+      zoomed = false;
+    } else if (zoomed) {
+      if (extent_from == from && extent_to == to) {
+        zoomed = false;
+      }
+    } else {
+      if (extent_from < from && extent_to < to) {
+        extent_from = from;
+        extent_to = to;
+      } else if ((extent_from < from && to <= extent_to) || (extent_from <= from && to < extent_to)) {
+        zoomed = true;
+      }
+    }
+    console.log('amgz exit', zoomed, extent_from, extent_to);
+  }
+  function amReturnParam(chart_id, param) {
+    console.log("amrp", chart_id, param);
+  }
+<% end %>
+</script>
+<form action="<%= request.script_name %>/refresh/chart/<%= "#{filename}?pattern=#{pattern}" %>"><input type="submit" value="Refresh" /></form>
+<%= erb(:other_charts, :layout => false, :locals => { :filename => filename, :pattern => pattern }) %>
+<form action="/"><input type="submit" value="Home!" /></form>

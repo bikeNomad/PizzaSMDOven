@@ -1,0 +1,15 @@
+<%# locals: calibrator %>
+<h1>Disc Calibration History</h1>
+<%# CalEntry.members = timestamp calibratorSerial dutName rearBlockOffset frontBlockOffset frontBlockRatio rearBlockRatio block what %>
+<%  calibrator.devices.each do |dev| %>
+<h2><%= dev.name %></h2>
+<table>
+<tr class="tablesection"><td>timestamp</td><td>calibratorSerial</td><td>rearBlockOffset</td><td>rearBlockRatio</td><td>frontBlockRatio</td><td>frontBlockOffset</td><td>block</td><td>what</td></tr>
+<%    calibrator.discCalHistory.select { |cal| dev.name == cal.dutName }.each_with_index do |cal,i| %>
+<tr class="<%= i.odd? ? 'oddrow' : 'evenrow' %>">
+<td class="timestamp"><%= cal['timestamp'].strftime('%m/%d/%Y %H:%M:%S') %></td><td><%= cal['calibratorSerial'] %></td><td><%= '%.3f' % cal['rearBlockOffset'] %></td><td><%= '%.3f' % cal['rearBlockRatio'] %></td><td><%= '%.3f' % cal['frontBlockRatio'] %></td><td><%= '%.3f' % cal['frontBlockOffset'] %></td><td><%= cal['block'] %></td><td><%= cal['what'] %></td>
+</tr>
+<%    end %>
+</table>
+<%  end %>
+<%= erb :homeButton, :layout => false %>

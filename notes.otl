@@ -1,0 +1,32 @@
+>> $oven.client.read_holding_registers(44097,1)
+Tx (8 bytes): [01][03][ac][41][00][01][f5][4e]
+
+[01] slave address
+[03] read holding registers
+[ac][41] address
+[00][01] number of regs
+[f5][4e]
+
+from test pgm:
+0x1000 (PV)
+
+read 0x1000 (PV) = 00B8 = 184 = 18.4 degC
+
+                             b 1000 crc16
+0103 1000 0001 80CA => 0103 02 00B8 B836
+
+read/write up to 8 inputs at a time
+read_holding_registers should return 02 00 B8
+
+                             b 1001 crc16
+0103 1001 0001 D10A => 0103 02 060E 3A20
+
+read 2 regs (1000, 1001):
+                             b 1000 1001 crc16
+0103 1000 0002 C0CB => 0103 04 00B9 060E A9B2
+
+client.rb:160 (in query): timeout(1, 
+
+
+# vim: ft=txt
+

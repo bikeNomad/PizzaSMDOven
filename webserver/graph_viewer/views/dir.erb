@@ -1,0 +1,12 @@
+<%# locals: dirname, files (array of file,mtime), pattern %>
+<table class="filelist">
+<% now = Time.now
+  if pattern
+    re = Regexp.new(pattern)
+    files.delete_if { |path,mtime| !re.match(path) }
+  end
+  files.sort_by { |a| now - a[1] }.each do |path,mtime| %>
+<tr><td class="filename"><a href="<%= request.script_name %>/chart/<%= "#{path}?pattern=#{pattern}" %>"><%= path.sub(File.dirname(dirname) + '/', '') %></a></td><td><%= mtime %></td><td><%= File.size(path) %></td></tr>
+<% end %>
+</table>
+<%= erb :homeButton, :layout => false %>

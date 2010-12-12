@@ -1,0 +1,14 @@
+<%# locals: title %>
+<html>
+<head>
+<% if local_variables.include? 'title' %>
+<title><%= title %></title>
+<% end %>
+<link rel="stylesheet" type="text/css" href="/zeno.css" />
+</head>
+<body>
+<img class="zenologo" height="50" width="287" border="0" src="/images/zeno-header-logo.jpg"/>
+<%= yield %>
+<a name="endofpage">
+</body>
+</html>

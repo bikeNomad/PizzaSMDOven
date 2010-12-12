@@ -1,0 +1,21 @@
+<%# locals: heads, sortedHeads, rundata %>
+<h1>Run summary</h1>
+<h2>Synopsis</h2>
+Started: <%= heads['started'] %><br/>
+Completed: <%= heads['passed'] + heads['failedAt'] %><br/>
+Passed: <%= heads['passed'] %> <%= '(%.2f%%)' % ((heads['passed'] * 100.0) / (heads['passed'] + heads['failedAt'])) %><br/>
+Failed: <%= heads['failedAt'] %> <%= '(%.2f%%)' % ((heads['failedAt'] * 100.0) / (heads['passed'] + heads['failedAt'])) %><br/>
+<h2>Detailed data</h2>
+<table class="runsummary">
+<% rundata.reverse.each_with_index do |run,i| %>
+  <% if i % 20 == 0 %>
+    <tr class="tablesection"><td><%= sortedHeads.join('</td><td>') %></td></tr>
+  <% end %>
+  <tr class="<%= i.odd? ? 'oddrow' : 'evenrow' %>">
+  <%= run.join %>
+  </tr>
+<% end %>
+</table>
+
+<a href="/summary/download">Download CSV</a>
+<%= erb :homeButton, :layout => false %>

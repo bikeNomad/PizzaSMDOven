@@ -1,0 +1,5 @@
+<%# locals: request, result %>
+<pre class=evalrequest>eval <%= CGI.escapeHTML(request.to_s) %> =&gt;</pre>
+<pre class=evalresult><%= CGI.escapeHTML(result.to_s) %></pre><br />
+<%= erb :evalForm, :layout => false, :locals => { :request => request } %>
+<%= erb :homeButton, :layout => false %>

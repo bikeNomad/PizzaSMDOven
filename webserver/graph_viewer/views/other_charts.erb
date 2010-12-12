@@ -1,0 +1,21 @@
+<%# locals: filename, pattern %>
+<div class="othercharts">
+<h3>Other runs:</h3>
+<table class="filelist">
+<tr><td class="filename"><b>Name</b></td><td><b>Timestamp</b></td><td><b>DUT</b></td></tr>
+  <% now = Time.now
+    runs = GraphViewer::CSVFile.runs %>
+ <% if pattern
+      re = Regexp.new(pattern + "(\s+run\s+\d+)?")
+      (runs, toDelete) = runs.partition { |k,v| re.match(k) }
+      toDelete.each { |k,v| GraphViewer::CSVFile.forgetRunNamed(k) }
+    end
+    runs.sort_by do |k,v|
+      runNumber = k.sub(/.*\s+(\d+)$/, '\\1')
+      runNumber = 0 if (runNumber.nil? || runNumber.empty?)
+      [now - v.timestamp, - runNumber.to_i ]
+    end.each do |path,file| %>
+<tr><td class="filename"><a href="<%= request.script_name %>/chart/<%= "#{path}?pattern=#{pattern}" %>"><%= path.sub(File.dirname(path) + '/', '') %></a></td><td><%= file.timestamp %></td><td><%= file.dut %></td></tr>
+    <% end %>
+</table>
+</div>

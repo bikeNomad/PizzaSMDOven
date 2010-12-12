@@ -1,0 +1,56 @@
+<%# locals: calibrator, refresh %>
+<h1>IO Status</h1>
+<table >
+<% @rows = []
+  @iostats = calibrator.devices.collect { |d| d.ioStatus }
+  @iostats.each { |ios| @rows += ios.keys }
+  @rows = @rows.sort.uniq %>
+  <tr class="tablesection"><th class="tablesection">Inputs:</th>
+  <% calibrator.devices.each do |dev| %><th class="tablesection devname"><%= dev.name %></th><% end %></tr>
+  <% @rows.sort.each_with_index do |k,i| %>
+    <tr class="<%= i.odd? ? 'oddrow' : 'evenrow' %>">
+    <td class="ioname"><%= k %></td>
+    <% @iostats.each do |ios| %><td class="ioval"><%= (Float === ios[k]) ? ('%.2f' % ios[k]) : ios[k] %></td><% end %>
+    </tr>
+  <% end %>
+</table>
+<form action="<%= request.path %>" method="post">
+<table >
+  <tr class="tablesection"><th class="tablesection">Outputs:</th>
+    <% calibrator.devices.each do |dev| %><th class="tablesection devname"><%= dev.name %></th><% end %></tr>
+  <% %w(powerRelay deviceHighPower).each_with_index do |k,i| %>
+    <tr class="<%= i.odd? ? 'oddrow' : 'evenrow' %>">
+    <td class="ioname"><%= k %></td>
+      <% @iostats.each_with_index do |ios,j| %>
+        <td class="ioval"><input type="checkbox" name="<%= k + j.to_s %>" <%= ios[k] ? 'checked' : '' %> /></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<table >
+  <tr class="tablesection"><th class="tablesection">Calibrator Outputs:</th></tr>
+  <% %w(cylindersUp blocksBack coolingValveOn failLamp).each_with_index do |k,i| %>
+    <tr class="<%= i.odd? ? 'oddrow' : 'evenrow' %>">
+    <td class="ioname"><%= k %></td>
+    <td class="ioval"><input type="checkbox" name="<%= k %>" <%= calibrator.instance_eval("#{k}.state")? 'checked' : '' %> /></td>
+    </tr>
+  <% end %>
+  <tr class="tablesection"><th class="tablesection">Calibrator Inputs:</th></tr>
+  <tr class="evenrow"><td class="ioname">ambientTemperature</td><td class="ioval"><%= '%.2f' % calibrator.ambientTemperature.lastValue %></td></tr>
+  <% %w(blockIsForward blockIsBack doorIsShut).each_with_index do |k,i| %>
+    <tr class="<%= i.odd? ? 'evenrow' : 'oddrow' %>">
+      <td class="ioname"><%= k %></td>
+      <td class="ioval"><%= calibrator.instance_eval("#{k}.state") %></td>
+    <tr>
+  <% end %>
+</table>
+<br />
+Refresh (seconds):<input class="refresh" type="text" name="refresh" value="<%= refresh %>" /><br />
+<input type="submit" value="Change!" />
+<input type="reset" value="Reset!" />
+</form>
+<%= erb :homeButton, :layout => false %>
+<% if authorized? %>
+<h3>Authorized User!</h3>
+<%= erb :killButton, :layout => false %>
+<% end %>
