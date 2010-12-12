@@ -15,6 +15,7 @@ require 'pid'
 require 'temperatureControl'
 require 'timedRepeat'
 
+# Fixes for rmodbus 0.40.0
 module ModBus
   class RTUClient
     alias_method :old_initialize, :initialize
@@ -97,7 +98,43 @@ class SoloTemperatureControllerClient < ModBus::RTUClient
   def initialize(_port,_dataRate,_slaveAddress,_opts)
     super
   end
+
+  def read_holding_registers(addr,n)
+    printf("read(%04x,%d) => ", addr,n)
+    v = super
+    puts v.inspect
+    v
+  end
+
+  def write_single_register(addr,val)
+    printf("write(%04x,%d)\n", addr,val)
+    v = super
+    v
+  end
+
+  # error codes from reading PV
+  PV_INITIAL_PROCESS = 0x8002
+  PV_NO_TEMPERATURE_SENSOR = 0x8003
+  PV_SENSOR_INPUT_ERROR = 0x8004
+  PV_SENSOR_ADC_ERROR = 0x8006
+  PV_MEMORY_ERROR = 0x8007
+  
+  def processValue
+    val = read_holding_registers(0x1000, 1)
+    val[0] / 10.0
+  end
+
+  def setpointValue
+    val = read_holding_registers(0x1001, 1)
+    val[0] / 10.0
+  end
+
+  def setpointValue=(val)
+    write_single_register(0x1001, (val * 10.0).round.to_i)
+  end
+
 end
+
 
 class SMDOven
   # configuration
@@ -130,6 +167,10 @@ class SMDOven
   attr_accessor :profile
   attr_reader :client
 
+  def processValue; client.processValue; end
+  def setpointValue; client.setpointValue; end
+  def setpointValue=(val); client.setpointValue=(val); end
+
   # profile is array of [temperature,time] values
   def doTemperatureControl(_profile)
     profileStep = Enumerator
@@ -145,12 +186,15 @@ class SMDOven
   end
 end
 
-# if __FILE__ == $0
+if __FILE__ == $0
 
 sport = Dir.glob("/dev/cu.usbserial*").first
 puts "using serial port #{sport}"
 $oven = SMDOven.new([], sport)
 $oven.client.debug= true
-$oven.client.read_holding_registers(0x1001, 1)
+puts "PV=#{$oven.processValue}"
+puts "SV=#{$oven.setpointValue}"
+$oven.setpointValue= 20.0
+puts "SV=#{$oven.setpointValue}"
 
-# end
+end
