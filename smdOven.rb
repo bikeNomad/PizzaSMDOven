@@ -196,6 +196,7 @@ module SOLO
     "alarm3HighLimit" => 0x1028,
     "alarm3LowLimit" => 0x1029,
     "lockMode" => 0x102C,
+
     "startingRampSoakPattern" => 0x1030,
     # repeated for 0..7
     "lastStepNumber0" => 0x1040,
@@ -221,8 +222,15 @@ module SOLO
         awscale = ".map { |v| (v * #{addr[1]}).round.to_i }"
         addr = addr[0]
       end
-      self.class_eval "def #{name}; read_holding_registers(#{addr},8)#{ascale}; end"
-      self.class_eval "def #{name}=(a); a#{awscale}.each_with_index { |v,i| write_single_register(#{addr}+i)#{scale} }; end"
+      self.class_eval <<EOT
+  def #{name}(n,a=nil);
+    if (a)
+      a#{awscale}.each_with_index { |v,i| write_single_register(#{addr}+n*8+i)#{scale} }; end"
+    else
+    read_holding_registers(#{addr}+n*8,8)#{ascale}
+    end
+  end
+EOT
     end
     RO_DATA_REGISTERS.each_pair do |name,addr|
       scale = ""
