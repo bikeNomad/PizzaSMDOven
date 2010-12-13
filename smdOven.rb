@@ -11,6 +11,7 @@ require 'serialport' # avoid "undefined method 'create' for class 'Class'" error
 # gem install rmodbus
 require 'rmodbus'
 require 'forwardable'
+require 'enumerator'
 
 require 'pid'
 require 'temperatureControl'
@@ -150,6 +151,10 @@ module SOLO
   CM_RAMP_SOAK = 3
   CONTROL_MODES = [ CM_PID, CM_ON_OFF, CM_MANUAL, CM_RAMP_SOAK ]
 
+  # run modes
+  RUN_MODE_STOP = 0
+  RUN_MODE_RUN = 1
+
   RO_DATA_REGISTERS = {
     "processValue" =>  [0x1000, 10.0],
     "ledStatus" =>  0x102A,
@@ -203,7 +208,15 @@ module SOLO
     "additionalCycles0" => 0x1050,
     "nextPatternNumber0" => 0x1060,
     "rampSoakSetpointValue0" => [0x2000, 10.0],
-    "rampSoakTime0" => [0x2080, 1.0/60.0 ]
+    "rampSoakTime0" => [0x2080, 1.0/60.0 ],
+
+  }
+
+  RW_BIT_REGISTERS = {
+    "autoTune" => 0x0813,
+    "runMode" => 0x0814,  # 0 = stop, 1 = run
+    "stopRampSoak" => 0x0815,
+    "holdRampSoak" => 0x0816,
   }
 
   class TemperatureControllerClient < ModBus::RTUClient
@@ -223,15 +236,15 @@ module SOLO
         addr = addr[0]
       end
       cmd = <<EOT
-  def #{name}(n,a=nil)
-    if (a)
-      a.each_with_index { |v,i| write_single_register(#{addr}+n*8+i,v#{wscale}) }
-    else
-      read_holding_registers(#{addr}+n*8,8)#{ascale}
-    end
-  end
+        def #{name}(n,a=nil)
+          if (a)
+            a.each_with_index { |v,i| write_single_register(#{addr}+n*8+i,v#{wscale}) }
+          else
+            read_holding_registers(#{addr}+n*8,8)#{ascale}
+          end
+        end
 EOT
-puts cmd
+      # puts cmd
       self.class_eval cmd
     end
     RO_DATA_REGISTERS.each_pair do |name,addr|
@@ -269,6 +282,15 @@ puts cmd
       rampSoakSetpointValues(n,a).zip(rampSoakTimes(n,a))
     end
 
+    def runMode(m=nil)
+      if (m.nil?)
+        return read_discrete_inputs(0x0814,1)[0]
+      else
+        puts "RUN MODE=#{m}"
+        write_single_coil(0x0814,m)
+      end
+    end
+
   protected
 
     def read_holding_registers(addr,n)
@@ -299,8 +321,9 @@ class SMDOven
   extend Forwardable
 
   def_delegators(*(([:@client] + SOLO::RO_DATA_REGISTERS.keys.map(&:to_sym)).flatten))
+  def_delegators(*([:@client] + SOLO::RW_DATA_REGISTERS.keys.grep(/s*0$/).map { |s| s.sub(/s*0$/, "s").to_sym }.flatten))
   def_delegators(*([:@client] + SOLO::RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }.flatten))
-  def_delegators(:@client,:debug,:debug=)
+  def_delegators(:@client,:debug,:debug=,:profile,:runMode)
 
   # configuration
   @defaultSamplingPeriod = 1
@@ -324,30 +347,43 @@ class SMDOven
                  _dataRate=self.class.defaultDataRate,
                  _slaveAddress=self.class.defaultSlaveAddress,
                  _opts=self.class.defaultSerialOptions)
-    @profile = _profile
     @client = TemperatureControllerClient.new(_port, _dataRate, _slaveAddress, _opts)
     # @tempController
   end
 
-  attr_accessor :profile
   attr_reader :client
 
-  # profile is array of [temperature,time] values
-  def doTemperatureControl(_profile)
-    profileStep = Enumerator
-    _profile.each do |temperature,duration|
-      # main loop
-      begin
-        TimedRepeat.repeatAt(self.class.defaultSamplingPeriod, self.class.defaultAllowableLateness) do |t|
+  def ramp(_from,_to,_time)
+    temp = _from
+    begin
+      TimedRepeat.repeatAt(self.class.defaultSamplingPeriod, self.class.defaultAllowableLateness) do |t|
+        if t.timeSinceReset >= _time
           t.stop
         end
-      rescue TimedRepeat::MissedRepeat
+        tdelta = t.timeSinceLast
+        temp = _from + (_to-_from) * t.timeSinceReset / _time
+        client.setpointValue= temp
+        p [t.timeSinceReset, temp, tdelta]
+        p client.setpointValue
       end
+    rescue TimedRepeat::MissedRepeat
+    end
+  end
+
+  # profile is array of [temperature,time] values
+  def doProfile(_profile,_startTemp=processValue)
+    controlMode= CM_PID
+    runMode RUN_MODE_RUN
+    startTemp = _startTemp
+    _profile.each_with_index do |step,i|
+      puts "#{i} #{startTemp} => #{step[0]} over #{step[1]} secs"
+      ramp(startTemp, step[0], step[1])
+      startTemp = step[0]
     end
   end
 end
 
-# if __FILE__ == $0 || IRB.CurrentContext
+# if __FILE__ == $0
 
 include SOLO
 
@@ -356,6 +392,7 @@ puts "using serial port #{sport}"
 $oven = SMDOven.new([], sport)
 # $oven.debug= true
 
+$oven.runMode RUN_MODE_STOP
 puts "PV=#{$oven.processValue}"
 puts "SV=#{$oven.setpointValue}"
 
@@ -364,5 +401,9 @@ $oven.setpointValue= 25.0
 puts "SV=#{$oven.setpointValue}"
 
 (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys).sort.each { |k| puts "#{k} = #{$oven.send(k)}" }
+
+$oven.runMode RUN_MODE_STOP
+# p $oven.profile(0)
+$oven.doProfile([[40,120],[30,120]])
 
 # end
