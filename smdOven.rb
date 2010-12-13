@@ -373,7 +373,9 @@ class SMDOven
 
   def reset
     @client.close
-    @client = TemperatureControllerClient.new(@client.port, @client.baud, @client.slave, @opts)
+    sleep(5)
+    sport = Dir.glob("/dev/cu.usbserial*").first
+    @client = TemperatureControllerClient.new(sport, @client.baud, @client.slave, @opts)
   end
 
   def ramp(_from,_to,_time)
@@ -439,7 +441,7 @@ def catchErrorsWhile
   rescue Interrupt
     $oven.setpointValue= 25.0
     $stderr.puts("setpoint reset")
-  rescue ModBus::Errors::ModBusTimeout, Errno::ENXIO
+  rescue ModBus::Errors::ModBusException, Errno::ENXIO
     $stderr.puts $!.to_s
     $stderr.puts $!.message
     $stderr.puts $!.backtrace.join("\n")
