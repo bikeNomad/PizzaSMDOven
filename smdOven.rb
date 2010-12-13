@@ -136,66 +136,149 @@ end
 
 module SOLO
 
-    # error codes from reading PV
-    PV_INITIAL_PROCESS = 0x8002
-    PV_NO_TEMPERATURE_SENSOR = 0x8003
-    PV_SENSOR_INPUT_ERROR = 0x8004
-    PV_SENSOR_ADC_ERROR = 0x8006
-    PV_MEMORY_ERROR = 0x8007
+  # error codes from reading PV
+  PV_INITIAL_PROCESS = 0x8002
+  PV_NO_TEMPERATURE_SENSOR = 0x8003
+  PV_SENSOR_INPUT_ERROR = 0x8004
+  PV_SENSOR_ADC_ERROR = 0x8006
+  PV_MEMORY_ERROR = 0x8007
 
-    # control modes
-    CM_PID = 0
-    CM_ON_OFF = 1
-    CM_MANUAL = 2
-    CM_RAMP_SOAK = 3
+  # control modes
+  CM_PID = 0
+  CM_ON_OFF = 1
+  CM_MANUAL = 2
+  CM_RAMP_SOAK = 3
+  CONTROL_MODES = [ CM_PID, CM_ON_OFF, CM_MANUAL, CM_RAMP_SOAK ]
+
+  RO_DATA_REGISTERS = {
+    "processValue" =>  [0x1000, 10.0],
+    "ledStatus" =>  0x102A,
+    "pushbuttonStatus" => 0x102B,
+    "firmwareVersion" => 0x102F
+  }
+
+  RW_DATA_REGISTERS = {
+    "setpointValue" => [0x1001, 10.0],
+    "inputRangeHigh" => [0x1002, 10.0],
+    "inputRangeLow" => [0x1003, 10.0],
+    "inputType" => 0x1004,
+    "controlMode" => 0x1005,
+    "heatingCooling" => 0x1006,
+    "output1Period" => 0x1007,
+    "output2Period" => 0x1008,
+
+    "pidParameterGroup" => 0x101c,  # affects following PID params
+    "proportionalBand" => [0x1009, 10.0],   # P1-4
+    "integralTime" => 0x100A, # P1-5
+    "derivativeTime" => 0x100B, # P1-5
+    "integralOffset" => [0x100C, 1000.0], # P1-8
+    "pdControlOffset" => [0x100D, 1000.0],
+
+    "proportionalCoefficient" => [0x100E, 100.0],
+    "deadBand" => 0x100F,
+    "heatingHysteresis" => 0x1010,
+    "coolingHysteresis" => 0x1011,
+    "output1Level" => [0x1012, 1000.0],
+    "output2Level" => [0x1013, 1000.0],
+    "analogHighAdjustment" => 0x1014,
+    "analogLowAdjustment" => 0x1015,
+    "processValueOffset" => 0x1016,
+    "decimalPointPosition" => 0x1017,
+    "targetSetpointValue" => [0x101D, 10.0],
+    "alarm1" => 0x1020,
+    "alarm2" => 0x1021,
+    "alarm3" => 0x1022,
+    "systemAlarm" => 0x1023,
+    "alarm1HighLimit" => 0x1024,
+    "alarm1LowLimit" => 0x1025,
+    "alarm2HighLimit" => 0x1026,
+    "alarm2LowLimit" => 0x1027,
+    "alarm3HighLimit" => 0x1028,
+    "alarm3LowLimit" => 0x1029,
+    "lockMode" => 0x102C,
+    "startingRampSoakPattern" => 0x1030,
+    # repeated for 0..7
+    "lastStepNumber0" => 0x1040,
+    "additionalCycles0" => 0x1050,
+    "nextPatternNumber0" => 0x1060,
+    "rampSoakSetpointValue0" => [0x2000, 10.0],
+    "rampSoakTime0" => [0x2080, 1.0/60.0 ]
+  }
 
   class TemperatureControllerClient < ModBus::RTUClient
     include ModBus
 
+  protected
+    multi = RW_DATA_REGISTERS.keys.grep(/0$/)
+    multi.each do |m|
+      name = m.sub(/s*0$/, "s")
+      addr = RW_DATA_REGISTERS[m]
+      scale = ""
+      awscale = ""
+      if addr.is_a?(Enumerable)
+        ascale = ".map { |v| v / #{addr[1]}}"
+        scale = "/#{addr[1]}"
+        awscale = ".map { |v| (v * #{addr[1]}).round.to_i }"
+        addr = addr[0]
+      end
+      self.class_eval "def #{name}; read_holding_registers(#{addr},8)#{ascale}; end"
+      self.class_eval "def #{name}=(a); a#{awscale}.each_with_index { |v,i| write_single_register(#{addr}+i)#{scale} }; end"
+    end
+    RO_DATA_REGISTERS.each_pair do |name,addr|
+      scale = ""
+      if addr.is_a?(Enumerable)
+        scale = "/#{addr[1]}"
+        addr = addr[0]
+      end
+      self.class_eval "def #{name}; read_single_register(#{addr})#{scale}; end"
+    end
+    RW_DATA_REGISTERS.each_pair do |name,addr|
+      scale = ""
+      wscale = ""
+      if addr.is_a?(Enumerable)
+        wscale = "*#{addr[1]}"
+        scale = "/#{addr[1]}"
+        addr = addr[0]
+      end
+      self.class_eval "def #{name}; read_single_register(#{addr})#{scale}; end"
+      self.class_eval "def #{name}=(val); write_single_register(#{addr},(val#{wscale}).to_i); end"
+    end
+
+  public
     def initialize(_port,_dataRate,_slaveAddress,_opts)
       super
     end
 
+    alias_method :old_rst, :rampSoakTimes
+
+    def rampSoakTimes
+      old_rst.map(&:round)
+    end
+
+    def profile
+      rampSoakSetpointValues.zip(rampSoakTimes)
+    end
+
+  protected
+
     def read_holding_registers(addr,n)
-      printf("read(%04x,%d)\n", addr,n)
+      log sprintf("read(%04x,%d)\n", addr,n)
       v = super(addr,n)
-      printf(" => %s\n", v.inspect)
+      log sprintf(" => %s\n", v.inspect)
       v
     end
 
     def read_single_register(addr)
-      printf("read(%04x)\n", addr)
+      log sprintf("read(%04x)\n", addr)
       v = query("\x3" + addr.to_word + 1.to_word).unpack('n*')
-      printf("  => %s\n", v.inspect)
+      log sprintf("  => %s\n", v.inspect)
       v[0]
     end
 
     def write_single_register(addr,val)
-      printf("write(%04x,%d)\n", addr,val.to_i)
+      log sprintf("write(%04x,%d)\n", addr,val.to_i)
       super(addr,val.to_i)
     end
-
-    
-    def processValue
-      read_single_register(0x1000) / 10.0
-    end
-
-    def setpointValue
-      read_single_register(0x1001) / 10.0
-    end
-
-    def setpointValue=(val)
-      write_single_register(0x1001, (val * 10.0).round)
-    end
-
-    def controlMode
-      read_single_register(0x1005)
-    end
-
-    def controlMode=(mode)
-      write_single_register(0x1005, mode)
-    end
-
   end
 
 end
@@ -205,7 +288,9 @@ class SMDOven
   include SOLO
   extend Forwardable
 
-  def_delegators :@client,:processValue,:setpointValue,:controlMode,:setpointValue=,:controlMode=
+  def_delegators(*(([:@client] + SOLO::RO_DATA_REGISTERS.keys.map(&:to_sym)).flatten))
+  def_delegators(*([:@client] + SOLO::RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }.flatten))
+  def_delegators(:@client,:debug,:debug=)
 
   # configuration
   @defaultSamplingPeriod = 1
@@ -252,19 +337,22 @@ class SMDOven
   end
 end
 
-# if __FILE__ == $0
+# if __FILE__ == $0 || IRB.CurrentContext
 
 include SOLO
 
 sport = Dir.glob("/dev/cu.usbserial*").first
 puts "using serial port #{sport}"
 $oven = SMDOven.new([], sport)
-$oven.client.debug= true
+# $oven.debug= true
+
 puts "PV=#{$oven.processValue}"
 puts "SV=#{$oven.setpointValue}"
 
 $oven.client.controlMode= CM_PID
 $oven.setpointValue= 25.0
 puts "SV=#{$oven.setpointValue}"
+
+(RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys).sort.each { |k| puts "#{k} = #{$oven.send(k)}" }
 
 # end
