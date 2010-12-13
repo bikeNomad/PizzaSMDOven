@@ -215,22 +215,24 @@ module SOLO
       name = m.sub(/s*0$/, "s")
       addr = RW_DATA_REGISTERS[m]
       scale = ""
-      awscale = ""
+      wscale = ""
       if addr.is_a?(Enumerable)
         ascale = ".map { |v| v / #{addr[1]}}"
         scale = "/#{addr[1]}"
-        awscale = ".map { |v| (v * #{addr[1]}).round.to_i }"
+        wscale = "*#{addr[1]}.round.to_i"
         addr = addr[0]
       end
-      self.class_eval <<EOT
-  def #{name}(n,a=nil);
+      cmd = <<EOT
+  def #{name}(n,a=nil)
     if (a)
-      a#{awscale}.each_with_index { |v,i| write_single_register(#{addr}+n*8+i)#{scale} }; end"
+      a.each_with_index { |v,i| write_single_register(#{addr}+n*8+i,v#{wscale}) }
     else
-    read_holding_registers(#{addr}+n*8,8)#{ascale}
+      read_holding_registers(#{addr}+n*8,8)#{ascale}
     end
   end
 EOT
+puts cmd
+      self.class_eval cmd
     end
     RO_DATA_REGISTERS.each_pair do |name,addr|
       scale = ""
@@ -259,12 +261,12 @@ EOT
 
     alias_method :old_rst, :rampSoakTimes
 
-    def rampSoakTimes
-      old_rst.map(&:round)
+    def rampSoakTimes(n,a=nil)
+      old_rst(n,a).map(&:round)
     end
 
-    def profile
-      rampSoakSetpointValues.zip(rampSoakTimes)
+    def profile(n,a=nil)
+      rampSoakSetpointValues(n,a).zip(rampSoakTimes(n,a))
     end
 
   protected
