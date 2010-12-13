@@ -304,7 +304,7 @@ EOT
       log sprintf("read(%04x)\n", addr)
       v = query("\x3" + addr.to_word + 1.to_word)
       return nil if v.nil?
-      v.unpack('n*')
+      v = v.unpack('n*')
       log sprintf("  => %s\n", v.inspect)
       v[0]
     end
@@ -399,7 +399,6 @@ include SOLO
 sport = Dir.glob("/dev/cu.usbserial*").first
 puts "using serial port #{sport}"
 $oven = SMDOven.new([], sport)
-# $oven.debug= true
 
 $oven.runMode RUN_MODE_STOP
 puts "PV=#{$oven.processValue}"
@@ -411,8 +410,10 @@ puts "SV=#{$oven.setpointValue}"
 
 (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys).sort.each { |k| puts "#{k} = #{$oven.send(k)}" }
 
-$oven.runMode RUN_MODE_STOP
+# $oven.runMode RUN_MODE_STOP
 # p $oven.profile(0)
-# $oven.doProfile([[40,120],[30,120]])
+$oven.debug= true
+$oven.runMode RUN_MODE_RUN
+$oven.doProfile([[40,120],[30,120]])
 
 # end
