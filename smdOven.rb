@@ -235,7 +235,7 @@ module SOLO
         wscale = "*#{addr[1]}.round.to_i"
         addr = addr[0]
       end
-      cmd = <<EOT
+      self.class_eval <<EOT
         def #{name}(n,a=nil)
           if (a)
             a.each_with_index { |v,i| write_single_register(#{addr}+n*8+i,v#{wscale}) }
@@ -244,16 +244,19 @@ module SOLO
           end
         end
 EOT
-      # puts cmd
-      self.class_eval cmd
     end
-    RO_DATA_REGISTERS.each_pair do |name,addr|
+    (RW_DATA_REGISTERS.merge(RO_DATA_REGISTERS)).each_pair do |name,addr|
       scale = ""
       if addr.is_a?(Enumerable)
         scale = "/#{addr[1]}"
         addr = addr[0]
       end
-      self.class_eval "def #{name}; read_single_register(#{addr})#{scale}; end"
+      self.class_eval <<EOT
+        def #{name}
+          v = read_single_register(#{addr})
+          v && v#{scale}
+        end
+EOT
     end
     RW_DATA_REGISTERS.each_pair do |name,addr|
       scale = ""
@@ -263,8 +266,11 @@ EOT
         scale = "/#{addr[1]}"
         addr = addr[0]
       end
-      self.class_eval "def #{name}; read_single_register(#{addr})#{scale}; end"
-      self.class_eval "def #{name}=(val); write_single_register(#{addr},(val#{wscale}).to_i); end"
+      self.class_eval <<EOT
+        def #{name}=(val)
+          write_single_register(#{addr},(val#{wscale}).to_i)
+        end
+EOT
     end
 
   public
@@ -300,6 +306,7 @@ EOT
       v
     end
 
+    # returns nil on error
     def read_single_register(addr)
       log sprintf("read(%04x)\n", addr)
       v = query("\x3" + addr.to_word + 1.to_word)
@@ -350,16 +357,23 @@ class SMDOven
                  _slaveAddress=self.class.defaultSlaveAddress,
                  _opts=self.class.defaultSerialOptions)
     @client = TemperatureControllerClient.new(_port, _dataRate, _slaveAddress, _opts)
-    # @tempController
+    @opts = _opts
+    @temperatureLog = nil
   end
 
   attr_reader :client
+  attr_accessor :temperatureLog
 
   def goToTemperature(_temp, _epsilon=1.0)
     @client.setpointValue=(_temp)
     while (processValue() - _temp).abs > _epsilon
       sleep 1.0
     end
+  end
+
+  def reset
+    @client.close
+    @client = TemperatureControllerClient.new(@client.port, @client.baud, @client.slave, @opts)
   end
 
   def ramp(_from,_to,_time)
@@ -372,20 +386,26 @@ class SMDOven
         tdelta = t.timeSinceLast
         temp = _from + (_to-_from) * t.timeSinceReset / _time
         client.setpointValue= temp
-        p [t.timeSinceReset, temp, tdelta]
-        p client.setpointValue
+        if temperatureLog
+          pv = client.processValue || 0.0
+          temperatureLog.printf("%s,%.1f,%.1f\n",
+                                Time.now.strftime("%H:%M:%S"),
+                                temp,
+                                pv )
+        end
       end
     rescue TimedRepeat::MissedRepeat
+      retry
     end
   end
 
   # profile is array of [temperature,time] values
   def doProfile(_profile,_startTemp=processValue)
     controlMode= CM_PID
-    runMode RUN_MODE_RUN
     startTemp = _startTemp
+    temperatureLog.puts("time,setpoint,process") if temperatureLog
     _profile.each_with_index do |step,i|
-      puts "#{i} #{startTemp} => #{step[0]} over #{step[1]} secs"
+      $stderr.puts "#{i} #{startTemp} => #{step[0]} over #{step[1]} secs"
       ramp(startTemp, step[0], step[1])
       startTemp = step[0]
     end
@@ -408,12 +428,43 @@ $oven.client.controlMode= CM_PID
 $oven.setpointValue= 25.0
 puts "SV=#{$oven.setpointValue}"
 
-(RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys).sort.each { |k| puts "#{k} = #{$oven.send(k)}" }
 
-# $oven.runMode RUN_MODE_STOP
-# p $oven.profile(0)
-$oven.debug= true
-$oven.runMode RUN_MODE_RUN
-$oven.doProfile([[40,120],[30,120]])
+def catchErrorsWhile
+  # $oven.runMode RUN_MODE_STOP
+  # p $oven.profile(0)
+  # $oven.debug= true
+  $oven.temperatureLog= $stdout
+  begin
+    yield
+  rescue Interrupt
+    $oven.setpointValue= 25.0
+    $stderr.puts("setpoint reset")
+  rescue ModBus::Errors::ModBusTimeout, Errno::ENXIO
+    $stderr.puts $!.to_s
+    $stderr.puts $!.message
+    $stderr.puts $!.backtrace.join("\n")
+    $stderr.puts("RESET")
+    $oven.reset
+    retry
+  rescue
+    $stderr.puts "ERROR!", $!.to_s, $!.message, $!.backtrace.join("\n")
+  end
+end
+
+def dumpRegisters
+  catchErrorsWhile do
+    (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys).sort.each { |k| puts "#{k} = #{$oven.send(k)}" }
+  end
+end
+
+def testProfile
+  catchErrorsWhile do
+    $oven.runMode RUN_MODE_RUN
+    $oven.doProfile([[40,120],[30,120]])
+  end
+end
+
+dumpRegisters
+testProfile
 
 # end
