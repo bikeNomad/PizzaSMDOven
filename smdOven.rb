@@ -302,7 +302,9 @@ EOT
 
     def read_single_register(addr)
       log sprintf("read(%04x)\n", addr)
-      v = query("\x3" + addr.to_word + 1.to_word).unpack('n*')
+      v = query("\x3" + addr.to_word + 1.to_word)
+      return nil if v.nil?
+      v.unpack('n*')
       log sprintf("  => %s\n", v.inspect)
       v[0]
     end
@@ -352,6 +354,13 @@ class SMDOven
   end
 
   attr_reader :client
+
+  def goToTemperature(_temp, _epsilon=1.0)
+    @client.setpointValue=(_temp)
+    while (processValue() - _temp).abs > _epsilon
+      sleep 1.0
+    end
+  end
 
   def ramp(_from,_to,_time)
     temp = _from
@@ -404,6 +413,6 @@ puts "SV=#{$oven.setpointValue}"
 
 $oven.runMode RUN_MODE_STOP
 # p $oven.profile(0)
-$oven.doProfile([[40,120],[30,120]])
+# $oven.doProfile([[40,120],[30,120]])
 
 # end
