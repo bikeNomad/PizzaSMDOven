@@ -10,6 +10,7 @@ BEGIN {
 require 'serialport' # avoid "undefined method 'create' for class 'Class'" error
 # gem install rmodbus
 require 'rmodbus'
+require 'forwardable'
 
 require 'pid'
 require 'temperatureControl'
@@ -22,14 +23,30 @@ module ModBus
 
     def initialize(_port,_dataRate,_slaveAddress,_opts)
       old_initialize(_port,_dataRate,_slaveAddress,_opts)
-      @character_delay = 
+      @character_duration = 
         (1.0 + @sp.data_bits +
         @sp.stop_bits +
         ((@sp.parity == SerialPort::NONE) ? 1 : 0)) / _dataRate
-      @initial_response_timeout = 0.01
+      # per current MODBUS/RTU spec:
+      if _dataRate < 19200
+        @inter_character_timeout = 1.5 * @character_duration
+        @inter_frame_timeout = 3.5 * @character_duration
+      else
+        @inter_character_timeout = 750e-6
+        @inter_frame_timeout = 1.75e-3
+      end
+      @initial_response_timeout = 0.02
+      @transmit_pdu = ''
+      @receive_pdu = ''
+      @last_transmit = Time.now - @inter_frame_timeout
+      @last_receive = Time.now
+      @sp.read_timeout = (2 * @inter_character_timeout * 1000.0).round.to_i
+      # flush old garbage
+      read_all_available_bytes()
     end
 
-    attr_accessor :character_delay, :initial_response_timeout
+    attr_accessor :character_duration, :initial_response_timeout
+    attr_reader :receive_pdu, :transmit_pdu
 
     # return false if no read data is available for me yet
     # timeout is in seconds
@@ -40,7 +57,9 @@ module ModBus
 
     def read_all_available_bytes(timeout =0, max = 1000)
       if read_data_available?(timeout)
-        @sp.sysread(max)
+        r = @sp.sysread(max)
+        @last_receive = Time.now
+        r
       else
         ''
       end
@@ -48,95 +67,146 @@ module ModBus
 
     def wait_for_characters(n)
       if (n > 0)
-        sleep(@character_delay * n)
+        sleep(@character_duration * n)
       end
+    end
+
+    def send_pdu(pdu)
+      @transmit_pdu = @slave.chr + pdu 
+      @transmit_pdu << crc16(@transmit_pdu).to_word
+
+      # ensure minimum gap of 3.5 chars since last xmit
+      now = Time.now
+      early = @inter_frame_timeout - (now - @last_transmit)
+      if early > 0
+        log "too fast by #{early}"
+        sleep(early)
+      end
+
+      @sp.write @transmit_pdu
+      @last_transmit = Time.now
+
+      log "Tx (#{@transmit_pdu.size} bytes): " + logging_bytes(@transmit_pdu)
     end
 
     def read_pdu
         # initial delay for some bytes to be available
-        sleep(@initial_response_timeout)
+        sleep(@inter_frame_timeout)
 
-        msg = ''
+        @receive_pdu = ''
 
-        # get first 2 bytes to check for error
-        while msg.size < 2
-          wait_for_characters(2 - msg.size)
-          msg += read_all_available_bytes
+        # get first byte
+        while @receive_pdu.empty?
+          @receive_pdu = read_all_available_bytes
         end
 
-        if msg.getbyte(0) != @slave
+        # keep getting bytes until frame timeout
+        while read_data_available?(@inter_frame_timeout)
+          @receive_pdu += read_all_available_bytes
+          gap = Time.now - @last_receive 
+          if gap > @inter_character_timeout && gap < @inter_frame_timeout
+            # ERROR: too long a gap inside message
+            log "too-long inter-character gap in PDU"
+            raise ModBusTimeout.new("Too-long inter-character gap in PDU")
+          end
+        end
+
+        retval = ''
+
+        log "Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)
+
+        if @receive_pdu.getbyte(0) != @slave
           log "Ignore package: don't match slave ID"
-          msg = ''
-        else
-          # ensure that we have count of remaining bytes
-          while msg.size < 3
-            wait_for_characters(3 - msg.size)
-            msg += read_all_available_bytes
-          end
-          # now get rest of the bytes
-          # expect 2+1+<payload>+2 bytes
-          expected_bytes = msg.getbyte(2) + 5
-          while msg.size < expected_bytes
-            wait_for_characters(expected_bytes - msg.size)
-            msg += read_all_available_bytes
+          @receive_pdu = ''
+        end
+
+        if @receive_pdu.size > 4
+          retval = @receive_pdu[1..-3]
+          if @receive_pdu[-2,2].unpack('n')[0] != crc16(@receive_pdu[0..-3])
+            log "Ignore package: don't match CRC"
+            retval = ''
           end
         end
 
-        if (msg)
-          log "Rx (#{msg.size} bytes): " + logging_bytes(msg)
-          return msg[1..-3] if msg[-2,2].unpack('n')[0] == crc16(msg[0..-3])
-          log "Ignore package: don't match CRC"
-        end
-        return ''
+        @receive_pdu = '' # clear PDU
+        return retval
     end
   end
 end
 
-class SoloTemperatureControllerClient < ModBus::RTUClient
-  include ModBus
+module SOLO
 
-  def initialize(_port,_dataRate,_slaveAddress,_opts)
-    super
-  end
+    # error codes from reading PV
+    PV_INITIAL_PROCESS = 0x8002
+    PV_NO_TEMPERATURE_SENSOR = 0x8003
+    PV_SENSOR_INPUT_ERROR = 0x8004
+    PV_SENSOR_ADC_ERROR = 0x8006
+    PV_MEMORY_ERROR = 0x8007
 
-  def read_holding_registers(addr,n)
-    printf("read(%04x,%d) => ", addr,n)
-    v = super
-    puts v.inspect
-    v
-  end
+    # control modes
+    CM_PID = 0
+    CM_ON_OFF = 1
+    CM_MANUAL = 2
+    CM_RAMP_SOAK = 3
 
-  def write_single_register(addr,val)
-    printf("write(%04x,%d)\n", addr,val)
-    v = super
-    v
-  end
+  class TemperatureControllerClient < ModBus::RTUClient
+    include ModBus
 
-  # error codes from reading PV
-  PV_INITIAL_PROCESS = 0x8002
-  PV_NO_TEMPERATURE_SENSOR = 0x8003
-  PV_SENSOR_INPUT_ERROR = 0x8004
-  PV_SENSOR_ADC_ERROR = 0x8006
-  PV_MEMORY_ERROR = 0x8007
-  
-  def processValue
-    val = read_holding_registers(0x1000, 1)
-    val[0] / 10.0
-  end
+    def initialize(_port,_dataRate,_slaveAddress,_opts)
+      super
+    end
 
-  def setpointValue
-    val = read_holding_registers(0x1001, 1)
-    val[0] / 10.0
-  end
+    def read_holding_registers(addr,n)
+      printf("read(%04x,%d)\n", addr,n)
+      v = super(addr,n)
+      printf(" => %s\n", v.inspect)
+      v
+    end
 
-  def setpointValue=(val)
-    write_single_register(0x1001, (val * 10.0).round.to_i)
+    def read_single_register(addr)
+      printf("read(%04x)\n", addr)
+      v = query("\x3" + addr.to_word + 1.to_word).unpack('n*')
+      printf("  => %s\n", v.inspect)
+      v[0]
+    end
+
+    def write_single_register(addr,val)
+      printf("write(%04x,%d)\n", addr,val.to_i)
+      super(addr,val.to_i)
+    end
+
+    
+    def processValue
+      read_single_register(0x1000) / 10.0
+    end
+
+    def setpointValue
+      read_single_register(0x1001) / 10.0
+    end
+
+    def setpointValue=(val)
+      write_single_register(0x1001, (val * 10.0).round)
+    end
+
+    def controlMode
+      read_single_register(0x1005)
+    end
+
+    def controlMode=(mode)
+      write_single_register(0x1005, mode)
+    end
+
   end
 
 end
 
 
 class SMDOven
+  include SOLO
+  extend Forwardable
+
+  def_delegators :@client,:processValue,:setpointValue,:controlMode,:setpointValue=,:controlMode=
+
   # configuration
   @defaultSamplingPeriod = 1
   @defaultAllowableLateness = 0.1
@@ -160,16 +230,12 @@ class SMDOven
                  _slaveAddress=self.class.defaultSlaveAddress,
                  _opts=self.class.defaultSerialOptions)
     @profile = _profile
-    @client = SoloTemperatureControllerClient.new(_port, _dataRate, _slaveAddress, _opts)
+    @client = TemperatureControllerClient.new(_port, _dataRate, _slaveAddress, _opts)
     # @tempController
   end
 
   attr_accessor :profile
   attr_reader :client
-
-  def processValue; client.processValue; end
-  def setpointValue; client.setpointValue; end
-  def setpointValue=(val); client.setpointValue=(val); end
 
   # profile is array of [temperature,time] values
   def doTemperatureControl(_profile)
@@ -186,7 +252,9 @@ class SMDOven
   end
 end
 
-if __FILE__ == $0
+# if __FILE__ == $0
+
+include SOLO
 
 sport = Dir.glob("/dev/cu.usbserial*").first
 puts "using serial port #{sport}"
@@ -194,7 +262,9 @@ $oven = SMDOven.new([], sport)
 $oven.client.debug= true
 puts "PV=#{$oven.processValue}"
 puts "SV=#{$oven.setpointValue}"
-$oven.setpointValue= 20.0
+
+$oven.client.controlMode= CM_PID
+$oven.setpointValue= 25.0
 puts "SV=#{$oven.setpointValue}"
 
-end
+# end
