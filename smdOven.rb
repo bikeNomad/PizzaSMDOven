@@ -157,7 +157,7 @@ end
 def testProfile
   catchErrorsWhile do
     $oven.runMode RUN_MODE_RUN
-    $oven.doProfile([[40,120],[30,120]])
+    $oven.doProfile([[40,120],[30,120]], 19)
   end
 end
 
