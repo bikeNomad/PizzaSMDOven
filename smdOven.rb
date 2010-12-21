@@ -64,6 +64,14 @@ class SMDOven
   def goToTemperature(_temp, _epsilon=1.0)
     @client.setpointValue=(_temp)
     while (processValue() - _temp).abs > _epsilon
+      logTemperature()
+      sleep 1.0
+    end
+  end
+
+  def goBelowTemperature(_temp)
+    while (processValue() > _temp)
+      logTemperature()
       sleep 1.0
     end
   end
@@ -73,6 +81,17 @@ class SMDOven
     sleep(5)
     sport = Dir.glob("/dev/cu.usbserial*").first
     @client = TemperatureControllerClient.new(sport, @client.baud, @client.slave, @opts)
+  end
+
+  def logTemperature
+    if temperatureLog
+      pv = client.processValue || 0.0
+      temperatureLog.printf("%s,%.1f,%.1f\n",
+                            Time.now.strftime("%H:%M:%S"),
+                            client.setpointValue,
+                            pv )
+      temperatureLog.fsync
+    end
   end
 
   def ramp(_from,_to,_time)
@@ -85,13 +104,7 @@ class SMDOven
         tdelta = t.timeSinceLast
         temp = _from + (_to-_from) * t.timeSinceReset / _time
         client.setpointValue= temp
-        if temperatureLog
-          pv = client.processValue || 0.0
-          temperatureLog.printf("%s,%.1f,%.1f\n",
-                                Time.now.strftime("%H:%M:%S"),
-                                temp,
-                                pv )
-        end
+        logTemperature()
       end
     rescue TimedRepeat::MissedRepeat
       retry
@@ -105,8 +118,12 @@ class SMDOven
     temperatureLog.puts("time,setpoint,process") if temperatureLog
     _profile.each_with_index do |step,i|
       $stderr.puts "#{i} #{startTemp} => #{step[0]} over #{step[1]} secs"
-      ramp(startTemp, step[0], step[1])
-      startTemp = step[0]
+      endTemp = step[0]
+      stepTime = step[1]
+      ramp(startTemp, endTemp, stepTime)
+      $stderr.puts "  waiting for temp to go from #{processValue} to #{endTemp}"
+      goToTemperature(endTemp)
+      startTemp = endTemp
     end
   end
 end
@@ -162,25 +179,28 @@ def dumpRegisters(logfile=$stderr)
 end
 
 def testProfile(logfile=$stderr)
+  logfile.sync= true
   catchErrorsWhile(logfile) do
     $oven.runMode RUN_MODE_RUN
-    $oven.doProfile([[40,120],[30,120]], 19)
+    $oven.setpointValue= 25.0
+    $oven.goBelowTemperature(40.0)
+    $oven.doProfile([[155,120],[180,60],[215,0],[40,360]], 25)
   end
 end
 
 
+dumpRegisters
 $oven.decimalPointPosition= 1
+$oven.output2Period= 10
+
 # $oven.initial_response_timeout= 0.001
-$oven.inter_frame_timeout= $oven.inter_frame_timeout * 2
+# $oven.inter_frame_timeout= $oven.inter_frame_timeout * 2
 
 $retryOnMBError = false
 
-# dumpRegisters
 # $oven.debug= true
-File.open("/dev/null", "w") do |lf|
+File.open("temperature_log.csv", "w") do |lf|
   $oven.temperatureLog= lf
-#  puts [ "xmit=", logging_bytes($oven.transmit_pdu) ].join
-#  puts [ "rcv=", logging_bytes($oven.receive_pdu) ].join
   testProfile
 end
 
