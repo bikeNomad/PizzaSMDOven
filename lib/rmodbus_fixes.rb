@@ -2,11 +2,39 @@
 # Fixes for rmodbus 0.40.0 RTU client code 
 # From Ned Konz <ned@bike-nomad.com>
 #
+require 'rmodbus'
+
 module ModBus
+  module Common
+
+    private
+    def log(msg)
+      debug_log.puts msg if @debug
+    end
+
+    def log_error(msg)
+      debug_log.puts msg
+    end
+
+    def logging_bytes(msg)
+      result = ""
+      msg.each_byte do |c|
+        byte = if c < 16
+          '0' + c.to_s(16)
+        else
+          c.to_s(16)
+        end
+        result << "[#{byte}]"
+      end
+      result
+    end
+  end
+
   class RTUClient
     alias_method :old_initialize, :initialize
 
     def initialize(_port,_dataRate,_slaveAddress,_opts)
+      @debug_log = $stdout
       old_initialize(_port,_dataRate,_slaveAddress,_opts)
       @character_duration = 
         (1.0 + @sp.data_bits +
@@ -33,6 +61,7 @@ module ModBus
     attr_accessor :character_duration, :initial_response_timeout
     attr_accessor :inter_character_timeout, :inter_frame_timeout
     attr_reader :receive_pdu, :transmit_pdu
+    attr_accessor :debug_log
 
     # return false if no read data is available for me yet
     # timeout is in seconds
@@ -72,7 +101,7 @@ module ModBus
       @sp.write @transmit_pdu
       @last_transmit = Time.now
 
-      log "Tx (#{@transmit_pdu.size} bytes): " + logging_bytes(@transmit_pdu)
+      log("Tx (#{@transmit_pdu.size} bytes): " + logging_bytes(@transmit_pdu)) if debug
     end
 
     def read_pdu
@@ -99,17 +128,19 @@ module ModBus
 
         retval = ''
 
-        log "Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)
+        log("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) if debug
 
         if @receive_pdu.getbyte(0) != @slave
-          log "Ignore package: don't match slave ID"
+          log_error("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) unless debug
+          log_error("Ignore package: don't match slave ID")
           @receive_pdu = ''
         end
 
         if @receive_pdu.size > 4
           retval = @receive_pdu[1..-3]
           if @receive_pdu[-2,2].unpack('n')[0] != crc16(@receive_pdu[0..-3])
-            log "Ignore package: don't match CRC"
+            log_error("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) unless debug
+            log_error("Ignore package: don't match CRC")
             retval = ''
           end
         end
