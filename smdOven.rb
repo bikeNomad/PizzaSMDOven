@@ -1,149 +1,24 @@
 #!/usr/bin/env ruby
 # $Id$
 #
-BEGIN {
-  srcdir = File.dirname(File.dirname(__FILE__))
-  %w(lib ).each { |d| $: << File.join(srcdir, d) }
-}
+BEGIN { $: << File.join(File.dirname(__FILE__), 'lib') }
 
-# gem install serialport
-require 'serialport' # avoid "undefined method 'create' for class 'Class'" error
-# gem install rmodbus
-require 'rmodbus'
-require 'forwardable'
-require 'enumerator'
+require 'smdoven'
 
-require 'pid'
-require 'temperatureControl'
-require 'timedRepeat'
-
-require 'rmodbus_fixes'
-require 'solo'
-
-class SMDOven
-  include SOLO
-  extend Forwardable
-
-  def_delegators(*(([:@client] + SOLO::RO_DATA_REGISTERS.keys.map(&:to_sym)).flatten))
-  def_delegators(*([:@client] + SOLO::RW_DATA_REGISTERS.keys.grep(/s*0$/).map { |s| s.sub(/s*0$/, "s").to_sym }.flatten))
-  def_delegators(*([:@client] + SOLO::RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }.flatten))
-  def_delegators(:@client,:debug,:debug=,:profile,:runMode,:receive_pdu,:transmit_pdu)
-  def_delegators(:@client,:initial_response_timeout,:initial_response_timeout=)
-  def_delegators(:@client,:inter_character_timeout,:inter_frame_timeout,:inter_character_timeout=,:inter_frame_timeout=)
-
-  # configuration
-  @defaultSamplingPeriod = 1
-  @defaultAllowableLateness = 0.1
-  @defaultDataRate = 9600
-  @defaultSlaveAddress = 1
-  # read_timeout is in msec
-  # and is used by SerialPort instance
-  @defaultSerialOptions = {
-    :data_bits => 8,
-    :stop_bits => 1,
-    :parity => SerialPort::EVEN,
-    :read_timeout => (1000.0 * (8 + 1 + 1) / @defaultDataRate).round.to_i }
-
-  class << self
-    attr_accessor :defaultSamplingPeriod, :defaultAllowableLateness,
-      :defaultDataRate, :defaultSerialOptions, :defaultSlaveAddress
-  end
-
-  def initialize(_profile, _port,
-                 _dataRate=self.class.defaultDataRate,
-                 _slaveAddress=self.class.defaultSlaveAddress,
-                 _opts=self.class.defaultSerialOptions)
-    @client = TemperatureControllerClient.new(_port, _dataRate, _slaveAddress, _opts)
-    @opts = _opts
-    @temperatureLog = nil
-  end
-
-  attr_reader :client
-  attr_accessor :temperatureLog
-
-  def goToTemperature(_temp, _epsilon=1.0)
-    @client.setpointValue=(_temp)
-    while (processValue() - _temp).abs > _epsilon
-      logTemperature()
-      sleep 1.0
-    end
-  end
-
-  def goBelowTemperature(_temp)
-    while (processValue() > _temp)
-      logTemperature()
-      sleep 1.0
-    end
-  end
-
-  def reset
-    @client.close
-    sleep(5)
-    sport = Dir.glob("/dev/cu.usbserial*").first
-    @client = TemperatureControllerClient.new(sport, @client.baud, @client.slave, @opts)
-  end
-
-  def logTemperature
-    if temperatureLog
-      pv = client.processValue || 0.0
-      temperatureLog.printf("%s,%.1f,%.1f\n",
-                            Time.now.strftime("%H:%M:%S"),
-                            client.setpointValue,
-                            pv )
-      temperatureLog.fsync
-    end
-  end
-
-  def ramp(_from,_to,_time)
-    temp = _from
-    begin
-      TimedRepeat.repeatAt(self.class.defaultSamplingPeriod, self.class.defaultAllowableLateness) do |t|
-        if t.timeSinceReset >= _time
-          t.stop
-        end
-        tdelta = t.timeSinceLast
-        temp = _from + (_to-_from) * t.timeSinceReset / _time
-        client.setpointValue= temp
-        logTemperature()
-      end
-    rescue TimedRepeat::MissedRepeat
-      retry
-    end
-  end
-
-  # profile is array of [temperature,time] values
-  def doProfile(_profile,_startTemp=processValue)
-    controlMode= CM_PID
-    startTemp = _startTemp
-    temperatureLog.puts("time,setpoint,process") if temperatureLog
-    _profile.each_with_index do |step,i|
-      $stderr.puts "#{i} #{startTemp} => #{step[0]} over #{step[1]} secs"
-      endTemp = step[0]
-      stepTime = step[1]
-      ramp(startTemp, endTemp, stepTime)
-      $stderr.puts "  waiting for temp to go from #{processValue} to #{endTemp}"
-      goToTemperature(endTemp)
-      startTemp = endTemp
-    end
-  end
-end
-
-# if __FILE__ == $0
+if __FILE__ == $0 || __FILE__ == "irb"
 
 include SOLO
-include ModBus
-include ModBus::Common
+# include ModBus
+# include ModBus::Common
 
 sport = Dir.glob("/dev/cu.usbserial*").first
 puts "using serial port #{sport}"
 $oven = SMDOven.new([], sport)
+
 $oven.runMode RUN_MODE_STOP
 
-puts "PV=#{$oven.processValue}"
-puts "SV=#{$oven.setpointValue}"
-
-$oven.client.controlMode= CM_PID
 $oven.setpointValue= $oven.processValue
+puts "PV=#{$oven.processValue}"
 puts "SV=#{$oven.setpointValue}"
 
 $retryOnMBError = true
@@ -184,24 +59,24 @@ def testProfile(logfile=$stderr)
     $oven.runMode RUN_MODE_RUN
     $oven.setpointValue= 25.0
     $oven.goBelowTemperature(40.0)
-    $oven.doProfile([[155,120],[180,60],[215,0],[40,360]], 25)
+    $oven.doProfile([[155,0],[180,60],[215,0],[40,0]], 25)
   end
 end
 
 
 dumpRegisters
+
 $oven.decimalPointPosition= 1
 $oven.output2Period= 10
 
-# $oven.initial_response_timeout= 0.001
-# $oven.inter_frame_timeout= $oven.inter_frame_timeout * 2
-
 $retryOnMBError = false
 
+# $oven.controlMode= CM_PID
+$oven.controlMode= CM_ON_OFF
 # $oven.debug= true
 File.open("temperature_log.csv", "w") do |lf|
   $oven.temperatureLog= lf
   testProfile
 end
 
-# end
+end
