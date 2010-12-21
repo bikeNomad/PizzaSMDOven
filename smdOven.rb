@@ -27,7 +27,9 @@ class SMDOven
   def_delegators(*(([:@client] + SOLO::RO_DATA_REGISTERS.keys.map(&:to_sym)).flatten))
   def_delegators(*([:@client] + SOLO::RW_DATA_REGISTERS.keys.grep(/s*0$/).map { |s| s.sub(/s*0$/, "s").to_sym }.flatten))
   def_delegators(*([:@client] + SOLO::RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }.flatten))
-  def_delegators(:@client,:debug,:debug=,:profile,:runMode)
+  def_delegators(:@client,:debug,:debug=,:profile,:runMode,:receive_pdu,:transmit_pdu)
+  def_delegators(:@client,:initial_response_timeout,:initial_response_timeout=)
+  def_delegators(:@client,:inter_character_timeout,:inter_frame_timeout,:inter_character_timeout=,:inter_frame_timeout=)
 
   # configuration
   @defaultSamplingPeriod = 1
@@ -112,56 +114,74 @@ end
 # if __FILE__ == $0
 
 include SOLO
+include ModBus
+include ModBus::Common
 
 sport = Dir.glob("/dev/cu.usbserial*").first
 puts "using serial port #{sport}"
 $oven = SMDOven.new([], sport)
-
 $oven.runMode RUN_MODE_STOP
+
 puts "PV=#{$oven.processValue}"
 puts "SV=#{$oven.setpointValue}"
 
 $oven.client.controlMode= CM_PID
-$oven.setpointValue= 25.0
+$oven.setpointValue= $oven.processValue
 puts "SV=#{$oven.setpointValue}"
 
+$retryOnMBError = true
 
-def catchErrorsWhile
-  # $oven.runMode RUN_MODE_STOP
-  # p $oven.profile(0)
-  # $oven.debug= true
-  $oven.temperatureLog= $stdout
+def catchErrorsWhile(logfile=$stderr)
   begin
     yield
   rescue Interrupt
     $oven.setpointValue= 25.0
-    $stderr.puts("setpoint reset")
+    logfile.puts("setpoint reset")
   rescue ModBus::Errors::ModBusException, Errno::ENXIO
-    $stderr.puts $!.to_s
-    $stderr.puts $!.message
-    $stderr.puts $!.backtrace.join("\n")
-    $stderr.puts("RESET")
-    $oven.reset
-    retry
+    logfile.puts $!.to_s
+    logfile.puts $!.message
+    logfile.puts $!.backtrace.join("\n")
+    logfile.puts [ "xmit", logging_bytes($oven.transmit_pdu) ]
+    logfile.puts [ "rcv", logging_bytes($oven.receive_pdu) ]
+    if $retryOnMBError
+      logfile.puts("RESET")
+      $oven.reset
+      retry 
+    else
+      raise
+    end
   rescue
-    $stderr.puts "ERROR!", $!.to_s, $!.message, $!.backtrace.join("\n")
+    logfile.puts "ERROR!", $!.to_s, $!.message, $!.backtrace.join("\n")
   end
 end
 
-def dumpRegisters
-  catchErrorsWhile do
+def dumpRegisters(logfile=$stderr)
+  catchErrorsWhile(logfile) do
     (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys).sort.each { |k| puts "#{k} = #{$oven.send(k)}" }
   end
 end
 
-def testProfile
-  catchErrorsWhile do
+def testProfile(logfile=$stderr)
+  catchErrorsWhile(logfile) do
     $oven.runMode RUN_MODE_RUN
     $oven.doProfile([[40,120],[30,120]], 19)
   end
 end
 
-dumpRegisters
-testProfile
+
+$oven.decimalPointPosition= 1
+# $oven.initial_response_timeout= 0.001
+$oven.inter_frame_timeout= $oven.inter_frame_timeout * 2
+
+$retryOnMBError = false
+
+# dumpRegisters
+# $oven.debug= true
+File.open("/dev/null", "w") do |lf|
+  $oven.temperatureLog= lf
+#  puts [ "xmit=", logging_bytes($oven.transmit_pdu) ].join
+#  puts [ "rcv=", logging_bytes($oven.receive_pdu) ].join
+  testProfile
+end
 
 # end

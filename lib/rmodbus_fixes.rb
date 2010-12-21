@@ -31,6 +31,7 @@ module ModBus
     end
 
     attr_accessor :character_duration, :initial_response_timeout
+    attr_accessor :inter_character_timeout, :inter_frame_timeout
     attr_reader :receive_pdu, :transmit_pdu
 
     # return false if no read data is available for me yet
@@ -76,7 +77,7 @@ module ModBus
 
     def read_pdu
         # initial delay for some bytes to be available
-        sleep(@inter_frame_timeout)
+        sleep(@initial_response_timeout)
 
         @receive_pdu = ''
 
