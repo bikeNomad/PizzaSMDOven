@@ -7,20 +7,21 @@ require 'pp'
 require 'smdoven'
 
 class SMDOven
+  LEADED_PROFILE = [[155,0],[180,60],[215,0],[40,0]]
 
   # Solder profile from Kester for leaded solders
   def leadedProfile
     controlMode= CM_ON_OFF
-    runMode RUN_MODE_RUN
-    setpointValue= 25.0
+    runMode= RUN_MODE_RUN
     goBelowTemperature(40.0)
-    doProfile([[155,0],[180,60],[215,0],[40,0]], 25)
+    doProfile(LEADED_PROFILE, 25)
   end
 
   def setUpProfile
-    runMode RUN_MODE_STOP
-    controlMode= CM_ON_OFF
+    runMode= RUN_MODE_STOP
+    controlMode= CM_RAMP_SOAK
     # set up profile in unit
+    setPatternToProfile(0, LEADED_PROFILE, 25)
   end
 
 end
@@ -32,12 +33,10 @@ if __FILE__ == $0 || $0 == "irb"
   # find serial port
   # if mac
   $portname = ARGV[0] || Dir.glob("/dev/cu.usbserial*").first
-  if $portname.nil?
-    raise "no USB serial port found"
-  end
+  raise "no USB serial port found" if $portname.nil?
   puts "using serial port #{$portname}"
 
-  temperatureLogName = Time.now.strftime("temperature_log_%y%m%d_%H%M%S.csv")
+  temperatureLogName = Time.now.strftime("temperature_log_%y%m%d_%H%M%S.txt")
   puts "\nLogging temperature data to #{temperatureLogName}"
   $logfile = File.open(temperatureLogName, "w")
 
@@ -48,7 +47,7 @@ if __FILE__ == $0 || $0 == "irb"
     $oven.statusLog= $stdout
 
     # initialize modes; stop oven
-    $oven.runMode RUN_MODE_STOP
+    $oven.runMode= RUN_MODE_STOP
     $oven.decimalPointPosition= 1
     $oven.output2Period= 10
 
@@ -57,15 +56,17 @@ if __FILE__ == $0 || $0 == "irb"
     $oven.setpointValue= 25.0
     puts "PV=#{$oven.processValue}"
     puts "SV=#{$oven.setpointValue}"
-    $oven.dumpRegisters
-
-    puts "\nSet dial to 20 and hit ENTER"
-    $stdin.readline
-
-    $oven.runMode RUN_MODE_RUN
 
     $oven.temperatureLog= $logfile
-    $oven.leadedProfile unless $0 == "irb"
+
+    if $0 == "irb"
+      $oven.setUpProfile
+      $oven.dumpRegisters
+    else
+      puts "\nSet dial to 20 and hit ENTER"
+      $stdin.readline
+      $oven.leadedProfile
+    end
 
   rescue Interrupt
     puts $!.message

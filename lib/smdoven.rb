@@ -34,26 +34,33 @@ class SMDOven
     @portname = _portname
     @opts = _opts
     @temperatureLog = nil
+    @temperatureLogOpened = nil
     @statusLog = $stderr
   end
 
   attr_reader :client, :portname, :temperatureLog
-  attr_accessor :statusLog
+  attr_accessor :statusLog, :temperatureLogOpened
 
   def temperatureLog=(file)
     @temperatureLog.close if @temperatureLog
     @temperatureLog = file
-    return if @temperatureLog.nil?
-    @temperatureLog.puts("time,setpoint,process")
+    if @temperatureLog.nil?
+      @temperatureLogOpened = nil
+      return
+    end
+    # @temperatureLog.puts("time,setpoint,process")
+    @temperatureLogOpened = Time.now
   end
 
   # delegate all SOLO register accessors to client
   def_delegators(*(([:@client] + RO_DATA_REGISTERS.keys.map(&:to_sym)).flatten))
-  def_delegators(*([:@client] + RW_DATA_REGISTERS.keys.grep(/s*0$/).map { |s| s.sub(/s*0$/, "s").to_sym }.flatten))
-  def_delegators(*([:@client] + RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }.flatten))
+  def_delegators(*(([:@client] + RW_MULTI_PER_RS_PATTERN.keys.map(&:to_sym)).flatten))
+  def_delegators(*(([:@client] + RW_MULTI_PER_RS_STEP.keys.map(&:to_sym)).flatten))
+  def_delegators(*(([:@client] + RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
+  def_delegators(*(([:@client] + RW_BIT_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
 
   # delegate some other SOLO methods to client
-  def_delegators(:@client,:debug,:debug=,:profile,:runMode,:receive_pdu,:transmit_pdu,:debug_log=,:debug_log)
+  def_delegators(:@client,:debug,:debug=,:profile,:runMode=,:runMode,:receive_pdu,:transmit_pdu,:debug_log=,:debug_log)
   def_delegators(:@client,:initial_response_timeout,:initial_response_timeout=)
   def_delegators(:@client,:inter_character_timeout,:inter_frame_timeout,:inter_character_timeout=,:inter_frame_timeout=)
 
@@ -105,7 +112,9 @@ class SMDOven
     return if temperatureLog.nil?
     pv = processValue
     sv = setpointValue
-    temperatureLog.printf("%s,%.1f,%.1f\n", Time.now.strftime("%H:%M:%S"), sv, pv)
+    # timestamp = Time.now.strftime("%H:%M:%S")
+    timestamp = (Time.now - temperatureLogOpened).to_s
+    temperatureLog.printf("%s,%.1f,%.1f\n", timestamp, sv, pv)
     temperatureLog.fsync
   end
 
@@ -141,10 +150,25 @@ class SMDOven
     end
   end
 
+  # profile is array of [temperature,time] values
+  def setPatternToProfile(_pattern,_profile,_startTemp=processValue)
+    statusLog.puts("setting pattern #{_pattern} to #{_profile.pretty_print_inspect}") if statusLog
+    values = _profile.map { |s| s[0] }
+    rampSoakSetpointValues(_pattern, values)
+    times = _profile.map { |s| [s[1], 60].max }
+    rampSoakTimes(_pattern, times)
+    nextPatternNumber(_pattern, NO_NEXT_PATTERN)
+    startingRampSoakPattern= _pattern
+    lastStepNumber(_pattern, _profile.size - 1)
+    additionalCycles(_pattern, 0)
+  end
+
   # dump contents of my registers to logfile
   def dumpRegisters(logfile=statusLog)
     return if logfile.nil?
-    (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys).sort.each { |k| logfile.puts "#{k} = #{self.send(k)}" }
+    (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys + RW_BIT_REGISTERS.keys).sort.each { |k| logfile.puts "#{k} = #{self.send(k)}" }
+    RW_MULTI_PER_RS_PATTERN.keys.sort.each { |k| (0..7).each { |n| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }}
+    RW_MULTI_PER_RS_STEP.keys.sort.each { |k| (0..7).each { |n| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }}
   end
 
   def dumpPDUs(logfile=statusLog)
