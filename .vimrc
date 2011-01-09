@@ -1,1 +1,1 @@
-set path+=./lib
+set path+=lib,bin

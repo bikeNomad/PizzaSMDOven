@@ -70,13 +70,19 @@ module SOLO
 
     "startingRampSoakPattern" => 0x1030,
     # repeated for 0..7
-    "lastStepNumber0" => 0x1040,
+    "lastStepNumber0" => 0x1040,  # 0x1040 .. 0x1047
     "additionalCycles0" => 0x1050,
     "nextPatternNumber0" => 0x1060,
-    "rampSoakSetpointValue0" => [0x2000, 10.0],
-    "rampSoakTime0" => [0x2080, 1.0/60.0 ],
-
+    # repeated for 0..0x3f (8x8)
+    "rampSoakSetpointValue0" => [0x2000, 10.0],   # 0x2000 .. 0x203f
+    "rampSoakTime0" => [0x2080, 1.0/60.0 ],   # 0x2080 .. 0x20bf
   }
+
+  # repeated x8 (per pattern)
+  RW_MULTI_PER_RS_PATTERN = %w(lastStepNumber0 additionalCycles0 nextPatternNumber0)
+
+  # repeated x64 (8 steps/pattern for each of 8 patterns)
+  RW_MULTI_PER_RS_STEP = %w(rampSoakSetpointValue0 rampSoakTime0)
 
   RW_BIT_REGISTERS = {
     "autoTune" => 0x0813,
@@ -89,8 +95,7 @@ module SOLO
     include ModBus
 
   protected
-    multi = RW_DATA_REGISTERS.keys.grep(/0$/)
-    multi.each do |m|
+    (RW_MULTI_PER_RS_PATTERN + RW_MULTI_PER_RS_STEP).each do |m|
       name = m.sub(/s*0$/, "s")
       addr = RW_DATA_REGISTERS[m]
       scale = ""
@@ -101,15 +106,31 @@ module SOLO
         wscale = "*#{addr[1]}.round.to_i"
         addr = addr[0]
       end
-      self.class_eval <<EOT
-        def #{name}(n,a=nil)
-          if (a)
-            a.each_with_index { |v,i| write_single_register(#{addr}+n*8+i,v#{wscale}) }
-          else
-            read_holding_registers(#{addr}+n*8,8)#{ascale}
+      if RW_MULTI_PER_RS_STEP.include? m
+        self.class_eval <<EOT
+          # #{name}(n) -- read #{name}[n], return array of 8 values
+          # #{name}(n, valarray) -- write valarray[0..7] to #{name}[n][0..7]
+          def #{name}(n,a=nil)
+            if (a)
+              a.each_with_index { |v,i| write_single_register(#{addr}+n*8+i,v#{wscale}) }
+            else
+              read_holding_registers(#{addr}+n*8,8)#{ascale}
+            end
           end
-        end
 EOT
+      else
+        self.class_eval <<EOT
+          # #{name}(n) -- read #{name}[n]
+          # #{name}(n, val) -- write val to #{name}[n]
+          def #{name}(n,a=nil)
+            if (a)
+              write_single_register(#{addr}+n,v#{wscale})
+            else
+              read_single_register(#{addr}+n)#{ascale}
+            end
+          end
+EOT
+      end
     end
     (RW_DATA_REGISTERS.merge(RO_DATA_REGISTERS)).each_pair do |name,addr|
       scale = ""

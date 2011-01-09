@@ -17,6 +17,12 @@ class SMDOven
     doProfile([[155,0],[180,60],[215,0],[40,0]], 25)
   end
 
+  def setUpProfile
+    runMode RUN_MODE_STOP
+    controlMode= CM_ON_OFF
+    # set up profile in unit
+  end
+
 end
 
 if __FILE__ == $0 || $0 == "irb"
@@ -26,6 +32,9 @@ if __FILE__ == $0 || $0 == "irb"
   # find serial port
   # if mac
   $portname = ARGV[0] || Dir.glob("/dev/cu.usbserial*").first
+  if $portname.nil?
+    raise "no USB serial port found"
+  end
   puts "using serial port #{$portname}"
 
   temperatureLogName = Time.now.strftime("temperature_log_%y%m%d_%H%M%S.csv")
@@ -66,8 +75,10 @@ if __FILE__ == $0 || $0 == "irb"
     puts("setpoint reset to 25")
 
   rescue
-    $oven.dumpPDUs
-    $oven.setpointValue= 25.0
+    if $oven
+      $oven.dumpPDUs
+      $oven.setpointValue= 25.0
+    end
     raise
 
   end
