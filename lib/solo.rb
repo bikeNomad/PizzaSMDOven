@@ -74,15 +74,15 @@ module SOLO
     "additionalCycles0" => 0x1050,
     "nextPatternNumber0" => 0x1060,
     # repeated for 0..0x3f (8x8)
-    "rampSoakSetpointValue0" => [0x2000, 10.0],   # 0x2000 .. 0x203f
-    "rampSoakTime0" => [0x2080, 1.0/60.0 ],   # 0x2080 .. 0x20bf
+    "rampSoakSetpointValues0" => [0x2000, 10.0],   # 0x2000 .. 0x203f
+    "rampSoakTimes0" => [0x2080, "1.0/60.0" ],   # 0x2080 .. 0x20bf
   }
 
   # repeated x8 (per pattern)
   RW_MULTI_PER_RS_PATTERN = %w(lastStepNumber0 additionalCycles0 nextPatternNumber0)
 
   # repeated x64 (8 steps/pattern for each of 8 patterns)
-  RW_MULTI_PER_RS_STEP = %w(rampSoakSetpointValue0 rampSoakTime0)
+  RW_MULTI_PER_RS_STEP = %w(rampSoakSetpointValues0 rampSoakTimes0)
 
   RW_BIT_REGISTERS = {
     "autoTune" => 0x0813,
@@ -96,18 +96,18 @@ module SOLO
 
   protected
     (RW_MULTI_PER_RS_PATTERN + RW_MULTI_PER_RS_STEP).each do |m|
-      name = m.sub(/s*0$/, "s")
+      name = m.sub(/0$/, "")
       addr = RW_DATA_REGISTERS[m]
       scale = ""
       wscale = ""
       if addr.is_a?(Enumerable)
-        ascale = ".map { |v| v / #{addr[1]}}"
-        scale = "/#{addr[1]}"
+        ascale = ".map { |v| v /(#{addr[1]}) }"
         wscale = "*#{addr[1]}.round.to_i"
         addr = addr[0]
       end
+      methodstring = nil
       if RW_MULTI_PER_RS_STEP.include? m
-        self.class_eval <<EOT
+        methodstring = <<-EOT
           # #{name}(n) -- read #{name}[n], return array of 8 values
           # #{name}(n, valarray) -- write valarray[0..7] to #{name}[n][0..7]
           def #{name}(n,a=nil)
@@ -117,9 +117,9 @@ module SOLO
               read_holding_registers(#{addr}+n*8,8)#{ascale}
             end
           end
-EOT
+          EOT
       else
-        self.class_eval <<EOT
+        methodstring = <<-EOT
           # #{name}(n) -- read #{name}[n]
           # #{name}(n, val) -- write val to #{name}[n]
           def #{name}(n,a=nil)
@@ -129,35 +129,47 @@ EOT
               read_single_register(#{addr}+n)#{ascale}
             end
           end
-EOT
+          EOT
       end
+      # $stderr.puts methodstring
+      self.class_eval methodstring
     end
+
     (RW_DATA_REGISTERS.merge(RO_DATA_REGISTERS)).each_pair do |name,addr|
+      next if RW_MULTI_PER_RS_PATTERN.include? name
+      next if RW_MULTI_PER_RS_STEP.include? name
       scale = ""
       if addr.is_a?(Enumerable)
-        scale = "/#{addr[1]}"
+        scaled = "\n          v && v/#{addr[1]}"
         addr = addr[0]
+      else
+        scaled = ""
       end
-      self.class_eval <<EOT
+      methodstring = <<-EOT
         def #{name}
-          v = read_single_register(#{addr})
-          v && v#{scale}
+          v = read_single_register(#{addr})#{scaled}
         end
-EOT
+        EOT
+      # $stderr.puts methodstring
+      self.class_eval methodstring
     end
+
     RW_DATA_REGISTERS.each_pair do |name,addr|
+      next if RW_MULTI_PER_RS_PATTERN.include? name
+      next if RW_MULTI_PER_RS_STEP.include? name
       scale = ""
       wscale = ""
       if addr.is_a?(Enumerable)
         wscale = "*#{addr[1]}"
-        scale = "/#{addr[1]}"
         addr = addr[0]
       end
-      self.class_eval <<EOT
+      methodstring = <<-EOT
         def #{name}=(val)
           write_single_register(#{addr},(val#{wscale}).to_i)
         end
-EOT
+        EOT
+      # $stderr.puts methodstring
+      self.class_eval methodstring
     end
 
   public
