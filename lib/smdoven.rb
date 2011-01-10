@@ -187,8 +187,10 @@ class SMDOven
     pidParameterGroup= ppg
 
     (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys + RW_BIT_REGISTERS.keys - pidParameters).sort.each { |k| logfile.puts "#{k} = #{self.send(k)}" }
-    RW_MULTI_PER_RS_PATTERN.keys.sort.each { |k| (0..7).each { |n| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }}
-    RW_MULTI_PER_RS_STEP.keys.sort.each { |k| (0..7).each { |n| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }}
+    8.times do |n|
+      RW_MULTI_PER_RS_PATTERN.keys.sort.each { |k| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }
+      RW_MULTI_PER_RS_STEP.keys.sort.each { |k| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }
+    end
 
   end
 
