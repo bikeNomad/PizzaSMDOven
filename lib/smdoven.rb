@@ -41,14 +41,14 @@ class SMDOven
   attr_reader :client, :portname, :temperatureLog
   attr_accessor :statusLog, :temperatureLogOpened
 
-  def temperatureLog=(file)
+  def temperatureLog=(file,headers=false)
     @temperatureLog.close if @temperatureLog
     @temperatureLog = file
     if @temperatureLog.nil?
       @temperatureLogOpened = nil
       return
     end
-    # @temperatureLog.puts("time,setpoint,process")
+    logTemperatureHeaders if headers
     @temperatureLogOpened = Time.now
   end
 
@@ -60,7 +60,7 @@ class SMDOven
   def_delegators(*(([:@client] + RW_BIT_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
 
   # delegate some other SOLO methods to client
-  def_delegators(:@client,:debug,:debug=,:profile,:runMode=,:runMode,:receive_pdu,:transmit_pdu,:debug_log=,:debug_log)
+  def_delegators(:@client,:debug,:debug=,:profile,:receive_pdu,:transmit_pdu,:debug_log=,:debug_log)
   def_delegators(:@client,:initial_response_timeout,:initial_response_timeout=)
   def_delegators(:@client,:inter_character_timeout,:inter_frame_timeout,:inter_character_timeout=,:inter_frame_timeout=)
 
@@ -108,13 +108,18 @@ class SMDOven
     @client = TemperatureControllerClient.new(@portname, client.baud, client.slave, @opts)
   end
 
+  def logTemperatureHeaders
+    return if temperatureLog.nil?
+    temperatureLog.puts("time,setpoint,process,output1,output2")
+  end
+
   def logTemperature
     return if temperatureLog.nil?
     pv = processValue
     sv = setpointValue
     # timestamp = Time.now.strftime("%H:%M:%S")
     timestamp = (Time.now - temperatureLogOpened).to_s
-    temperatureLog.printf("%s,%.1f,%.1f\n", timestamp, sv, pv)
+    temperatureLog.printf("%s,%.1f,%.1f,%.1f,%.1f\n", timestamp, sv, pv, output1Level, output2Level)
     temperatureLog.fsync
   end
 
@@ -166,9 +171,25 @@ class SMDOven
   # dump contents of my registers to logfile
   def dumpRegisters(logfile=statusLog)
     return if logfile.nil?
-    (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys + RW_BIT_REGISTERS.keys).sort.each { |k| logfile.puts "#{k} = #{self.send(k)}" }
+    pidParameters = %w(targetSetpointValue proportionalBand integralTime derivativeTime integralOffset)
+
+    cm = controlMode
+    ppg = pidParameterGroup
+    controlMode = CM_PID
+    logfile.puts("pidParameterGroup = #{ppg}")
+    logfile.puts("pidParameterGroup   " + pidParameters.join("  "))
+    4.times do |g|
+      pidParameterGroup= g
+      vals = [pidParameterGroup] + pidParameters.collect { |p| self.send(p) }
+      logfile.printf("%17s  %20s  %16s  %12s  %14s  %14s\n", *vals)
+    end
+    controlMode = controlMode
+    pidParameterGroup= ppg
+
+    (RO_DATA_REGISTERS.keys + RW_DATA_REGISTERS.keys + RW_BIT_REGISTERS.keys - pidParameters).sort.each { |k| logfile.puts "#{k} = #{self.send(k)}" }
     RW_MULTI_PER_RS_PATTERN.keys.sort.each { |k| (0..7).each { |n| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }}
     RW_MULTI_PER_RS_STEP.keys.sort.each { |k| (0..7).each { |n| logfile.puts "#{k}[#{n}] = #{self.send(k,n).inspect}" }}
+
   end
 
   def dumpPDUs(logfile=statusLog)

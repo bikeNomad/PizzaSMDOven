@@ -18,6 +18,7 @@ class SMDOven
   end
 
   def setUpProfile
+    pidParameterGroup= PID_PARAMETER_GROUP_AUTO 
     runMode= RUN_MODE_STOP
     controlMode= CM_RAMP_SOAK
     # set up profile in unit

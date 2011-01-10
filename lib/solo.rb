@@ -21,8 +21,17 @@ module SOLO
   RUN_MODE_STOP = 0
   RUN_MODE_RUN = 1
 
+  # arg for heatingCooling
+  HC_HEATING = 0
+  HC_COOLING = 1
+  HC_HEATING_COOLING = 2  # output 1 for heating, 2 for cooling
+  HC_COOLING_HEATING = 3  # output 2 for heating, 1 for cooling
+
   # arg for nextPatternNumber
   NO_NEXT_PATTERN = 8
+
+  # arg for pidParameterGroup
+  PID_PARAMETER_GROUP_AUTO = 4
 
   RO_DATA_REGISTERS = {
     "processValue" =>  [0x1000, 10.0],
@@ -42,23 +51,25 @@ module SOLO
     "output2Period" => 0x1008,
 
     "pidParameterGroup" => 0x101c,  # affects following PID params
+
+    "targetSetpointValue" => [0x101D, 10.0],
     "proportionalBand" => [0x1009, 10.0],   # P1-4
     "integralTime" => 0x100A, # P1-5
     "derivativeTime" => 0x100B, # P1-5
-    "integralOffset" => [0x100C, 1000.0], # P1-8
-    "pdControlOffset" => [0x100D, 1000.0],
+    "integralOffset" => [0x100C, 1000.0],   # P1-8
 
-    "proportionalCoefficient" => [0x100E, 100.0],
-    "deadBand" => 0x100F,
+    "pdControlOffset" => [0x100D, 1000.0],  # P1-7
+    "proportionalCoefficient" => [0x100E, 100.0], # P1-14
+    "deadBand" => 0x100F, # P1-15
     "heatingHysteresis" => 0x1010,
     "coolingHysteresis" => 0x1011,
+
     "output1Level" => [0x1012, 1000.0],
     "output2Level" => [0x1013, 1000.0],
     "analogHighAdjustment" => 0x1014,
     "analogLowAdjustment" => 0x1015,
     "processValueOffset" => 0x1016,
     "decimalPointPosition" => 0x1017,
-    "targetSetpointValue" => [0x101D, 10.0],
     "alarm1" => 0x1020,
     "alarm2" => 0x1021,
     "alarm3" => 0x1022,
@@ -89,10 +100,13 @@ module SOLO
   }
 
   RW_BIT_REGISTERS = {
-    "autoTune" => 0x0813,
+    "onlineConfiguration" => 0x810,
+    "temperatureUnitsC" => 0x811,
+    "decimalPointDisplay" => 0x812,
+    "autoTuning" => 0x0813,
     "runMode" => 0x0814,  # 0 = stop, 1 = run
-    "stopRampSoak" => 0x0815,
-    "holdRampSoak" => 0x0816,
+    "stopRampSoakControl" => 0x0815,
+    "holdRampSoakControl" => 0x0816,
   }
 
   class TemperatureControllerClient < ModBus::RTUClient
@@ -102,7 +116,7 @@ module SOLO
     class << self
       def defineMethod(str)
         self.class_eval(str)
-        $stderr.puts(str)
+        # $stderr.puts(str)
       end
     end
 
@@ -182,7 +196,7 @@ module SOLO
           read_discrete_inputs(#{addr},1)[0]
         end
         def #{name}=(b)
-          write_single_coil(#{addr},b)
+          write_single_coil(#{addr},b || 0)
         end
         EOT
       self.defineMethod(methodstring)
