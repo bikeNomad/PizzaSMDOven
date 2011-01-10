@@ -99,9 +99,11 @@ if __FILE__ == $0 || $0 == "irb"
 
     if $oven
       $oven.dumpPDUs
-      $oven.setpointValue= 25.0
     end
     raise
+
+  ensure
+    $oven.setpointValue= 25.0
 
   end
 
