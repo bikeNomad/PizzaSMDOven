@@ -99,6 +99,11 @@ module SOLO
     "rampSoakTimes" => [0x2080, "1.0/60.0" ],   # 0x2080 .. 0x20bf
   }
 
+  RO_BIT_REGISTERS = {
+    "autoTuneLEDStatus"     => 0x0800,
+    "rampSoakControlStatus" => 0x080f,
+  }
+
   RW_BIT_REGISTERS = {
     "onlineConfiguration" => 0x810,
     "temperatureUnitsC" => 0x811,
@@ -107,6 +112,9 @@ module SOLO
     "runMode" => 0x0814,  # 0 = stop, 1 = run
     "stopRampSoakControl" => 0x0815,
     "holdRampSoakControl" => 0x0816,
+
+    "autoTuneLEDStatus"     => 0x0800,  # RO
+    "rampSoakControlStatus" => 0x080f,  # RO
   }
 
   class TemperatureControllerClient < ModBus::RTUClient

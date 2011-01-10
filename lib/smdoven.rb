@@ -91,6 +91,13 @@ class SMDOven
     end
   end
 
+  def waitForProfile
+    while rampSoakControlStatus == 1
+      logTemperature()
+      sleep 1.0
+    end
+  end
+
   # wait until the temperature drops below _temp
   def goBelowTemperature(_temp)
     statusLog.puts("waiting for temperature to go below #{_temp}") if statusLog

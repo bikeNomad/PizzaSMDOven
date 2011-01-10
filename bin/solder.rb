@@ -7,22 +7,34 @@ require 'pp'
 require 'smdoven'
 
 class SMDOven
-  LEADED_PROFILE = [[155,0],[180,60],[215,0],[40,0]]
 
   # Solder profile from Kester for leaded solders
+  LEADED_PROFILE = [[155,0],[180,60],[215,0],[40,0]]
+
   def leadedProfile
     controlMode= CM_ON_OFF
+    sleep(1.0)
     runMode= RUN_MODE_RUN
+    sleep(1.0)
     goBelowTemperature(40.0)
     doProfile(LEADED_PROFILE, 25)
+    sleep(1.0)
   end
 
-  def setUpProfile
+  def setUpProfile(n = 0)
     pidParameterGroup= PID_PARAMETER_GROUP_AUTO 
-    runMode= RUN_MODE_STOP
     controlMode= CM_RAMP_SOAK
     # set up profile in unit
-    setPatternToProfile(0, LEADED_PROFILE, 25)
+    setPatternToProfile(n, LEADED_PROFILE, 25)
+  end
+
+  def startProfile(n = 0)
+    runMode = RUN_MODE_STOP
+    controlMode = CM_RAMP_SOAK
+    startingRampSoakPattern = n
+    holdRampSoakControl = 0
+    stopRampSoakControl = 0
+    runMode = RUN_MODE_RUN
   end
 
 end
@@ -54,6 +66,7 @@ if __FILE__ == $0 || $0 == "irb"
 
     # set setpoint to current temperature
     # $oven.setpointValue= $oven.processValue
+    $oven.controlMode = CM_ON_OFF
     $oven.setpointValue= 25.0
     puts "PV=#{$oven.processValue}"
     puts "SV=#{$oven.setpointValue}"
@@ -61,9 +74,13 @@ if __FILE__ == $0 || $0 == "irb"
     $oven.temperatureLog= $logfile
 
     if $0 == "irb"
-      $oven.setUpProfile
-      $oven.dumpRegisters
+#      $oven.setUpProfile
+#      $oven.dumpRegisters
+#      $oven.startProfile
+#      $oven.waitForProfile
+
     else
+      $oven.runMode= RUN_MODE_RUN
       puts "\nSet dial to 20 and hit ENTER"
       $stdin.readline
       $oven.leadedProfile
@@ -77,6 +94,9 @@ if __FILE__ == $0 || $0 == "irb"
     puts("setpoint reset to 25")
 
   rescue
+    puts $!.message
+    puts $!.backtrace.join("\n")
+
     if $oven
       $oven.dumpPDUs
       $oven.setpointValue= 25.0
