@@ -15,7 +15,7 @@ require 'serialport'
 require 'rmodbus'
 
 ## my code
-require 'rmodbus_fixes'
+# require 'rmodbus_fixes'
 
 require 'timedRepeat'
 require 'solo'

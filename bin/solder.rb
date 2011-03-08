@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 # $Id$
 #
-BEGIN { $: << File.join(File.dirname(File.dirname(__FILE__)), 'lib') }
+BEGIN {
+  $: << File.join(File.dirname(File.dirname(__FILE__)), 'rmodbus')
+  $: << File.join(File.dirname(File.dirname(__FILE__)), 'lib')
+}
 
 require 'pp'
 require 'smdoven'
