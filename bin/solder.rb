@@ -46,6 +46,23 @@ if __FILE__ == $0 || $0 == "irb"
 
   include SOLO
 
+  $tempHistory = []
+
+  def lp
+    $oven.leadedProfile
+  end
+
+  # go to temp manually
+  def t(temp=$tempHistory.pop)
+    $oven.runMode= RUN_MODE_RUN
+    if temp && temp.to_f.zero?
+      $oven.setpointValue= 0.0
+    else
+      $tempHistory.push($oven.setpointValue)
+      $oven.goToTemperature(temp || 30.0)
+    end
+  end
+
   # find serial port
   # if mac
   $portname = ARGV[0] || Dir.glob("/dev/cu.usbserial*").first

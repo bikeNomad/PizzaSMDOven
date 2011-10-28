@@ -119,6 +119,7 @@ module SOLO
 
   class TemperatureControllerClient < ModBus::RTUClient
     include ModBus
+    include ModBus::Common
 
   protected
     class << self
@@ -233,9 +234,11 @@ module SOLO
     end
 
     def runMode=(m=nil)
+      rm = read_discrete_inputs(0x0814,1)[0]
       if (m.nil?)
-        return read_discrete_inputs(0x0814,1)[0]
+        return rm
       else
+        return if m == rm
         puts "RUN MODE=#{m}"
         write_single_coil(0x0814,m)
       end
