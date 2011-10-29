@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Module: Updating</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/updating.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-endUpdateThread">#endUpdateThread</a>
+    
+    <li><a href="#method-i-initialize_updating">#initialize_updating</a>
+    
+    <li><a href="#method-i-printStatusReport">#printStatusReport</a>
+    
+    <li><a href="#method-i-startUpdateThread">#startUpdateThread</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./Makefile.html">Makefile</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./GraphViewer.html">GraphViewer</a>
+  
+    <li><a href="./GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
+  
+    <li><a href="./GraphViewer/Graph.html">GraphViewer::Graph</a>
+  
+    <li><a href="./GraphViewer/Guide.html">GraphViewer::Guide</a>
+  
+    <li><a href="./ModBus.html">ModBus</a>
+  
+    <li><a href="./ModBus/Common.html">ModBus::Common</a>
+  
+    <li><a href="./ModBus/RTUClient.html">ModBus::RTUClient</a>
+  
+    <li><a href="./TimedRepeat.html">TimedRepeat</a>
+  
+    <li><a href="./TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
+  
+    <li><a href="./TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
+  
+    <li><a href="./Updating.html">Updating</a>
+  
+    <li><a href="./Updating/Done.html">Updating::Done</a>
+  
+    <li><a href="./Updating/Report.html">Updating::Report</a>
+  
+    <li><a href="./SOLO.html">SOLO</a>
+  
+    <li><a href="./SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
+  
+    <li><a href="./Webserver.html">Webserver</a>
+  
+    <li><a href="./Webserver/GC29Tester.html">Webserver::GC29Tester</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Date.html">Date</a>
+  
+    <li><a href="./FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
+  
+    <li><a href="./GraphViewerServer.html">GraphViewerServer</a>
+  
+    <li><a href="./IO.html">IO</a>
+  
+    <li><a href="./Numeric.html">Numeric</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PID.html">PID</a>
+  
+    <li><a href="./SMDOven.html">SMDOven</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./TestClass.html">TestClass</a>
+  
+    <li><a href="./Thermistor.html">Thermistor</a>
+  
+    <li><a href="./Thread.html">Thread</a>
+  
+    <li><a href="./Time.html">Time</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Updating</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-missedUpdates" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">missedUpdates</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-totalUpdates" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">totalUpdates</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-updateThread" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">updateThread</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-endUpdateThread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">endUpdateThread</span><span
+            class="method-args">(stuff=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>End the update thread, if any. Do so gracefully, letting the thread clean
+up after itself first.</p>
+          
+
+          
+          <div class="method-source-code" id="endUpdateThread-source">
+            <pre><span class="ruby-comment"># File lib/updating.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">endUpdateThread</span>(<span class="ruby-identifier">stuff</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@updateThread</span>
+    <span class="ruby-ivar">@updateThread</span>.<span class="ruby-identifier">raise</span>(<span class="ruby-constant">Updating</span><span class="ruby-operator">::</span><span class="ruby-constant">Done</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">stuff</span>))
+    <span class="ruby-ivar">@updateThread</span>.<span class="ruby-identifier">join</span>
+    <span class="ruby-ivar">@updateThread</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">rescue</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- endUpdateThread-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- endUpdateThread-method -->
+
+    
+      <div id="method-i-initialize_updating" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initialize_updating</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initialize_updating-source">
+            <pre><span class="ruby-comment"># File lib/updating.rb, line 58</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize_updating</span>
+  <span class="ruby-ivar">@updateThread</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@missedUpdates</span> = []
+  <span class="ruby-ivar">@totalUpdates</span> = <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- initialize_updating-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- initialize_updating-method -->
+
+    
+      <div id="method-i-printStatusReport" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">printStatusReport</span><span
+            class="method-args">(_log=$stderr)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="printStatusReport-source">
+            <pre><span class="ruby-comment"># File lib/updating.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">printStatusReport</span>(<span class="ruby-identifier">_log</span>=<span class="ruby-identifier">$stderr</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@updateThread</span>
+  <span class="ruby-ivar">@updateThread</span>.<span class="ruby-identifier">raise</span>(<span class="ruby-constant">Updating</span><span class="ruby-operator">::</span><span class="ruby-constant">Report</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">_log</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- printStatusReport-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- printStatusReport-method -->
+
+    
+      <div id="method-i-startUpdateThread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">startUpdateThread</span><span
+            class="method-args">(period, *args) { |rep,timeSinceReset,timeSinceLast,*args| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="startUpdateThread-source">
+            <pre><span class="ruby-comment"># File lib/updating.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">startUpdateThread</span>(<span class="ruby-identifier">period</span>, *<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">endUpdateThread</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@updateThread</span>
+  <span class="ruby-ivar">@totalUpdates</span> = <span class="ruby-value">0</span>
+  <span class="ruby-ivar">@updateThread</span> = <span class="ruby-constant">MonitoredThread</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">statusReportLabel</span>, *<span class="ruby-identifier">args</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span>*<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">updater</span>(<span class="ruby-identifier">period</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rep</span>,<span class="ruby-identifier">timeSinceReset</span>,<span class="ruby-identifier">timeSinceLast</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">yield</span>(<span class="ruby-identifier">rep</span>,<span class="ruby-identifier">timeSinceReset</span>,<span class="ruby-identifier">timeSinceLast</span>,*<span class="ruby-identifier">args</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+      <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">pass</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@debugLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-string">&quot;updater done&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-ivar">@debugLog</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">pass</span>
+  <span class="ruby-ivar">@updateThread</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- startUpdateThread-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- startUpdateThread-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

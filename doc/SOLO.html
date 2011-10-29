@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Module: SOLO</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/solo.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./Makefile.html">Makefile</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./GraphViewer.html">GraphViewer</a>
+  
+    <li><a href="./GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
+  
+    <li><a href="./GraphViewer/Graph.html">GraphViewer::Graph</a>
+  
+    <li><a href="./GraphViewer/Guide.html">GraphViewer::Guide</a>
+  
+    <li><a href="./ModBus.html">ModBus</a>
+  
+    <li><a href="./ModBus/Common.html">ModBus::Common</a>
+  
+    <li><a href="./ModBus/RTUClient.html">ModBus::RTUClient</a>
+  
+    <li><a href="./TimedRepeat.html">TimedRepeat</a>
+  
+    <li><a href="./TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
+  
+    <li><a href="./TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
+  
+    <li><a href="./Updating.html">Updating</a>
+  
+    <li><a href="./Updating/Done.html">Updating::Done</a>
+  
+    <li><a href="./Updating/Report.html">Updating::Report</a>
+  
+    <li><a href="./SOLO.html">SOLO</a>
+  
+    <li><a href="./SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
+  
+    <li><a href="./Webserver.html">Webserver</a>
+  
+    <li><a href="./Webserver/GC29Tester.html">Webserver::GC29Tester</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Date.html">Date</a>
+  
+    <li><a href="./FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
+  
+    <li><a href="./GraphViewerServer.html">GraphViewerServer</a>
+  
+    <li><a href="./IO.html">IO</a>
+  
+    <li><a href="./Numeric.html">Numeric</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PID.html">PID</a>
+  
+    <li><a href="./SMDOven.html">SMDOven</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./TestClass.html">TestClass</a>
+  
+    <li><a href="./Thermistor.html">Thermistor</a>
+  
+    <li><a href="./Thread.html">Thread</a>
+  
+    <li><a href="./Time.html">Time</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module SOLO</h1>
+
+  <div id="description" class="description">
+    
+<p>$Id$ Automation Direct <a href="SOLO.html">SOLO</a> temperature controller</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="CM_MANUAL">CM_MANUAL
+        
+        <dd class="description">
+        
+      
+        <dt id="CM_ON_OFF">CM_ON_OFF
+        
+        <dd class="description">
+        
+      
+        <dt id="CM_PID">CM_PID
+        
+        <dd class="description"><p>control modes</p>
+        
+      
+        <dt id="CM_RAMP_SOAK">CM_RAMP_SOAK
+        
+        <dd class="description">
+        
+      
+        <dt id="CONTROL_MODES">CONTROL_MODES
+        
+        <dd class="description">
+        
+      
+        <dt id="HC_COOLING">HC_COOLING
+        
+        <dd class="description">
+        
+      
+        <dt id="HC_COOLING_HEATING">HC_COOLING_HEATING
+        
+        <dd class="description">
+        
+      
+        <dt id="HC_HEATING">HC_HEATING
+        
+        <dd class="description"><p>arg for heatingCooling</p>
+        
+      
+        <dt id="HC_HEATING_COOLING">HC_HEATING_COOLING
+        
+        <dd class="description">
+        
+      
+        <dt id="NO_NEXT_PATTERN">NO_NEXT_PATTERN
+        
+        <dd class="description"><p>arg for nextPatternNumber</p>
+        
+      
+        <dt id="PID_PARAMETER_GROUP_AUTO">PID_PARAMETER_GROUP_AUTO
+        
+        <dd class="description"><p>arg for pidParameterGroup</p>
+        
+      
+        <dt id="PV_INITIAL_PROCESS">PV_INITIAL_PROCESS
+        
+        <dd class="description"><p>error codes from reading PV</p>
+        
+      
+        <dt id="PV_MEMORY_ERROR">PV_MEMORY_ERROR
+        
+        <dd class="description">
+        
+      
+        <dt id="PV_NO_TEMPERATURE_SENSOR">PV_NO_TEMPERATURE_SENSOR
+        
+        <dd class="description">
+        
+      
+        <dt id="PV_SENSOR_ADC_ERROR">PV_SENSOR_ADC_ERROR
+        
+        <dd class="description">
+        
+      
+        <dt id="PV_SENSOR_INPUT_ERROR">PV_SENSOR_INPUT_ERROR
+        
+        <dd class="description">
+        
+      
+        <dt id="RO_BIT_REGISTERS">RO_BIT_REGISTERS
+        
+        <dd class="description">
+        
+      
+        <dt id="RO_DATA_REGISTERS">RO_DATA_REGISTERS
+        
+        <dd class="description">
+        
+      
+        <dt id="RUN_MODE_RUN">RUN_MODE_RUN
+        
+        <dd class="description">
+        
+      
+        <dt id="RUN_MODE_STOP">RUN_MODE_STOP
+        
+        <dd class="description"><p>run modes</p>
+        
+      
+        <dt id="RW_BIT_REGISTERS">RW_BIT_REGISTERS
+        
+        <dd class="description">
+        
+      
+        <dt id="RW_DATA_REGISTERS">RW_DATA_REGISTERS
+        
+        <dd class="description">
+        
+      
+        <dt id="RW_MULTI_PER_RS_PATTERN">RW_MULTI_PER_RS_PATTERN
+        
+        <dd class="description"><p>repeated x8 (per pattern)</p>
+        
+      
+        <dt id="RW_MULTI_PER_RS_STEP">RW_MULTI_PER_RS_STEP
+        
+        <dd class="description"><p>repeated x64 (8 steps/pattern for each of 8 patterns)</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

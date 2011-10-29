@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: GraphViewer::CSVFile</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>webserver/graphviewer.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-forgetRunNamed">::forgetRunNamed</a>
+    
+    <li><a href="#method-c-latestRunNamedLike">::latestRunNamedLike</a>
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-c-readFile">::readFile</a>
+    
+    <li><a href="#method-c-refreshRunNamed">::refreshRunNamed</a>
+    
+    <li><a href="#method-c-runNamed">::runNamed</a>
+    
+    <li><a href="#method-c-runNames">::runNames</a>
+    
+    <li><a href="#method-c-runs">::runs</a>
+    
+    <li><a href="#method-c-validFileNameFrom">::validFileNameFrom</a>
+    
+    <li><a href="#method-i-createGraphs">#createGraphs</a>
+    
+    <li><a href="#method-i-csvData">#csvData</a>
+    
+    <li><a href="#method-i-getNewData">#getNewData</a>
+    
+    <li><a href="#method-i-hasNewData">#hasNewData</a>
+    
+    <li><a href="#method-i-lastFullLineTime">#lastFullLineTime</a>
+    
+    <li><a href="#method-i-pos-3D">#pos=</a>
+    
+    <li><a href="#method-i-positionAt">#positionAt</a>
+    
+    <li><a href="#method-i-round">#round</a>
+    
+    <li><a href="#method-i-selectFields">#selectFields</a>
+    
+    <li><a href="#method-i-selectedGraphs">#selectedGraphs</a>
+    
+    <li><a href="#method-i-selectedHeaders">#selectedHeaders</a>
+    
+    <li><a href="#method-i-useData">#useData</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../Makefile.html">Makefile</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../GraphViewer.html">GraphViewer</a>
+  
+    <li><a href="../GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
+  
+    <li><a href="../GraphViewer/Graph.html">GraphViewer::Graph</a>
+  
+    <li><a href="../GraphViewer/Guide.html">GraphViewer::Guide</a>
+  
+    <li><a href="../ModBus.html">ModBus</a>
+  
+    <li><a href="../ModBus/Common.html">ModBus::Common</a>
+  
+    <li><a href="../ModBus/RTUClient.html">ModBus::RTUClient</a>
+  
+    <li><a href="../TimedRepeat.html">TimedRepeat</a>
+  
+    <li><a href="../TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
+  
+    <li><a href="../TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
+  
+    <li><a href="../Updating.html">Updating</a>
+  
+    <li><a href="../Updating/Done.html">Updating::Done</a>
+  
+    <li><a href="../Updating/Report.html">Updating::Report</a>
+  
+    <li><a href="../SOLO.html">SOLO</a>
+  
+    <li><a href="../SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
+  
+    <li><a href="../Webserver.html">Webserver</a>
+  
+    <li><a href="../Webserver/GC29Tester.html">Webserver::GC29Tester</a>
+  
+    <li><a href="../Array.html">Array</a>
+  
+    <li><a href="../Date.html">Date</a>
+  
+    <li><a href="../FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
+  
+    <li><a href="../GraphViewerServer.html">GraphViewerServer</a>
+  
+    <li><a href="../IO.html">IO</a>
+  
+    <li><a href="../Numeric.html">Numeric</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../PID.html">PID</a>
+  
+    <li><a href="../SMDOven.html">SMDOven</a>
+  
+    <li><a href="../String.html">String</a>
+  
+    <li><a href="../TestClass.html">TestClass</a>
+  
+    <li><a href="../Thermistor.html">Thermistor</a>
+  
+    <li><a href="../Thread.html">Thread</a>
+  
+    <li><a href="../Time.html">Time</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class GraphViewer::CSVFile</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-comments" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">comments</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-data" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">data</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-dut" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">dut</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-graphs" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">graphs</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-headers" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">headers</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-maxima" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">maxima</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-minima" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">minima</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-mtime" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">mtime</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">name</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-originalFilename" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">originalFilename</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-pos" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">pos</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-rounding" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">rounding</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-selectedFields" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">selectedFields</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-timestamp" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">timestamp</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-forgetRunNamed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">forgetRunNamed</span><span
+            class="method-args">(_name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="forgetRunNamed-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">forgetRunNamed</span>(<span class="ruby-identifier">_name</span>)
+  <span class="ruby-ivar">@runs</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">_name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- forgetRunNamed-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- forgetRunNamed-method -->
+
+    
+      <div id="method-c-latestRunNamedLike" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">latestRunNamedLike</span><span
+            class="method-args">(_name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="latestRunNamedLike-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">latestRunNamedLike</span>(<span class="ruby-identifier">_name</span>)
+  <span class="ruby-identifier">pattern</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">' run \d+$'</span>)
+  <span class="ruby-identifier">latestName</span> = <span class="ruby-identifier">runNames</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">nm</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pattern</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">nm</span>) }
+  <span class="ruby-ivar">@runs</span>[<span class="ruby-identifier">latestName</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- latestRunNamedLike-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- latestRunNamedLike-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(_name, _headers = [])</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 108</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">_headers</span> = [])
+  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">_name</span>
+  <span class="ruby-ivar">@headers</span> = <span class="ruby-identifier">_headers</span>
+  <span class="ruby-ivar">@selectedFields</span> = (<span class="ruby-value">0</span> <span class="ruby-operator">..</span> (<span class="ruby-identifier">_headers</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">to_a</span>
+  <span class="ruby-ivar">@data</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@xname</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@graphs</span> = {}
+  <span class="ruby-ivar">@mtime</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@rounding</span> = <span class="ruby-string">'%.2f'</span>
+  <span class="ruby-ivar">@minima</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">_headers</span>.<span class="ruby-identifier">size</span>, <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX</span>)
+  <span class="ruby-ivar">@maxima</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">_headers</span>.<span class="ruby-identifier">size</span>, <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN</span>)
+  <span class="ruby-ivar">@originalFilename</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@pos</span> = <span class="ruby-keyword">nil</span>  <span class="ruby-comment"># position just after last full line read/returned</span>
+  <span class="ruby-comment"># array of [@pos, Time] values</span>
+  <span class="ruby-ivar">@positions</span> = []
+  <span class="ruby-ivar">@timestamp</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@dut</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-c-readFile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">readFile</span><span
+            class="method-args">(_name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="readFile-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">readFile</span>(<span class="ruby-identifier">_name</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">mtime</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">mtime</span>(<span class="ruby-identifier">_name</span>)
+    <span class="ruby-identifier">startTime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">_name</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">allData</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read_csv</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rec</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">rec</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">rec</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-node">/^#/</span>
+          <span class="ruby-keyword">nil</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">rec</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">i</span> = <span class="ruby-value">0</span>
+      <span class="ruby-identifier">lastFile</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">dut</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">timestamp</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">allData</span>.<span class="ruby-identifier">each_chunk</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">chunk</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">serialNumber</span> = <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">runname</span> = <span class="ruby-node">&quot;#{_name} run #{i + 1}&quot;</span>
+        <span class="ruby-identifier">headers</span> = <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">shift</span>
+        <span class="ruby-identifier">nfields</span> = <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">nfields</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">2</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span> <span class="ruby-comment"># run header</span>
+          <span class="ruby-identifier">timestamp</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">headers</span>[<span class="ruby-value">1</span>])
+          <span class="ruby-identifier">timestamp</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">timestamp</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>).<span class="ruby-identifier">abs</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">headers</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-node">/#\s*(\S*)-([A-Z0-9]+\d)\s*$/</span>
+            <span class="ruby-identifier">serialNumber</span> = <span class="ruby-node">$1</span>
+            <span class="ruby-identifier">dut</span> = <span class="ruby-node">$2</span>
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">headers</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-node">/#\s*([^-]+)\s*$/</span>
+            <span class="ruby-identifier">serialNumber</span> = <span class="ruby-node">$1</span>
+            <span class="ruby-identifier">dut</span> = <span class="ruby-string">'DUT?'</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> [ <span class="ruby-node">&quot;unrecognized data around line #{lines - chunk.size}&quot;</span>, <span class="ruby-identifier">headers</span> ].<span class="ruby-identifier">inspect</span>
+          <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">next</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">newFile</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">runname</span>, <span class="ruby-identifier">headers</span>)
+        <span class="ruby-identifier">newFile</span>.<span class="ruby-identifier">useData</span>(<span class="ruby-identifier">chunk</span>)
+        <span class="ruby-identifier">newFile</span>.<span class="ruby-identifier">createGraphs</span>
+        <span class="ruby-identifier">newFile</span>.<span class="ruby-identifier">mtime</span>= <span class="ruby-identifier">mtime</span>
+        <span class="ruby-identifier">newFile</span>.<span class="ruby-identifier">originalFilename</span>= <span class="ruby-identifier">_name</span>
+        <span class="ruby-identifier">newFile</span>.<span class="ruby-identifier">timestamp</span> = <span class="ruby-identifier">timestamp</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">mtime</span>
+        <span class="ruby-identifier">newFile</span>.<span class="ruby-identifier">dut</span> = <span class="ruby-identifier">dut</span>
+        <span class="ruby-identifier">lastFile</span> = <span class="ruby-identifier">newFile</span>
+        <span class="ruby-ivar">@runs</span>[<span class="ruby-identifier">runname</span>] = <span class="ruby-identifier">newFile</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">lastFile</span>
+        <span class="ruby-identifier">lastFile</span>.<span class="ruby-identifier">pos</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">pos</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- readFile-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- readFile-method -->
+
+    
+      <div id="method-c-refreshRunNamed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">refreshRunNamed</span><span
+            class="method-args">(_name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="refreshRunNamed-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">refreshRunNamed</span>(<span class="ruby-identifier">_name</span>)
+  <span class="ruby-identifier">run</span> = <span class="ruby-identifier">runNamed</span>(<span class="ruby-identifier">_name</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">run</span>
+  <span class="ruby-identifier">run</span>.<span class="ruby-identifier">getNewData</span>
+  <span class="ruby-identifier">run</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- refreshRunNamed-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- refreshRunNamed-method -->
+
+    
+      <div id="method-c-runNamed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">runNamed</span><span
+            class="method-args">(_name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="runNamed-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">runNamed</span>(<span class="ruby-identifier">_name</span>)
+  <span class="ruby-ivar">@runs</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">_name</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">fn</span> = <span class="ruby-identifier">validFileNameFrom</span>(<span class="ruby-identifier">k</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">fn</span>
+    <span class="ruby-identifier">readFile</span>(<span class="ruby-identifier">fn</span>)
+    <span class="ruby-ivar">@runs</span>.<span class="ruby-identifier">fetch</span>(<span class="ruby-identifier">_name</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">latestRunNamedLike</span>(<span class="ruby-identifier">fn</span>) }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- runNamed-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- runNamed-method -->
+
+    
+      <div id="method-c-runNames" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">runNames</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="runNames-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 16</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">runNames</span>
+  <span class="ruby-ivar">@runs</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> (<span class="ruby-identifier">f</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/run (\d+)$/</span>) <span class="ruby-operator">?</span> <span class="ruby-node">$1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- runNames-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- runNames-method -->
+
+    
+      <div id="method-c-runs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">runs</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="runs-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">runs</span>
+  <span class="ruby-ivar">@runs</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- runs-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- runs-method -->
+
+    
+      <div id="method-c-validFileNameFrom" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validFileNameFrom</span><span
+            class="method-args">(_name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validFileNameFrom-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">validFileNameFrom</span>(<span class="ruby-identifier">_name</span>)
+  <span class="ruby-identifier">basename</span> = <span class="ruby-identifier">_name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/ run \d+$/</span>, <span class="ruby-string">''</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">readable_real?</span>(<span class="ruby-identifier">basename</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">basename</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validFileNameFrom-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validFileNameFrom-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-createGraphs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">createGraphs</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="createGraphs-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 174</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">createGraphs</span>
+  <span class="ruby-ivar">@selectedFields</span> = []
+  <span class="ruby-ivar">@headers</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">zero?</span>
+      <span class="ruby-ivar">@graphs</span>[<span class="ruby-identifier">h</span>] = <span class="ruby-identifier">g</span> = <span class="ruby-constant">Graph</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">h</span>, <span class="ruby-identifier">i</span>)
+      <span class="ruby-identifier">g</span>.<span class="ruby-identifier">minval</span> = <span class="ruby-ivar">@minima</span>[<span class="ruby-identifier">i</span>]
+      <span class="ruby-identifier">g</span>.<span class="ruby-identifier">maxval</span> = <span class="ruby-ivar">@maxima</span>[<span class="ruby-identifier">i</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@selectedFields</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- createGraphs-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- createGraphs-method -->
+
+    
+      <div id="method-i-csvData" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">csvData</span><span
+            class="method-args">(_data = data)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return a string with CSV representation of the given data records</p>
+          
+
+          
+          <div class="method-source-code" id="csvData-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">csvData</span>(<span class="ruby-identifier">_data</span> = <span class="ruby-identifier">data</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-string">''</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">_data</span>
+  <span class="ruby-identifier">io</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">_data</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">io</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">values_at</span>(*<span class="ruby-identifier">selectedFields</span>).<span class="ruby-identifier">join</span>(<span class="ruby-string">','</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\n&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">string</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- csvData-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- csvData-method -->
+
+    
+      <div id="method-i-getNewData" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getNewData</span><span
+            class="method-args">(since = lastFullLineTime())</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If there has been new data, return an <a href="../Array.html">Array</a>,
+else nil</p>
+          
+
+          
+          <div class="method-source-code" id="getNewData-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 223</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getNewData</span>(<span class="ruby-identifier">since</span> = <span class="ruby-identifier">lastFullLineTime</span>())
+  <span class="ruby-identifier">whence</span> = <span class="ruby-identifier">hasNewData</span>(<span class="ruby-identifier">since</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">whence</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@originalFilename</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">newData</span> = <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">seek</span>(<span class="ruby-identifier">whence</span>, <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">SEEK_SET</span>)
+      <span class="ruby-identifier">newData</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read_csv</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">newData</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">newData</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">newData</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">rec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">rec</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">rec</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-node">/^#/</span> }
+        <span class="ruby-ivar">@data</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">newData</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span> <span class="ruby-identifier">round</span>(<span class="ruby-identifier">row</span>) }
+        <span class="ruby-ivar">@mtime</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">mtime</span>
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pos</span>= <span class="ruby-identifier">f</span>.<span class="ruby-identifier">pos</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">newData</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-ivar">@pos</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@mtime</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getNewData-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getNewData-method -->
+
+    
+      <div id="method-i-hasNewData" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hasNewData</span><span
+            class="method-args">(since = lastFullLineTime())</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>If there has been new data, return a seek position, else false</p>
+          
+
+          
+          <div class="method-source-code" id="hasNewData-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 212</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hasNewData</span>(<span class="ruby-identifier">since</span> = <span class="ruby-identifier">lastFullLineTime</span>())
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">since</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">whence</span> = <span class="ruby-identifier">positionAt</span>(<span class="ruby-identifier">since</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">whence</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">whence</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pos</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">whence</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">whence</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">mtime</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">since</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">whence</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">mtime</span>(<span class="ruby-ivar">@originalFilename</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">mtime</span>
+  <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hasNewData-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hasNewData-method -->
+
+    
+      <div id="method-i-lastFullLineTime" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">lastFullLineTime</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="lastFullLineTime-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">lastFullLineTime</span>
+  <span class="ruby-identifier">lastpos</span> = <span class="ruby-ivar">@positions</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">lastpos</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">lastpos</span>[<span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- lastFullLineTime-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- lastFullLineTime-method -->
+
+    
+      <div id="method-i-pos-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pos=</span><span
+            class="method-args">(p, m = @mtime)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="pos-3D-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pos=</span>(<span class="ruby-identifier">p</span>, <span class="ruby-identifier">m</span> = <span class="ruby-ivar">@mtime</span>)
+  <span class="ruby-ivar">@pos</span> = <span class="ruby-identifier">p</span>
+  <span class="ruby-ivar">@mtime</span> = <span class="ruby-identifier">m</span>
+  <span class="ruby-identifier">lastpos</span> = <span class="ruby-ivar">@positions</span>.<span class="ruby-identifier">last</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">lastpos</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">lastpos</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">p</span>
+    <span class="ruby-ivar">@positions</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">p</span>, <span class="ruby-identifier">m</span>]
+  <span class="ruby-keyword">else</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pos-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pos-3D-method -->
+
+    
+      <div id="method-i-positionAt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">positionAt</span><span
+            class="method-args">(time)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="positionAt-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 142</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">positionAt</span>(<span class="ruby-identifier">time</span>)
+  <span class="ruby-identifier">pa</span> = <span class="ruby-ivar">@positions</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">time</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">p</span>[<span class="ruby-value">1</span>] }
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">pa</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">pa</span>[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- positionAt-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- positionAt-method -->
+
+    
+      <div id="method-i-round" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">round</span><span
+            class="method-args">(fields)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="round-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">round</span>(<span class="ruby-identifier">fields</span>)
+  <span class="ruby-identifier">retval</span> = []
+  <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">each_with_index</span>  <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Numeric</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">f</span>
+      <span class="ruby-identifier">f</span> = <span class="ruby-identifier">f</span>.<span class="ruby-identifier">to_f</span>
+      <span class="ruby-ivar">@minima</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">f</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">f</span> <span class="ruby-operator">&lt;</span> <span class="ruby-ivar">@minima</span>[<span class="ruby-identifier">i</span>]
+      <span class="ruby-ivar">@maxima</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">f</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">f</span> <span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@maxima</span>[<span class="ruby-identifier">i</span>]
+      <span class="ruby-identifier">retval</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@rounding</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">f</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">retval</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">f</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">retval</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- round-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- round-method -->
+
+    
+      <div id="method-i-selectFields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selectFields</span><span
+            class="method-args">(selection = @headers)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selectFields-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">selectFields</span>(<span class="ruby-identifier">selection</span> = <span class="ruby-ivar">@headers</span>)
+  <span class="ruby-identifier">oldFields</span> = <span class="ruby-ivar">@selectedFields</span>
+  <span class="ruby-ivar">@selectedFields</span> = []
+  <span class="ruby-ivar">@headers</span>.<span class="ruby-identifier">each_with_index</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@selectedFields</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">i</span>.<span class="ruby-identifier">zero?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">selection</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">h</span>) }
+  <span class="ruby-ivar">@mtime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">oldFields</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@selectedFields</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selectFields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selectFields-method -->
+
+    
+      <div id="method-i-selectedGraphs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selectedGraphs</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selectedGraphs-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">selectedGraphs</span>
+  <span class="ruby-ivar">@graphs</span>.<span class="ruby-identifier">values_at</span>(*<span class="ruby-identifier">selectedHeaders</span>).<span class="ruby-identifier">compact</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selectedGraphs-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selectedGraphs-method -->
+
+    
+      <div id="method-i-selectedHeaders" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">selectedHeaders</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="selectedHeaders-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 203</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">selectedHeaders</span>
+  <span class="ruby-ivar">@headers</span>.<span class="ruby-identifier">values_at</span>(*<span class="ruby-identifier">selectedFields</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- selectedHeaders-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- selectedHeaders-method -->
+
+    
+      <div id="method-i-useData" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">useData</span><span
+            class="method-args">(data)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>assuming headers is set but data is not…</p>
+          
+
+          
+          <div class="method-source-code" id="useData-source">
+            <pre><span class="ruby-comment"># File webserver/graphviewer.rb, line 155</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">useData</span>(<span class="ruby-identifier">data</span>)
+  <span class="ruby-ivar">@data</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span> <span class="ruby-identifier">round</span>(<span class="ruby-identifier">row</span>) }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- useData-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- useData-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
