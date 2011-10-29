@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: SerialPort</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/serialport-1.0.4/lib/serialport.rb
+    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/serialport-1.0.4/ext/native/serialport.c
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="IO.html">IO</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-c-open">::open</a>
+    
+    <li><a href="#method-i-baud">#baud</a>
+    
+    <li><a href="#method-i-baud-3D">#baud=</a>
+    
+    <li><a href="#method-i-break">#break</a>
+    
+    <li><a href="#method-i-cts">#cts</a>
+    
+    <li><a href="#method-i-data_bits">#data_bits</a>
+    
+    <li><a href="#method-i-data_bits-3D">#data_bits=</a>
+    
+    <li><a href="#method-i-dcd">#dcd</a>
+    
+    <li><a href="#method-i-dsr">#dsr</a>
+    
+    <li><a href="#method-i-dtr">#dtr</a>
+    
+    <li><a href="#method-i-dtr-3D">#dtr=</a>
+    
+    <li><a href="#method-i-flow_control">#flow_control</a>
+    
+    <li><a href="#method-i-flow_control-3D">#flow_control=</a>
+    
+    <li><a href="#method-i-get_modem_params">#get_modem_params</a>
+    
+    <li><a href="#method-i-get_signals">#get_signals</a>
+    
+    <li><a href="#method-i-modem_params">#modem_params</a>
+    
+    <li><a href="#method-i-modem_params-3D">#modem_params=</a>
+    
+    <li><a href="#method-i-parity">#parity</a>
+    
+    <li><a href="#method-i-parity-3D">#parity=</a>
+    
+    <li><a href="#method-i-read_timeout">#read_timeout</a>
+    
+    <li><a href="#method-i-read_timeout-3D">#read_timeout=</a>
+    
+    <li><a href="#method-i-ri">#ri</a>
+    
+    <li><a href="#method-i-rts">#rts</a>
+    
+    <li><a href="#method-i-rts-3D">#rts=</a>
+    
+    <li><a href="#method-i-set_modem_params">#set_modem_params</a>
+    
+    <li><a href="#method-i-signals">#signals</a>
+    
+    <li><a href="#method-i-stop_bits">#stop_bits</a>
+    
+    <li><a href="#method-i-stop_bits-3D">#stop_bits=</a>
+    
+    <li><a href="#method-i-write_timeout">#write_timeout</a>
+    
+    <li><a href="#method-i-write_timeout-3D">#write_timeout=</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./Makefile.html">Makefile</a>
+  
+    <li class="file"><a href="./README.html">README</a>
+  
+    <li class="file"><a href="./temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ModBus.html">ModBus</a>
+  
+    <li><a href="./ModBus/Client.html">ModBus::Client</a>
+  
+    <li><a href="./ModBus/Common.html">ModBus::Common</a>
+  
+    <li><a href="./ModBus/Debug.html">ModBus::Debug</a>
+  
+    <li><a href="./ModBus/Errors.html">ModBus::Errors</a>
+  
+    <li><a href="./ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
+  
+    <li><a href="./ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
+  
+    <li><a href="./ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
+  
+    <li><a href="./ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
+  
+    <li><a href="./ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
+  
+    <li><a href="./ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
+  
+    <li><a href="./ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
+  
+    <li><a href="./ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
+  
+    <li><a href="./ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
+  
+    <li><a href="./ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
+  
+    <li><a href="./ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
+  
+    <li><a href="./ModBus/Options.html">ModBus::Options</a>
+  
+    <li><a href="./ModBus/RTU.html">ModBus::RTU</a>
+  
+    <li><a href="./ModBus/RTUClient.html">ModBus::RTUClient</a>
+  
+    <li><a href="./ModBus/RTUServer.html">ModBus::RTUServer</a>
+  
+    <li><a href="./ModBus/RTUSlave.html">ModBus::RTUSlave</a>
+  
+    <li><a href="./ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
+  
+    <li><a href="./ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
+  
+    <li><a href="./ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
+  
+    <li><a href="./ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
+  
+    <li><a href="./ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
+  
+    <li><a href="./ModBus/SP.html">ModBus::SP</a>
+  
+    <li><a href="./ModBus/Server.html">ModBus::Server</a>
+  
+    <li><a href="./ModBus/Slave.html">ModBus::Slave</a>
+  
+    <li><a href="./ModBus/TCP.html">ModBus::TCP</a>
+  
+    <li><a href="./ModBus/TCPClient.html">ModBus::TCPClient</a>
+  
+    <li><a href="./ModBus/TCPServer.html">ModBus::TCPServer</a>
+  
+    <li><a href="./ModBus/TCPSlave.html">ModBus::TCPSlave</a>
+  
+    <li><a href="./GraphViewer.html">GraphViewer</a>
+  
+    <li><a href="./GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
+  
+    <li><a href="./GraphViewer/Graph.html">GraphViewer::Graph</a>
+  
+    <li><a href="./GraphViewer/Guide.html">GraphViewer::Guide</a>
+  
+    <li><a href="./SOLO.html">SOLO</a>
+  
+    <li><a href="./SOLO/TemperatureController.html">SOLO::TemperatureController</a>
+  
+    <li><a href="./SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
+  
+    <li><a href="./TimedRepeat.html">TimedRepeat</a>
+  
+    <li><a href="./TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
+  
+    <li><a href="./TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
+  
+    <li><a href="./Updating.html">Updating</a>
+  
+    <li><a href="./Updating/Done.html">Updating::Done</a>
+  
+    <li><a href="./Updating/Report.html">Updating::Report</a>
+  
+    <li><a href="./Webserver.html">Webserver</a>
+  
+    <li><a href="./Webserver/GC29Tester.html">Webserver::GC29Tester</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Date.html">Date</a>
+  
+    <li><a href="./FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
+  
+    <li><a href="./GraphViewerServer.html">GraphViewerServer</a>
+  
+    <li><a href="./IO.html">IO</a>
+  
+    <li><a href="./Integer.html">Integer</a>
+  
+    <li><a href="./Numeric.html">Numeric</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./PID.html">PID</a>
+  
+    <li><a href="./RaiseResponseMatcher.html">RaiseResponseMatcher</a>
+  
+    <li><a href="./RaiseResponseMismatch.html">RaiseResponseMismatch</a>
+  
+    <li><a href="./SMDOven.html">SMDOven</a>
+  
+    <li><a href="./SerialPort.html">SerialPort</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./TestClass.html">TestClass</a>
+  
+    <li><a href="./TestIO.html">TestIO</a>
+  
+    <li><a href="./Thermistor.html">Thermistor</a>
+  
+    <li><a href="./Thread.html">Thread</a>
+  
+    <li><a href="./Time.html">Time</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class SerialPort</h1>
+
+  <div id="description" class="description">
+    
+<p>This class is used for communication over a serial port. In addition to the
+methods here, you can use everything Ruby’s IO-class provides (read, write,
+getc, readlines, …)</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="EVEN">EVEN
+        
+        <dd class="description">
+        
+      
+        <dt id="HARD">HARD
+        
+        <dd class="description">
+        
+      
+        <dt id="MARK">MARK
+        
+        <dd class="description">
+        
+      
+        <dt id="NONE">NONE
+        
+        <dd class="description">
+        
+      
+        <dt id="ODD">ODD
+        
+        <dd class="description">
+        
+      
+        <dt id="SOFT">SOFT
+        
+        <dd class="description">
+        
+      
+        <dt id="SPACE">SPACE
+        
+        <dd class="description">
+        
+      
+        <dt id="VERSION">VERSION
+        
+        <dd class="description"><p>the package’s version as a string “X.Y.Z”, beeing major, minor and patch
+level</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(port, *params)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a serial port object.</p>
+
+<p><code>port</code> may be a port number or the file name of a defice. The
+number is portable; so 0 is mapped to "COM1" on Windows, "/dev/ttyS0" on
+Linux, "/dev/cuaa0" on Mac OS X, etc.</p>
+
+<p><code>params</code> can be used to configure the serial port. See <a
+href="SerialPort.html#method-i-set_modem_params">#set_modem_params</a> for
+details</p>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/serialport-1.0.4/lib/serialport.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">SerialPort</span><span class="ruby-operator">::</span><span class="ruby-identifier">new</span>(<span class="ruby-identifier">port</span>, *<span class="ruby-identifier">params</span>)
+   <span class="ruby-identifier">sp</span> = <span class="ruby-identifier">create</span>(<span class="ruby-identifier">port</span>)
+   <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">sp</span>.<span class="ruby-identifier">set_modem_params</span>(*<span class="ruby-identifier">params</span>)
+   <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">sp</span>.<span class="ruby-identifier">close</span>
+      <span class="ruby-identifier">raise</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-keyword">return</span> <span class="ruby-identifier">sp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-c-open" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open</span><span
+            class="method-args">(port, *params) { |sp| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This behaves like SerialPort#new, except that you can pass a block to which
+the new serial port object will be passed. In this case the connection is
+automaticaly closed when the block has finished.</p>
+          
+
+          
+          <div class="method-source-code" id="open-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/serialport-1.0.4/lib/serialport.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">SerialPort</span><span class="ruby-operator">::</span><span class="ruby-identifier">open</span>(<span class="ruby-identifier">port</span>, *<span class="ruby-identifier">params</span>)
+   <span class="ruby-identifier">sp</span> = <span class="ruby-identifier">create</span>(<span class="ruby-identifier">port</span>)
+   <span class="ruby-keyword">begin</span>
+      <span class="ruby-identifier">sp</span>.<span class="ruby-identifier">set_modem_params</span>(*<span class="ruby-identifier">params</span>)
+   <span class="ruby-keyword">rescue</span>
+      <span class="ruby-identifier">sp</span>.<span class="ruby-identifier">close</span>
+      <span class="ruby-identifier">raise</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">block_given?</span>)
+     <span class="ruby-keyword">begin</span>
+        <span class="ruby-keyword">yield</span> <span class="ruby-identifier">sp</span>
+     <span class="ruby-keyword">ensure</span>             
+        <span class="ruby-identifier">sp</span>.<span class="ruby-identifier">close</span>
+     <span class="ruby-keyword">end</span>
+     <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span>
+   <span class="ruby-keyword">end</span>
+   <span class="ruby-keyword">return</span> <span class="ruby-identifier">sp</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- open-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- open-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-baud" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">baud</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the current baud rate, see <a
+href="SerialPort.html#method-i-get_modem_params">#get_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="baud-source">
+            <pre>static VALUE sp_get_data_rate(self)
+   VALUE self;
+{
+   struct modem_params mp;
+
+   get_modem_params(self, &amp;mp);
+
+   return INT2FIX(mp.data_rate);
+}</pre>
+          </div><!-- baud-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- baud-method -->
+
+    
+      <div id="method-i-baud-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">baud=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the baud rate, see <a
+href="SerialPort.html#method-i-set_modem_params">#set_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="baud-3D-source">
+            <pre>static VALUE sp_set_data_rate(self, data_rate)
+   VALUE self, data_rate;
+{
+   VALUE argv[4];
+
+   argv[0] = data_rate;
+   argv[1] = argv[2] = argv[3] = Qnil;
+   sp_set_modem_params(4, argv, self);
+
+   return data_rate;
+}</pre>
+          </div><!-- baud-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- baud-3D-method -->
+
+    
+      <div id="method-i-break" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">break</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Send a break for the given time.</p>
+
+<p><code>time</code> is an integer of tenths-of-a-second for the break.</p>
+
+<p>Note: Under Posix, this value is very approximate.</p>
+          
+
+          
+          <div class="method-source-code" id="break-source">
+            <pre>static VALUE sp_break(self, time)
+   VALUE self, time;
+{
+   return sp_break_impl(self, time);
+}</pre>
+          </div><!-- break-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- break-method -->
+
+    
+      <div id="method-i-cts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">cts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the state (0 or 1) of the CTS line</p>
+          
+
+          
+          <div class="method-source-code" id="cts-source">
+            <pre>static VALUE sp_get_cts(self)
+   VALUE self;
+{
+   struct line_signals ls;
+
+   get_line_signals_helper(self, &amp;ls);
+
+   return INT2FIX(ls.cts);
+}</pre>
+          </div><!-- cts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- cts-method -->
+
+    
+      <div id="method-i-data_bits" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data_bits</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the current data bits, see <a
+href="SerialPort.html#method-i-get_modem_params">#get_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="data_bits-source">
+            <pre>static VALUE sp_get_data_bits(self)
+   VALUE self;
+{
+   struct modem_params mp;
+
+   get_modem_params(self, &amp;mp);
+
+   return INT2FIX(mp.data_bits);
+}</pre>
+          </div><!-- data_bits-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- data_bits-method -->
+
+    
+      <div id="method-i-data_bits-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">data_bits=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the data bits, see <a
+href="SerialPort.html#method-i-set_modem_params">#set_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="data_bits-3D-source">
+            <pre>static VALUE sp_set_data_bits(self, data_bits)
+   VALUE self, data_bits;
+{
+   VALUE argv[4];
+
+   argv[1] = data_bits;
+   argv[0] = argv[2] = argv[3] = Qnil;
+   sp_set_modem_params(4, argv, self);
+
+   return data_bits;
+}</pre>
+          </div><!-- data_bits-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- data_bits-3D-method -->
+
+    
+      <div id="method-i-dcd" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dcd</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the state (0 or 1) of the DCD line</p>
+          
+
+          
+          <div class="method-source-code" id="dcd-source">
+            <pre>static VALUE sp_get_dcd(self)
+   VALUE self;
+{
+   struct line_signals ls;
+
+   get_line_signals_helper(self, &amp;ls);
+
+   return INT2FIX(ls.dcd);
+}</pre>
+          </div><!-- dcd-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dcd-method -->
+
+    
+      <div id="method-i-dsr" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dsr</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the state (0 or 1) of the DSR line</p>
+          
+
+          
+          <div class="method-source-code" id="dsr-source">
+            <pre>static VALUE sp_get_dsr(self)
+   VALUE self;
+{
+   struct line_signals ls;
+
+   get_line_signals_helper(self, &amp;ls);
+
+   return INT2FIX(ls.dsr);
+}</pre>
+          </div><!-- dsr-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dsr-method -->
+
+    
+      <div id="method-i-dtr" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dtr</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the state (0 or 1) of the DTR line (not available on Windows)</p>
+          
+
+          
+          <div class="method-source-code" id="dtr-source">
+            <pre>static VALUE sp_get_dtr(self)
+   VALUE self;
+{
+   return sp_get_dtr_impl(self);
+}</pre>
+          </div><!-- dtr-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dtr-method -->
+
+    
+      <div id="method-i-dtr-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dtr=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the state (0 or 1) of the DTR line</p>
+          
+
+          
+          <div class="method-source-code" id="dtr-3D-source">
+            <pre>static VALUE sp_set_dtr(self, val)
+   VALUE self, val;
+{
+   return sp_set_dtr_impl(self, val);
+}</pre>
+          </div><!-- dtr-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dtr-3D-method -->
+
+    
+      <div id="method-i-flow_control" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">flow_control</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the flow control. The result is either <a
+href="SerialPort.html#NONE">NONE</a>, <a
+href="SerialPort.html#HARD">HARD</a>, <a
+href="SerialPort.html#SOFT">SOFT</a> or (<a
+href="SerialPort.html#HARD">HARD</a> | <a
+href="SerialPort.html#SOFT">SOFT</a>)</p>
+          
+
+          
+          <div class="method-source-code" id="flow_control-source">
+            <pre>static VALUE sp_get_flow_control(self)
+   VALUE self;
+{
+   return sp_get_flow_control_impl(self);
+}</pre>
+          </div><!-- flow_control-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- flow_control-method -->
+
+    
+      <div id="method-i-flow_control-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">flow_control=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the flow control to either <a href="SerialPort.html#NONE">NONE</a>, <a
+href="SerialPort.html#HARD">HARD</a>, <a
+href="SerialPort.html#SOFT">SOFT</a> or (<a
+href="SerialPort.html#HARD">HARD</a> | <a
+href="SerialPort.html#SOFT">SOFT</a>)</p>
+
+<pre>Note: SerialPort::HARD mode is not supported on all platforms.
+SerialPort::HARD uses RTS/CTS handshaking; DSR/DTR is not
+supported.</pre>
+          
+
+          
+          <div class="method-source-code" id="flow_control-3D-source">
+            <pre>static VALUE sp_set_flow_control(self, val)
+   VALUE self, val;
+{
+   return sp_set_flow_control_impl(self, val);
+}</pre>
+          </div><!-- flow_control-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- flow_control-3D-method -->
+
+    
+      <div id="method-i-get_modem_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_modem_params</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the configure of the serial port.</p>
+
+<p>Returned is a hash with the following keys:</p>
+<dl class="rdoc-list label-list"><dt>"baud"
+<dd>
+<p><a href="Integer.html">Integer</a> with the baud rate</p>
+</dd><dt>"<a href="SerialPort.html#method-i-data_bits">#data_bits</a>"
+<dd>
+<p><a href="Integer.html">Integer</a> from 5 to 8 (4 is possible on Windows
+too)</p>
+</dd><dt>"<a href="SerialPort.html#method-i-stop_bits">#stop_bits</a>"
+<dd>
+<p><a href="Integer.html">Integer</a>, 1 or 2 (1.5 is not supported)</p>
+</dd><dt>"parity"
+<dd>
+<p>One of the constants <a href="SerialPort.html#NONE">NONE</a>, <a
+href="SerialPort.html#EVEN">EVEN</a> or <a
+href="SerialPort.html#ODD">ODD</a> (on Windows may also <a
+href="SerialPort.html#MARK">MARK</a> or <a
+href="SerialPort.html#SPACE">SPACE</a>)</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="get_modem_params-source">
+            <pre>static VALUE sp_get_modem_params(self)
+   VALUE self;
+{
+   struct modem_params mp;
+   VALUE hash;
+
+   get_modem_params(self, &amp;mp);
+
+   hash = rb_hash_new();
+
+   rb_hash_aset(hash, sBaud, INT2FIX(mp.data_rate));
+   rb_hash_aset(hash, sDataBits, INT2FIX(mp.data_bits));
+   rb_hash_aset(hash, sStopBits, INT2FIX(mp.stop_bits));
+   rb_hash_aset(hash, sParity, INT2FIX(mp.parity));
+
+   return hash;
+}</pre>
+          </div><!-- get_modem_params-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_modem_params-method -->
+
+    
+      <div id="method-i-get_signals" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_signals</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return a hash with the state of each line status bit.  Keys are “rts”,
+“dtr”, “cts”, “dsr”, “dcd”, and “ri”.</p>
+
+<p>Note: Under Windows, the rts and dtr values are not included.</p>
+          
+
+          
+          <div class="method-source-code" id="get_signals-source">
+            <pre>static VALUE sp_signals(self)
+   VALUE self;
+{
+   struct line_signals ls;
+   VALUE hash;
+
+   get_line_signals_helper(self, &amp;ls);
+
+   hash = rb_hash_new();
+
+#if !(defined(OS_MSWIN) || defined(OS_BCCWIN) || defined(OS_MINGW))
+   rb_hash_aset(hash, sRts, INT2FIX(ls.rts));
+   rb_hash_aset(hash, sDtr, INT2FIX(ls.dtr));
+#endif
+   rb_hash_aset(hash, sCts, INT2FIX(ls.cts));
+   rb_hash_aset(hash, sDsr, INT2FIX(ls.dsr));
+   rb_hash_aset(hash, sDcd, INT2FIX(ls.dcd));
+   rb_hash_aset(hash, sRi, INT2FIX(ls.ri));
+
+   return hash;
+}</pre>
+          </div><!-- get_signals-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_signals-method -->
+
+    
+      <div id="method-i-modem_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">modem_params</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the configure of the serial port.</p>
+
+<p>Returned is a hash with the following keys:</p>
+<dl class="rdoc-list label-list"><dt>"baud"
+<dd>
+<p><a href="Integer.html">Integer</a> with the baud rate</p>
+</dd><dt>"<a href="SerialPort.html#method-i-data_bits">#data_bits</a>"
+<dd>
+<p><a href="Integer.html">Integer</a> from 5 to 8 (4 is possible on Windows
+too)</p>
+</dd><dt>"<a href="SerialPort.html#method-i-stop_bits">#stop_bits</a>"
+<dd>
+<p><a href="Integer.html">Integer</a>, 1 or 2 (1.5 is not supported)</p>
+</dd><dt>"parity"
+<dd>
+<p>One of the constants <a href="SerialPort.html#NONE">NONE</a>, <a
+href="SerialPort.html#EVEN">EVEN</a> or <a
+href="SerialPort.html#ODD">ODD</a> (on Windows may also <a
+href="SerialPort.html#MARK">MARK</a> or <a
+href="SerialPort.html#SPACE">SPACE</a>)</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="modem_params-source">
+            <pre>static VALUE sp_get_modem_params(self)
+   VALUE self;
+{
+   struct modem_params mp;
+   VALUE hash;
+
+   get_modem_params(self, &amp;mp);
+
+   hash = rb_hash_new();
+
+   rb_hash_aset(hash, sBaud, INT2FIX(mp.data_rate));
+   rb_hash_aset(hash, sDataBits, INT2FIX(mp.data_bits));
+   rb_hash_aset(hash, sStopBits, INT2FIX(mp.stop_bits));
+   rb_hash_aset(hash, sParity, INT2FIX(mp.parity));
+
+   return hash;
+}</pre>
+          </div><!-- modem_params-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- modem_params-method -->
+
+    
+      <div id="method-i-modem_params-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">modem_params=</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Configure the serial port. You can pass a hash or multiple values as
+separate arguments. Invalid or unsupported values will raise an
+ArgumentError.</p>
+
+<p>When using a hash the following keys are recognized:</p>
+<dl class="rdoc-list label-list"><dt>"baud"
+<dd>
+<p><a href="Integer.html">Integer</a> from 50 to 256000, depends on platform</p>
+</dd><dt>"<a href="SerialPort.html#method-i-data_bits">#data_bits</a>"
+<dd>
+<p><a href="Integer.html">Integer</a> from 5 to 8 (4 is allowed on Windows
+too)</p>
+</dd><dt>"<a href="SerialPort.html#method-i-stop_bits">#stop_bits</a>"
+<dd>
+<p>An integer, only allowed values are 1 or 2 (1.5 is not supported)</p>
+</dd><dt>"parity"
+<dd>
+<p>One of the constants <a href="SerialPort.html#NONE">NONE</a>, <a
+href="SerialPort.html#EVEN">EVEN</a> or <a
+href="SerialPort.html#ODD">ODD</a> (Windows allows also <a
+href="SerialPort.html#MARK">MARK</a> and <a
+href="SerialPort.html#SPACE">SPACE</a>)</p>
+</dd></dl>
+
+<p>When using separate arguments, they are interpreted as: (baud, <a
+href="SerialPort.html#method-i-data_bits">#data_bits</a> = 8, <a
+href="SerialPort.html#method-i-stop_bits">#stop_bits</a> = 1, parity =
+(previous_databits==8 ? <a href="SerialPort.html#NONE">NONE</a> : <a
+href="SerialPort.html#EVEN">EVEN</a>))</p>
+
+<p>Nota: A baudrate of nil will keep the old value. The default parity depends
+on the number of databits configured before this function call.</p>
+          
+
+          
+          <div class="method-source-code" id="modem_params-3D-source">
+            <pre>static VALUE sp_set_modem_params(argc, argv, self)
+   int argc;
+   VALUE *argv, self;
+{
+   return sp_set_modem_params_impl(argc, argv, self);
+}</pre>
+          </div><!-- modem_params-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- modem_params-3D-method -->
+
+    
+      <div id="method-i-parity" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parity</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the current parity, see <a
+href="SerialPort.html#method-i-get_modem_params">#get_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="parity-source">
+            <pre>static VALUE sp_get_parity(self)
+   VALUE self;
+{
+   struct modem_params mp;
+
+   get_modem_params(self, &amp;mp);
+
+   return INT2FIX(mp.parity);
+}</pre>
+          </div><!-- parity-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parity-method -->
+
+    
+      <div id="method-i-parity-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parity=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the parity, see <a
+href="SerialPort.html#method-i-set_modem_params">#set_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="parity-3D-source">
+            <pre>static VALUE sp_set_parity(self, parity)
+   VALUE self, parity;
+{
+   VALUE argv[4];
+
+   argv[3] = parity;
+   argv[0] = argv[1] = argv[2] = Qnil;
+   sp_set_modem_params(4, argv, self);
+
+   return parity;
+}</pre>
+          </div><!-- parity-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parity-3D-method -->
+
+    
+      <div id="method-i-read_timeout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read_timeout</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the timeout value (in milliseconds) for reading. See
+SerialPort#set_read_timeout for details.</p>
+          
+
+          
+          <div class="method-source-code" id="read_timeout-source">
+            <pre>static VALUE sp_get_read_timeout(self)
+   VALUE self;
+{
+   return sp_get_read_timeout_impl(self);
+}</pre>
+          </div><!-- read_timeout-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- read_timeout-method -->
+
+    
+      <div id="method-i-read_timeout-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">read_timeout=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the timeout value (in milliseconds) for reading. A negative read
+timeout will return all the available data without waiting, a zero read
+timeout will not return until at least one byte is available, and a
+positive read timeout returns when the requested number of bytes is
+available or the interval between the arrival of two bytes exceeds the
+timeout value.</p>
+
+<p>Note: Read timeouts don’t mix well with multi-threading.</p>
+          
+
+          
+          <div class="method-source-code" id="read_timeout-3D-source">
+            <pre>static VALUE sp_set_read_timeout(self, val)
+   VALUE self, val;
+{
+   return sp_set_read_timeout_impl(self, val);
+}</pre>
+          </div><!-- read_timeout-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- read_timeout-3D-method -->
+
+    
+      <div id="method-i-ri" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ri</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the state (0 or 1) of the RI line</p>
+          
+
+          
+          <div class="method-source-code" id="ri-source">
+            <pre>static VALUE sp_get_ri(self)
+   VALUE self;
+{
+   struct line_signals ls;
+
+   get_line_signals_helper(self, &amp;ls);
+
+   return INT2FIX(ls.ri);
+}</pre>
+          </div><!-- ri-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- ri-method -->
+
+    
+      <div id="method-i-rts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rts</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the state (0 or 1) of the RTS line (not available on Windows)</p>
+          
+
+          
+          <div class="method-source-code" id="rts-source">
+            <pre>static VALUE sp_get_rts(self)
+   VALUE self;
+{
+   return sp_get_rts_impl(self);
+}</pre>
+          </div><!-- rts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rts-method -->
+
+    
+      <div id="method-i-rts-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rts=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the state (0 or 1) of the RTS line</p>
+          
+
+          
+          <div class="method-source-code" id="rts-3D-source">
+            <pre>static VALUE sp_set_rts(self, val)
+   VALUE self, val;
+{
+   return sp_set_rts_impl(self, val);
+}</pre>
+          </div><!-- rts-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rts-3D-method -->
+
+    
+      <div id="method-i-set_modem_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_modem_params</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Configure the serial port. You can pass a hash or multiple values as
+separate arguments. Invalid or unsupported values will raise an
+ArgumentError.</p>
+
+<p>When using a hash the following keys are recognized:</p>
+<dl class="rdoc-list label-list"><dt>"baud"
+<dd>
+<p><a href="Integer.html">Integer</a> from 50 to 256000, depends on platform</p>
+</dd><dt>"<a href="SerialPort.html#method-i-data_bits">#data_bits</a>"
+<dd>
+<p><a href="Integer.html">Integer</a> from 5 to 8 (4 is allowed on Windows
+too)</p>
+</dd><dt>"<a href="SerialPort.html#method-i-stop_bits">#stop_bits</a>"
+<dd>
+<p>An integer, only allowed values are 1 or 2 (1.5 is not supported)</p>
+</dd><dt>"parity"
+<dd>
+<p>One of the constants <a href="SerialPort.html#NONE">NONE</a>, <a
+href="SerialPort.html#EVEN">EVEN</a> or <a
+href="SerialPort.html#ODD">ODD</a> (Windows allows also <a
+href="SerialPort.html#MARK">MARK</a> and <a
+href="SerialPort.html#SPACE">SPACE</a>)</p>
+</dd></dl>
+
+<p>When using separate arguments, they are interpreted as: (baud, <a
+href="SerialPort.html#method-i-data_bits">#data_bits</a> = 8, <a
+href="SerialPort.html#method-i-stop_bits">#stop_bits</a> = 1, parity =
+(previous_databits==8 ? <a href="SerialPort.html#NONE">NONE</a> : <a
+href="SerialPort.html#EVEN">EVEN</a>))</p>
+
+<p>Nota: A baudrate of nil will keep the old value. The default parity depends
+on the number of databits configured before this function call.</p>
+          
+
+          
+          <div class="method-source-code" id="set_modem_params-source">
+            <pre>static VALUE sp_set_modem_params(argc, argv, self)
+   int argc;
+   VALUE *argv, self;
+{
+   return sp_set_modem_params_impl(argc, argv, self);
+}</pre>
+          </div><!-- set_modem_params-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_modem_params-method -->
+
+    
+      <div id="method-i-signals" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">signals</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return a hash with the state of each line status bit.  Keys are “rts”,
+“dtr”, “cts”, “dsr”, “dcd”, and “ri”.</p>
+
+<p>Note: Under Windows, the rts and dtr values are not included.</p>
+          
+
+          
+          <div class="method-source-code" id="signals-source">
+            <pre>static VALUE sp_signals(self)
+   VALUE self;
+{
+   struct line_signals ls;
+   VALUE hash;
+
+   get_line_signals_helper(self, &amp;ls);
+
+   hash = rb_hash_new();
+
+#if !(defined(OS_MSWIN) || defined(OS_BCCWIN) || defined(OS_MINGW))
+   rb_hash_aset(hash, sRts, INT2FIX(ls.rts));
+   rb_hash_aset(hash, sDtr, INT2FIX(ls.dtr));
+#endif
+   rb_hash_aset(hash, sCts, INT2FIX(ls.cts));
+   rb_hash_aset(hash, sDsr, INT2FIX(ls.dsr));
+   rb_hash_aset(hash, sDcd, INT2FIX(ls.dcd));
+   rb_hash_aset(hash, sRi, INT2FIX(ls.ri));
+
+   return hash;
+}</pre>
+          </div><!-- signals-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- signals-method -->
+
+    
+      <div id="method-i-stop_bits" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_bits</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the current stop bits, see <a
+href="SerialPort.html#method-i-get_modem_params">#get_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="stop_bits-source">
+            <pre>static VALUE sp_get_stop_bits(self)
+   VALUE self;
+{
+   struct modem_params mp;
+
+   get_modem_params(self, &amp;mp);
+
+   return INT2FIX(mp.stop_bits);
+}</pre>
+          </div><!-- stop_bits-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- stop_bits-method -->
+
+    
+      <div id="method-i-stop_bits-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stop_bits=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set the stop bits, see <a
+href="SerialPort.html#method-i-set_modem_params">#set_modem_params</a> for
+details.</p>
+          
+
+          
+          <div class="method-source-code" id="stop_bits-3D-source">
+            <pre>static VALUE sp_set_stop_bits(self, stop_bits)
+   VALUE self, stop_bits;
+{
+   VALUE argv[4];
+
+   argv[2] = stop_bits;
+   argv[0] = argv[1] = argv[3] = Qnil;
+   sp_set_modem_params(4, argv, self);
+
+   return stop_bits;
+}</pre>
+          </div><!-- stop_bits-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- stop_bits-3D-method -->
+
+    
+      <div id="method-i-write_timeout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_timeout</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get the write timeout (in milliseconds)</p>
+
+<p>Note: Under Posix, write timeouts are not implemented.</p>
+          
+
+          
+          <div class="method-source-code" id="write_timeout-source">
+            <pre>static VALUE sp_get_write_timeout(self)
+   VALUE self;
+{
+   return sp_get_write_timeout_impl(self);
+}</pre>
+          </div><!-- write_timeout-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- write_timeout-method -->
+
+    
+      <div id="method-i-write_timeout-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">write_timeout=</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Set a write timeout (in milliseconds)</p>
+
+<p>Note: Under Posix, write timeouts are not implemented.</p>
+          
+
+          
+          <div class="method-source-code" id="write_timeout-3D-source">
+            <pre>static VALUE sp_set_write_timeout(self, val)
+   VALUE self, val;
+{
+   return sp_set_write_timeout_impl(self, val);
+}</pre>
+          </div><!-- write_timeout-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- write_timeout-3D-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

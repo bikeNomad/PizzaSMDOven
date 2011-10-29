@@ -49,6 +49,7 @@
   <ul>
     <li>lib/utils.rb
     <li>webserver/csvProcessor.rb
+    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/ext.rb
   </ul>
 </nav>
 
@@ -75,6 +76,16 @@
     
     <li><a href="#method-i-each_chunk">#each_chunk</a>
     
+    <li><a href="#method-i-from_32f">#from_32f</a>
+    
+    <li><a href="#method-i-from_32i">#from_32i</a>
+    
+    <li><a href="#method-i-pack_to_word">#pack_to_word</a>
+    
+    <li><a href="#method-i-to_32f">#to_32f</a>
+    
+    <li><a href="#method-i-to_32i">#to_32i</a>
+    
     <li><a href="#method-i-to_hash">#to_hash</a>
     
   </ul>
@@ -90,6 +101,20 @@
   
     <li class="file"><a href="./Makefile.html">Makefile</a>
   
+    <li class="file"><a href="./README.html">README</a>
+  
+    <li class="file"><a href="./temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
+  
+    <li class="file"><a href="./temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
+  
   </ul>
 </nav>
 
@@ -97,6 +122,72 @@
   <h3 class="section-header">Class and Module Index</h3>
 
   <ul class="link-list">
+  
+    <li><a href="./ModBus.html">ModBus</a>
+  
+    <li><a href="./ModBus/Client.html">ModBus::Client</a>
+  
+    <li><a href="./ModBus/Common.html">ModBus::Common</a>
+  
+    <li><a href="./ModBus/Debug.html">ModBus::Debug</a>
+  
+    <li><a href="./ModBus/Errors.html">ModBus::Errors</a>
+  
+    <li><a href="./ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
+  
+    <li><a href="./ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
+  
+    <li><a href="./ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
+  
+    <li><a href="./ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
+  
+    <li><a href="./ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
+  
+    <li><a href="./ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
+  
+    <li><a href="./ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
+  
+    <li><a href="./ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
+  
+    <li><a href="./ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
+  
+    <li><a href="./ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
+  
+    <li><a href="./ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
+  
+    <li><a href="./ModBus/Options.html">ModBus::Options</a>
+  
+    <li><a href="./ModBus/RTU.html">ModBus::RTU</a>
+  
+    <li><a href="./ModBus/RTUClient.html">ModBus::RTUClient</a>
+  
+    <li><a href="./ModBus/RTUServer.html">ModBus::RTUServer</a>
+  
+    <li><a href="./ModBus/RTUSlave.html">ModBus::RTUSlave</a>
+  
+    <li><a href="./ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
+  
+    <li><a href="./ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
+  
+    <li><a href="./ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
+  
+    <li><a href="./ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
+  
+    <li><a href="./ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
+  
+    <li><a href="./ModBus/SP.html">ModBus::SP</a>
+  
+    <li><a href="./ModBus/Server.html">ModBus::Server</a>
+  
+    <li><a href="./ModBus/Slave.html">ModBus::Slave</a>
+  
+    <li><a href="./ModBus/TCP.html">ModBus::TCP</a>
+  
+    <li><a href="./ModBus/TCPClient.html">ModBus::TCPClient</a>
+  
+    <li><a href="./ModBus/TCPServer.html">ModBus::TCPServer</a>
+  
+    <li><a href="./ModBus/TCPSlave.html">ModBus::TCPSlave</a>
   
     <li><a href="./GraphViewer.html">GraphViewer</a>
   
@@ -106,11 +197,11 @@
   
     <li><a href="./GraphViewer/Guide.html">GraphViewer::Guide</a>
   
-    <li><a href="./ModBus.html">ModBus</a>
+    <li><a href="./SOLO.html">SOLO</a>
   
-    <li><a href="./ModBus/Common.html">ModBus::Common</a>
+    <li><a href="./SOLO/TemperatureController.html">SOLO::TemperatureController</a>
   
-    <li><a href="./ModBus/RTUClient.html">ModBus::RTUClient</a>
+    <li><a href="./SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
   
     <li><a href="./TimedRepeat.html">TimedRepeat</a>
   
@@ -123,10 +214,6 @@
     <li><a href="./Updating/Done.html">Updating::Done</a>
   
     <li><a href="./Updating/Report.html">Updating::Report</a>
-  
-    <li><a href="./SOLO.html">SOLO</a>
-  
-    <li><a href="./SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
   
     <li><a href="./Webserver.html">Webserver</a>
   
@@ -142,17 +229,27 @@
   
     <li><a href="./IO.html">IO</a>
   
+    <li><a href="./Integer.html">Integer</a>
+  
     <li><a href="./Numeric.html">Numeric</a>
   
     <li><a href="./Object.html">Object</a>
   
     <li><a href="./PID.html">PID</a>
   
+    <li><a href="./RaiseResponseMatcher.html">RaiseResponseMatcher</a>
+  
+    <li><a href="./RaiseResponseMismatch.html">RaiseResponseMismatch</a>
+  
     <li><a href="./SMDOven.html">SMDOven</a>
+  
+    <li><a href="./SerialPort.html">SerialPort</a>
   
     <li><a href="./String.html">String</a>
   
     <li><a href="./TestClass.html">TestClass</a>
+  
+    <li><a href="./TestIO.html">TestIO</a>
   
     <li><a href="./Thermistor.html">Thermistor</a>
   
@@ -269,6 +366,179 @@ match.</p>
 
         
       </div><!-- each_chunk-method -->
+
+    
+      <div id="method-i-from_32f" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">from_32f</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given an array of 32bit Floats, we turn it into an array of 16bit Fixnums,
+doubling the size</p>
+          
+
+          
+          <div class="method-source-code" id="from_32f-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/ext.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">from_32f</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pack</span>(<span class="ruby-string">'g*'</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-string">'n*'</span>).<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">arr</span><span class="ruby-operator">|</span> <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">reverse</span> }.<span class="ruby-identifier">flatten</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- from_32f-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- from_32f-method -->
+
+    
+      <div id="method-i-from_32i" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">from_32i</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given an array of 32bit Fixnum, we turn it into an array of 16bit fixnums,
+doubling the size</p>
+          
+
+          
+          <div class="method-source-code" id="from_32i-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/ext.rb, line 68</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">from_32i</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">pack</span>(<span class="ruby-string">'N*'</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-string">'n*'</span>).<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">arr</span><span class="ruby-operator">|</span> <span class="ruby-identifier">arr</span>.<span class="ruby-identifier">reverse</span> }.<span class="ruby-identifier">flatten</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- from_32i-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- from_32i-method -->
+
+    
+      <div id="method-i-pack_to_word" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pack_to_word</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="pack_to_word-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/ext.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pack_to_word</span>
+  <span class="ruby-identifier">word</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-identifier">mask</span> = <span class="ruby-value">0x01</span>
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">bit</span><span class="ruby-operator">|</span> 
+    <span class="ruby-identifier">word</span> <span class="ruby-operator">|=</span> <span class="ruby-identifier">mask</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">bit</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">mask</span> <span class="ruby-operator">&lt;&lt;=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">mask</span>  <span class="ruby-operator">==</span> <span class="ruby-value">0x100</span>
+      <span class="ruby-identifier">mask</span> = <span class="ruby-value">0x01</span>
+      <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">chr</span>
+      <span class="ruby-identifier">word</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">mask</span> <span class="ruby-operator">==</span> <span class="ruby-value">0x01</span>
+    <span class="ruby-identifier">s</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">word</span>.<span class="ruby-identifier">chr</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">s</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pack_to_word-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pack_to_word-method -->
+
+    
+      <div id="method-i-to_32f" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_32f</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given an array of 16bit Fixnum, we turn it into 32bit Int in big-endian
+order, halving the size</p>
+          
+
+          
+          <div class="method-source-code" id="to_32f-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/ext.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_32f</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Array requires an even number of elements to pack to 32bits: was #{self.size}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">even?</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span>(<span class="ruby-identifier">lsb</span>, <span class="ruby-identifier">msb</span>)<span class="ruby-operator">|</span> [<span class="ruby-identifier">msb</span>, <span class="ruby-identifier">lsb</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">'n*'</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-string">'g'</span>)[<span class="ruby-value">0</span>] }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_32f-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_32f-method -->
+
+    
+      <div id="method-i-to_32i" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_32i</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Given an array of 16bit Fixnum, we turn it into 32bit Float in big-endian
+order, halving the size</p>
+          
+
+          
+          <div class="method-source-code" id="to_32i-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/ext.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_32i</span>
+  <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Array requires an even number of elements to pack to 32bits: was #{self.size}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">even?</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span>(<span class="ruby-identifier">lsb</span>, <span class="ruby-identifier">msb</span>)<span class="ruby-operator">|</span> [<span class="ruby-identifier">msb</span>, <span class="ruby-identifier">lsb</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">'n*'</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-string">'N'</span>)[<span class="ruby-value">0</span>] }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_32i-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_32i-method -->
 
     
       <div id="method-i-to_hash" class="method-detail ">

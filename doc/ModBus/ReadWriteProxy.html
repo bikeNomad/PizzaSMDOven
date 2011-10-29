@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: ModBus::ReadWriteProxy</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/proxy.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-5B-5D-3D">#[]=</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../Makefile.html">Makefile</a>
+  
+    <li class="file"><a href="../README.html">README</a>
+  
+    <li class="file"><a href="../temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
+  
+    <li class="file"><a href="../temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
+  
+    <li class="file"><a href="../temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
+  
+    <li class="file"><a href="../temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
+  
+    <li class="file"><a href="../temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
+  
+    <li class="file"><a href="../temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../ModBus.html">ModBus</a>
+  
+    <li><a href="../ModBus/Client.html">ModBus::Client</a>
+  
+    <li><a href="../ModBus/Common.html">ModBus::Common</a>
+  
+    <li><a href="../ModBus/Debug.html">ModBus::Debug</a>
+  
+    <li><a href="../ModBus/Errors.html">ModBus::Errors</a>
+  
+    <li><a href="../ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
+  
+    <li><a href="../ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
+  
+    <li><a href="../ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
+  
+    <li><a href="../ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
+  
+    <li><a href="../ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
+  
+    <li><a href="../ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
+  
+    <li><a href="../ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
+  
+    <li><a href="../ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
+  
+    <li><a href="../ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
+  
+    <li><a href="../ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
+  
+    <li><a href="../ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
+  
+    <li><a href="../ModBus/Options.html">ModBus::Options</a>
+  
+    <li><a href="../ModBus/RTU.html">ModBus::RTU</a>
+  
+    <li><a href="../ModBus/RTUClient.html">ModBus::RTUClient</a>
+  
+    <li><a href="../ModBus/RTUServer.html">ModBus::RTUServer</a>
+  
+    <li><a href="../ModBus/RTUSlave.html">ModBus::RTUSlave</a>
+  
+    <li><a href="../ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
+  
+    <li><a href="../ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
+  
+    <li><a href="../ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
+  
+    <li><a href="../ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
+  
+    <li><a href="../ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
+  
+    <li><a href="../ModBus/SP.html">ModBus::SP</a>
+  
+    <li><a href="../ModBus/Server.html">ModBus::Server</a>
+  
+    <li><a href="../ModBus/Slave.html">ModBus::Slave</a>
+  
+    <li><a href="../ModBus/TCP.html">ModBus::TCP</a>
+  
+    <li><a href="../ModBus/TCPClient.html">ModBus::TCPClient</a>
+  
+    <li><a href="../ModBus/TCPServer.html">ModBus::TCPServer</a>
+  
+    <li><a href="../ModBus/TCPSlave.html">ModBus::TCPSlave</a>
+  
+    <li><a href="../GraphViewer.html">GraphViewer</a>
+  
+    <li><a href="../GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
+  
+    <li><a href="../GraphViewer/Graph.html">GraphViewer::Graph</a>
+  
+    <li><a href="../GraphViewer/Guide.html">GraphViewer::Guide</a>
+  
+    <li><a href="../SOLO.html">SOLO</a>
+  
+    <li><a href="../SOLO/TemperatureController.html">SOLO::TemperatureController</a>
+  
+    <li><a href="../SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
+  
+    <li><a href="../TimedRepeat.html">TimedRepeat</a>
+  
+    <li><a href="../TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
+  
+    <li><a href="../TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
+  
+    <li><a href="../Updating.html">Updating</a>
+  
+    <li><a href="../Updating/Done.html">Updating::Done</a>
+  
+    <li><a href="../Updating/Report.html">Updating::Report</a>
+  
+    <li><a href="../Webserver.html">Webserver</a>
+  
+    <li><a href="../Webserver/GC29Tester.html">Webserver::GC29Tester</a>
+  
+    <li><a href="../Array.html">Array</a>
+  
+    <li><a href="../Date.html">Date</a>
+  
+    <li><a href="../FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
+  
+    <li><a href="../GraphViewerServer.html">GraphViewerServer</a>
+  
+    <li><a href="../IO.html">IO</a>
+  
+    <li><a href="../Integer.html">Integer</a>
+  
+    <li><a href="../Numeric.html">Numeric</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../PID.html">PID</a>
+  
+    <li><a href="../RaiseResponseMatcher.html">RaiseResponseMatcher</a>
+  
+    <li><a href="../RaiseResponseMismatch.html">RaiseResponseMismatch</a>
+  
+    <li><a href="../SMDOven.html">SMDOven</a>
+  
+    <li><a href="../SerialPort.html">SerialPort</a>
+  
+    <li><a href="../String.html">String</a>
+  
+    <li><a href="../TestClass.html">TestClass</a>
+  
+    <li><a href="../TestIO.html">TestIO</a>
+  
+    <li><a href="../Thermistor.html">Thermistor</a>
+  
+    <li><a href="../Thread.html">Thread</a>
+  
+    <li><a href="../Time.html">Time</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class ModBus::ReadWriteProxy</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-5B-5D-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">[]=</span><span
+            class="method-args">(key, val)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Write single or multiple values to a modbus slave depending on whether a
+Fixnum or a Range was given. Note that in the case of multiples, a
+pluralized version of the method is sent to the slave. Also when writing
+multiple values, the number of elements must match the number of registers
+in the range or an exception is raised</p>
+          
+
+          
+          <div class="method-source-code" id="5B-5D-3D-source">
+            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/proxy.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Fixnum</span>)
+    <span class="ruby-ivar">@slave</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;write_#{@type}&quot;</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-constant">Range</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProxyException</span>, <span class="ruby-node">&quot;The size of the range must match the size of the values (#{key.count} != #{val.size})&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-ivar">@slave</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;write_#{@type}s&quot;</span>, <span class="ruby-identifier">key</span>.<span class="ruby-identifier">first</span>, <span class="ruby-identifier">val</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProxyException</span>, <span class="ruby-node">&quot;Invalid argument, must be integer or range. Was #{key.class}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- 5B-5D-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- 5B-5D-3D-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
