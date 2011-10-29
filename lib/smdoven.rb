@@ -41,7 +41,7 @@ class SMDOven
   attr_reader :client, :slave, :portname, :temperatureLog
   attr_accessor :statusLog, :temperatureLogOpened
 
-  def temperatureLog=(file,headers=false)
+  def openTemperatureLog(file,headers=false)
     @temperatureLog.close if @temperatureLog
     @temperatureLog = file
     if @temperatureLog.nil?

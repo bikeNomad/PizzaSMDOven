@@ -7,16 +7,12 @@ run:
 	bin/solder.rb
 
 tags: $(BINFILES) $(LIBFILES) $(RMODBUS_FILES)
-	/usr/local/bin/ctags --recurse=yes $(BINFILES) $(LIBFILES) $(filter %.rb,$(RMODBUS_FILES))
+	/usr/local/bin/ctags --ruby-kinds=+cfmF --recurse=yes $(BINFILES) $(LIBFILES) $(filter %.rb,$(RMODBUS_FILES))
 
 clean:
-	find . -maxdepth 1 -empty -exec rm {} \;
-
-test:
-	echo $(PATH)
-	echo $(SHELL)
+	find logs -maxdepth 1 -empty -exec rm {} \;
 
 docs:
-	rdoc . $(filter %.rb,$(RMODBUS_FILES)) $(filter %.rb,$(SERIALPORT_FILES)) $(filter %.c,$(SERIALPORT_FILES))
+	rdoc lib bin $(filter %.rb,$(RMODBUS_FILES)) $(filter %.rb,$(SERIALPORT_FILES)) $(filter %.c,$(SERIALPORT_FILES))
 
 .PHONY: clean run test

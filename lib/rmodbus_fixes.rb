@@ -1,11 +1,13 @@
-# $Id$
-# Fixes for rmodbus 0.40.0 RTU client code 
+# Extensions and fixes for rmodbus 1.10 RTU client code 
 # From Ned Konz <ned@bike-nomad.com>
 #
 require 'rmodbus'
 
 module ModBus
-  module Common
+
+  # Adds debug log other than $stdout
+  module Debug
+    attr_accessor :debug_log
 
     private
     def log(msg)
@@ -15,31 +17,16 @@ module ModBus
     def log_error(msg)
       debug_log.puts msg
     end
-
-    def logging_bytes(msg)
-      result = ""
-      msg.each_byte do |c|
-        byte = if c < 16
-          '0' + c.to_s(16)
-        else
-          c.to_s(16)
-        end
-        result << "[#{byte}]"
-      end
-      result
-    end
   end
 
   class RTUClient
-    alias_method :old_initialize, :initialize
 
-    def initialize(_port,_dataRate,_slaveAddress,_opts)
-      @debug_log = $stdout
-      old_initialize(_port,_dataRate,_slaveAddress,_opts)
+    def open_connection(_port,_dataRate=9600,_opts = {})
+      debug_log= $stdout
+      @io = open_serial_port(_port, _dataRate, _opts)
       @character_duration = 
-        (1.0 + @sp.data_bits +
-        @sp.stop_bits +
-        ((@sp.parity == SerialPort::NONE) ? 1 : 0)) / _dataRate
+        (1.0 + @io.data_bits + @io.stop_bits +
+          ((@io.parity == SerialPort::NONE) ? 1 : 0)) / _dataRate
       # per current MODBUS/RTU spec:
       if _dataRate < 19200
         @inter_character_timeout = 1.5 * @character_duration
@@ -53,26 +40,26 @@ module ModBus
       @receive_pdu = ''
       @last_transmit = Time.now - @inter_frame_timeout
       @last_receive = Time.now
-      @sp.read_timeout = (2 * @inter_character_timeout * 1000.0).round.to_i
+      @io.read_timeout = (2 * @inter_character_timeout * 1000.0).round.to_i
       # flush old garbage
       read_all_available_bytes()
+      @io
     end
 
     attr_accessor :character_duration, :initial_response_timeout
     attr_accessor :inter_character_timeout, :inter_frame_timeout
     attr_reader :receive_pdu, :transmit_pdu
-    attr_accessor :debug_log
 
     # return false if no read data is available for me yet
     # timeout is in seconds
     def read_data_available?(timeout = 0)
-      (rh, wh, eh) = IO::select([@sp], nil, nil, timeout)
+      (rh, wh, eh) = IO::select([@io], nil, nil, timeout)
       ! rh.nil?
     end
 
     def read_all_available_bytes(timeout =0, max = 1000)
       if read_data_available?(timeout)
-        r = @sp.sysread(max)
+        r = @io.sysread(max)
         @last_receive = Time.now
         r
       else
@@ -98,55 +85,56 @@ module ModBus
         sleep(early)
       end
 
-      @sp.write @transmit_pdu
+      @io.write @transmit_pdu
       @last_transmit = Time.now
 
       log("Tx (#{@transmit_pdu.size} bytes): " + logging_bytes(@transmit_pdu)) if debug
     end
 
     def read_pdu
-        # initial delay for some bytes to be available
-        sleep(@initial_response_timeout)
+      # initial delay for some bytes to be available
+      sleep(@initial_response_timeout)
 
+      @receive_pdu = ''
+
+      # get first byte
+      while @receive_pdu.empty?
+        @receive_pdu = read_all_available_bytes
+      end
+
+      # keep getting bytes until frame timeout
+      while read_data_available?(@inter_frame_timeout)
+        @receive_pdu += read_all_available_bytes
+        gap = Time.now - @last_receive 
+        if gap > @inter_character_timeout && gap < @inter_frame_timeout
+          # ERROR: too long a gap inside message
+          log "too-long inter-character gap in PDU"
+          raise ModBusTimeout.new("Too-long inter-character gap in PDU")
+        end
+      end
+
+      retval = ''
+
+      log("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) if debug
+
+      if @receive_pdu.getbyte(0) != @slave
+        log_error("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) unless debug
+        log_error("Ignore package: don't match slave ID")
         @receive_pdu = ''
+      end
 
-        # get first byte
-        while @receive_pdu.empty?
-          @receive_pdu = read_all_available_bytes
-        end
-
-        # keep getting bytes until frame timeout
-        while read_data_available?(@inter_frame_timeout)
-          @receive_pdu += read_all_available_bytes
-          gap = Time.now - @last_receive 
-          if gap > @inter_character_timeout && gap < @inter_frame_timeout
-            # ERROR: too long a gap inside message
-            log "too-long inter-character gap in PDU"
-            raise ModBusTimeout.new("Too-long inter-character gap in PDU")
-          end
-        end
-
-        retval = ''
-
-        log("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) if debug
-
-        if @receive_pdu.getbyte(0) != @slave
+      if @receive_pdu.size > 4
+        retval = @receive_pdu[1..-3]
+        if @receive_pdu[-2,2].unpack('n')[0] != crc16(@receive_pdu[0..-3])
           log_error("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) unless debug
-          log_error("Ignore package: don't match slave ID")
-          @receive_pdu = ''
+          log_error("Ignore package: don't match CRC")
+          retval = ''
         end
+      end
 
-        if @receive_pdu.size > 4
-          retval = @receive_pdu[1..-3]
-          if @receive_pdu[-2,2].unpack('n')[0] != crc16(@receive_pdu[0..-3])
-            log_error("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) unless debug
-            log_error("Ignore package: don't match CRC")
-            retval = ''
-          end
-        end
-
-        @receive_pdu = '' # clear PDU
-        return retval
+      @receive_pdu = '' # clear PDU
+      return retval
     end
+
   end
 end

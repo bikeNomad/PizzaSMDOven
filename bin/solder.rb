@@ -2,17 +2,25 @@
 # $Id$
 #
 BEGIN {
+  HERE=File.dirname(File.dirname(__FILE__))
 #  $: << File.join(File.dirname(File.dirname(__FILE__)), 'rmodbus')
-  $: << File.join(File.dirname(File.dirname(__FILE__)), 'lib')
+  $: << File.join(HERE, 'lib')
 }
+
+require 'fileutils'
 
 require 'rubygems'
 require 'rmodbus'
 
+require 'rmodbus_fixes'
+
 require 'pp'
 require 'smdoven'
 
+
 class SMDOven
+  include ModBus
+  include Debug
 
   # Solder profile from Kester for leaded solders
   LEADED_PROFILE = [[155,0],[180,60],[215,0],[40,0]]
@@ -50,6 +58,8 @@ if __FILE__ == $0 || $0 == "irb"
   include SOLO
 
   $tempHistory = []
+  $logdir = File.join(HERE, 'logs')
+  $debug = true
 
   def lp
     $oven.leadedProfile
@@ -72,14 +82,17 @@ if __FILE__ == $0 || $0 == "irb"
   raise "no USB serial port found" if $portname.nil?
   puts "using serial port #{$portname}"
 
-  temperatureLogName = Time.now.strftime("temperature_log_%y%m%d_%H%M%S.txt")
+  FileUtils.mkdir_p($logdir)
+  temperatureLogName = Time.now.strftime("#{$logdir}/temperature_log_%y%m%d_%H%M%S.txt")
   puts "\nLogging temperature data to #{temperatureLogName}"
-  $logfile = File.open(temperatureLogName, "w")
 
   begin
+    $logfile = File.open(temperatureLogName, "w")
+    emptyLogfileSize = 0
+
     # construct oven
     $oven = SMDOven.new([], $portname)
-    # $oven.debug= true
+    $oven.debug= $debug
     $oven.statusLog= $stdout
 
     # initialize modes; stop oven
@@ -94,7 +107,8 @@ if __FILE__ == $0 || $0 == "irb"
     puts "PV=#{$oven.processValue}"
     puts "SV=#{$oven.setpointValue}"
 
-    $oven.temperatureLog= $logfile
+    $oven.openTemperatureLog($logfile, true)
+    emptyLogfileSize = $logfile.tell
 
     if $0 == "irb"
 #      $oven.setUpProfile
@@ -113,9 +127,6 @@ if __FILE__ == $0 || $0 == "irb"
     puts $!.message
     puts $!.backtrace.join("\n")
 
-    $oven.setpointValue= 25.0
-    puts("setpoint reset to 25")
-
   rescue
     puts $!.message
     puts $!.backtrace.join("\n")
@@ -127,6 +138,16 @@ if __FILE__ == $0 || $0 == "irb"
 
   ensure
     $oven.setpointValue= 25.0
+    puts("setpoint reset to 25")
+
+    if $logfile
+      here = $logfile.tell
+      $logfile.close
+      if here <= emptyLogfileSize
+        puts("deleting empty file #{temperatureLogName}")
+        FileUtils.rm(temperatureLogName)
+      end
+    end
 
   end
 
