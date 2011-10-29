@@ -118,8 +118,13 @@ module SOLO
   }
 
   class TemperatureControllerClient < ModBus::RTUClient
+    def get_slave(uid,io)
+      TemperatureController.new(uid, io)
+    end
+  end
+
+  class TemperatureController < ModBus::RTUSlave
     include ModBus
-    include ModBus::Common
 
   protected
     class << self
@@ -212,10 +217,6 @@ module SOLO
     end
 
   public
-    def initialize(_port,_dataRate,_slaveAddress,_opts)
-      super
-    end
-
     alias_method :old_rst, :rampSoakTimes
 
     def rampSoakTimes(n,a=nil)

@@ -2,9 +2,12 @@
 # $Id$
 #
 BEGIN {
-  $: << File.join(File.dirname(File.dirname(__FILE__)), 'rmodbus')
+#  $: << File.join(File.dirname(File.dirname(__FILE__)), 'rmodbus')
   $: << File.join(File.dirname(File.dirname(__FILE__)), 'lib')
 }
+
+require 'rubygems'
+require 'rmodbus'
 
 require 'pp'
 require 'smdoven'

@@ -22,7 +22,6 @@ require 'solo'
 
 class SMDOven
   include SOLO
-  include ModBus::Common
   extend Forwardable
 
   def initialize(_profile,
@@ -30,7 +29,8 @@ class SMDOven
                  _dataRate = self.class.defaultDataRate,
                  _slaveAddress = self.class.defaultSlaveAddress,
                  _opts = self.class.defaultSerialOptions)
-    @client = TemperatureControllerClient.new(_portname, _dataRate, _slaveAddress, _opts)
+    @client = TemperatureControllerClient.new(_portname, _dataRate, _opts)
+    @slave = @client.with_slave(_slaveAddress)
     @portname = _portname
     @opts = _opts
     @temperatureLog = nil
@@ -38,7 +38,7 @@ class SMDOven
     @statusLog = $stderr
   end
 
-  attr_reader :client, :portname, :temperatureLog
+  attr_reader :client, :slave, :portname, :temperatureLog
   attr_accessor :statusLog, :temperatureLogOpened
 
   def temperatureLog=(file,headers=false)
@@ -52,12 +52,12 @@ class SMDOven
     @temperatureLogOpened = Time.now
   end
 
-  # delegate all SOLO register accessors to client
-  def_delegators(*(([:@client] + RO_DATA_REGISTERS.keys.map(&:to_sym)).flatten))
-  def_delegators(*(([:@client] + RW_MULTI_PER_RS_PATTERN.keys.map(&:to_sym)).flatten))
-  def_delegators(*(([:@client] + RW_MULTI_PER_RS_STEP.keys.map(&:to_sym)).flatten))
-  def_delegators(*(([:@client] + RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
-  def_delegators(*(([:@client] + RW_BIT_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
+  # delegate all SOLO register accessors to slave
+  def_delegators(*(([:@slave] + RO_DATA_REGISTERS.keys.map(&:to_sym)).flatten))
+  def_delegators(*(([:@slave] + RW_MULTI_PER_RS_PATTERN.keys.map(&:to_sym)).flatten))
+  def_delegators(*(([:@slave] + RW_MULTI_PER_RS_STEP.keys.map(&:to_sym)).flatten))
+  def_delegators(*(([:@slave] + RW_DATA_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
+  def_delegators(*(([:@slave] + RW_BIT_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
 
   # delegate some other SOLO methods to client
   def_delegators(:@client,:debug,:debug=,:profile,:receive_pdu,:transmit_pdu,:debug_log=,:debug_log)
@@ -65,26 +65,26 @@ class SMDOven
   def_delegators(:@client,:inter_character_timeout,:inter_frame_timeout,:inter_character_timeout=,:inter_frame_timeout=)
 
   def processValue
-    pv = client.processValue
+    pv = slave.processValue
     while pv.nil?
       statusLog.puts("PV nil; retrying") if statusLog
-      pv = client.processValue
+      pv = slave.processValue
     end
     pv
   end
 
   def setpointValue
-    sv = client.setpointValue
+    sv = slave.setpointValue
     while sv.nil?
       statusLog.puts("SV nil; retrying") if statusLog
-      sv = client.setpointValue
+      sv = slave.setpointValue
     end
     sv
   end
 
   def goToTemperature(_temp, _epsilon=1.0)
     statusLog.puts("waiting for temperature to go within #{_epsilon} degC of #{_temp}") if statusLog
-    client.setpointValue= _temp
+    slave.setpointValue= _temp
     while (processValue - _temp).abs > _epsilon
       logTemperature()
       sleep 1.0
