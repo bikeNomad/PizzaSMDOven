@@ -30,16 +30,16 @@ class SMDOven
                  _slaveAddress = self.class.defaultSlaveAddress,
                  _opts = self.class.defaultSerialOptions)
     @client = TemperatureControllerClient.new(_portname, _dataRate, _opts)
+    @slaveAddress = _slaveAddress
     @slave = @client.with_slave(_slaveAddress)
-    @portname = _portname
     @opts = _opts
     @temperatureLog = nil
     @temperatureLogOpened = nil
     @statusLog = $stderr
   end
 
-  attr_reader :client, :slave, :portname, :temperatureLog
-  attr_accessor :statusLog, :temperatureLogOpened
+  attr_reader :client, :slave, :temperatureLog
+  attr_accessor :statusLog, :temperatureLogOpened, :slaveAddress
 
   def openTemperatureLog(file,headers=false)
     @temperatureLog.close if @temperatureLog
@@ -112,7 +112,8 @@ class SMDOven
     statusLog.puts("attempting to reset client") if statusLog
     client.close
     sleep(5)
-    @client = TemperatureControllerClient.new(@portname, client.baud, client.slave, @opts)
+    @client = TemperatureControllerClient.new(client.port, client.baud, @opts)
+    @slave = @client.with_slave(@slaveAddress)
   end
 
   def logTemperatureHeaders
@@ -139,7 +140,7 @@ class SMDOven
         end
         tdelta = t.timeSinceLast
         temp = _from + (_to-_from) * t.timeSinceReset / _time
-        client.setpointValue= temp
+        slave.setpointValue= temp
         logTemperature()
       end
     rescue TimedRepeat::MissedRepeat
