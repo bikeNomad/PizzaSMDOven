@@ -1,7 +1,0 @@
-<%# locals: request %>
-<% if authorized? %>
-<form class="evalform" action="/eval" method="post">
-<input class="evaltext" type="text" name="request" value="<%= request || '' %>" />
-<input type="submit" value="Eval!" />
-</form>
-<% end %>

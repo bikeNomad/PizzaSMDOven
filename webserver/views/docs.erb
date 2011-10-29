@@ -1,8 +1,0 @@
-<%#  locals: files %>
-<h1>On Line Documentation</h1>
-<table>
-<% files.each do |f| %>
-  <tr><td class="filename"><%= CGI.escapeHTML(File.basename(f)) %></td><td><a href="<%= CGI.escapeHTML(f.sub($webpublic, '')) %>">View</a></td></tr>
-<% end %>
-</table>
-<%= erb :homeButton, :layout => false %>
