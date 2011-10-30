@@ -11,11 +11,11 @@ module ModBus
 
     private
     def log(msg)
-      debug_log.puts msg if @debug
+      debug_log.puts msg if @debug && @debug_log
     end
 
     def log_error(msg)
-      debug_log.puts msg
+      debug_log.puts msg if @debug_log
     end
   end
 
@@ -24,11 +24,31 @@ module ModBus
     def open_connection(_port,_dataRate=9600,_opts = {})
       debug_log= $stdout
       @io = open_serial_port(_port, _dataRate, _opts)
+      @io
+    end
+
+  end
+
+  class Slave
+    def initialize(uid, io)
+      @uid = uid
+      @io = io
+      initialize_io()
+    end
+
+  end
+
+  # expects @io and @uid
+  # expects msg= and msg
+  module RTU
+
+    def initialize_io
+      dataRate = @io.baud
       @character_duration = 
         (1.0 + @io.data_bits + @io.stop_bits +
-          ((@io.parity == SerialPort::NONE) ? 1 : 0)) / _dataRate
+          ((@io.parity == SerialPort::NONE) ? 1 : 0)) / dataRate
       # per current MODBUS/RTU spec:
-      if _dataRate < 19200
+      if dataRate < 19200
         @inter_character_timeout = 1.5 * @character_duration
         @inter_frame_timeout = 3.5 * @character_duration
       else
@@ -74,7 +94,7 @@ module ModBus
     end
 
     def send_pdu(pdu)
-      @transmit_pdu = @slave.chr + pdu 
+      @transmit_pdu = @uid.chr + pdu 
       @transmit_pdu << crc16(@transmit_pdu).to_word
 
       # ensure minimum gap of 3.5 chars since last xmit
@@ -91,7 +111,7 @@ module ModBus
       log("Tx (#{@transmit_pdu.size} bytes): " + logging_bytes(@transmit_pdu)) if debug
     end
 
-    def read_pdu
+    def read_rtu_pdu
       # initial delay for some bytes to be available
       sleep(@initial_response_timeout)
 
@@ -138,3 +158,4 @@ module ModBus
 
   end
 end
+

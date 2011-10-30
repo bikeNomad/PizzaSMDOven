@@ -125,6 +125,7 @@ module SOLO
 
   class TemperatureController < ModBus::RTUSlave
     include ModBus
+    include RTU
 
   protected
     class << self

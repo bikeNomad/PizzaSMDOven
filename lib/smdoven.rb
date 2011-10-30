@@ -21,6 +21,8 @@ require 'timedRepeat'
 require 'solo'
 
 class SMDOven
+  include ModBus
+  include Debug
   include SOLO
   extend Forwardable
 
@@ -60,9 +62,25 @@ class SMDOven
   def_delegators(*(([:@slave] + RW_BIT_REGISTERS.keys.map { |k| [k, "#{k}="] }).flatten))
 
   # delegate some other SOLO methods to client
-  def_delegators(:@client,:debug,:debug=,:profile,:receive_pdu,:transmit_pdu,:debug_log=,:debug_log)
+  def_delegators(:@client,:profile,:receive_pdu,:transmit_pdu,:debug_log)
   def_delegators(:@client,:initial_response_timeout,:initial_response_timeout=)
   def_delegators(:@client,:inter_character_timeout,:inter_frame_timeout,:inter_character_timeout=,:inter_frame_timeout=)
+
+  def debug
+    client.debug || slave.debug
+  end
+
+  def debug=(flag)
+    super
+    client.debug= flag
+    slave.debug= flag
+  end
+
+  def debug_log=(log)
+    super
+    client.debug_log= log
+    slave.debug_log= log
+  end
 
   def processValue
     pv = slave.processValue
@@ -114,6 +132,7 @@ class SMDOven
     sleep(5)
     @client = TemperatureControllerClient.new(client.port, client.baud, @opts)
     @slave = @client.with_slave(@slaveAddress)
+    self.debug=(@debug)
   end
 
   def logTemperatureHeaders
@@ -207,8 +226,8 @@ class SMDOven
 
   def dumpPDUs(logfile=statusLog)
     return if logfile.nil?
-    logfile.printf("XMIT: %s\n", logging_bytes(client.transmit_pdu))
-    logfile.printf("RCV: %s\n", logging_bytes(client.receive_pdu))
+    logfile.printf("XMIT: %s\n", logging_bytes(slave.transmit_pdu))
+    logfile.printf("RCV: %s\n", logging_bytes(slave.receive_pdu))
   end
 
   ### class-side configuration (as class instance variables)

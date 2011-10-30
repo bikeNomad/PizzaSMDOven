@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
-# $Id$
-#
+# Pizza oven SMD soldering.
+# Ned Konz <ned@bike-nomad.com>
 BEGIN {
   HERE=File.dirname(File.dirname(__FILE__))
-#  $: << File.join(File.dirname(File.dirname(__FILE__)), 'rmodbus')
   $: << File.join(HERE, 'lib')
 }
 
@@ -16,7 +15,6 @@ require 'rmodbus_fixes'
 
 require 'pp'
 require 'smdoven'
-
 
 class SMDOven
   include ModBus
@@ -93,6 +91,7 @@ if __FILE__ == $0 || $0 == "irb"
     # construct oven
     $oven = SMDOven.new([], $portname)
     $oven.debug= $debug
+    $oven.debug_log= File.open(File.join($logdir, 'debug.log'), 'w')
     $oven.statusLog= $stdout
 
     # initialize modes; stop oven
