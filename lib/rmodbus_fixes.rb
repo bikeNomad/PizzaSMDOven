@@ -137,7 +137,7 @@ module ModBus
 
       log("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) if debug
 
-      if @receive_pdu.getbyte(0) != @slave
+      if @receive_pdu.getbyte(0) != @uid
         log_error("Rx (#{@receive_pdu.size} bytes): " + logging_bytes(@receive_pdu)) unless debug
         log_error("Ignore package: don't match slave ID")
         @receive_pdu = ''
