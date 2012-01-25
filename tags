@@ -1,0 +1,252 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Acknowledge	rmodbus/lib/rmodbus/errors.rb	/^    class Acknowledge < ModBusException$/;"	c	class:ModBus.Errors
+Array	lib/utils.rb	/^class Array$/;"	c
+Array	rmodbus/lib/rmodbus/ext.rb	/^class Array$/;"	c
+Client	rmodbus/lib/rmodbus/client.rb	/^  class Client$/;"	c	class:ModBus
+Date	lib/utils.rb	/^class Date$/;"	c
+Debug	lib/rmodbus_fixes.rb	/^  module Debug$/;"	m	class:ModBus
+Debug	rmodbus/lib/rmodbus/debug.rb	/^  module Debug$/;"	m	class:ModBus
+Done	lib/updating.rb	/^  class Done < ::Exception$/;"	c	class:Updating
+Errors	rmodbus/lib/rmodbus/errors.rb	/^  module Errors$/;"	m	class:ModBus
+FeedForwardTemperatureController	lib/temperatureControl.rb	/^class FeedForwardTemperatureController$/;"	c
+IllegalDataAddress	rmodbus/lib/rmodbus/errors.rb	/^    class IllegalDataAddress < ModBusException$/;"	c	class:ModBus.Errors
+IllegalDataValue	rmodbus/lib/rmodbus/errors.rb	/^    class IllegalDataValue < ModBusException$/;"	c	class:ModBus.Errors
+IllegalFunction	rmodbus/lib/rmodbus/errors.rb	/^    class IllegalFunction < ModBusException$/;"	c	class:ModBus.Errors
+Integer	rmodbus/lib/rmodbus/ext.rb	/^class Integer$/;"	c
+MemoryParityError	rmodbus/lib/rmodbus/errors.rb	/^    class MemoryParityError < ModBusException$/;"	c	class:ModBus.Errors
+MissedRepeat	lib/timedRepeat.rb	/^  class MissedRepeat < Exception$/;"	c	class:TimedRepeat
+ModBus	lib/rmodbus_fixes.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/client.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/debug.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/errors.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/options.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/proxy.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/rtu.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/rtu_client.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/rtu_server.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/rtu_slave.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/rtu_via_tcp_client.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/rtu_via_tcp_server.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/rtu_via_tcp_slave.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/server.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/slave.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/sp.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/tcp.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/tcp_client.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/tcp_server.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/tcp_slave.rb	/^module ModBus$/;"	m
+ModBus	rmodbus/lib/rmodbus/version.rb	/^module ModBus$/;"	m
+ModBusException	rmodbus/lib/rmodbus/errors.rb	/^    class ModBusException < StandardError$/;"	c	class:ModBus.Errors
+ModBusTimeout	rmodbus/lib/rmodbus/errors.rb	/^    class ModBusTimeout < ModBusException$/;"	c	class:ModBus.Errors
+Numeric	lib/utils.rb	/^class Numeric$/;"	c
+Object	lib/utils.rb	/^  class Object$/;"	c
+Options	rmodbus/lib/rmodbus/options.rb	/^  module Options$/;"	m	class:ModBus
+PID	lib/pid.rb	/^class PID$/;"	c
+ProxyException	rmodbus/lib/rmodbus/errors.rb	/^    class ProxyException < StandardError$/;"	c	class:ModBus.Errors
+RTU	lib/rmodbus_fixes.rb	/^  module RTU$/;"	m	class:ModBus
+RTU	rmodbus/lib/rmodbus/rtu.rb	/^  module RTU$/;"	m	class:ModBus
+RTUClient	lib/rmodbus_fixes.rb	/^  class RTUClient$/;"	c	class:ModBus
+RTUClient	rmodbus/lib/rmodbus/rtu_client.rb	/^  class RTUClient < Client$/;"	c	class:ModBus
+RTUServer	rmodbus/lib/rmodbus/rtu_server.rb	/^  class RTUServer$/;"	c	class:ModBus
+RTUSlave	rmodbus/lib/rmodbus/rtu_slave.rb	/^  class RTUSlave < Slave$/;"	c	class:ModBus
+RTUViaTCPClient	rmodbus/lib/rmodbus/rtu_via_tcp_client.rb	/^  class RTUViaTCPClient < Client$/;"	c	class:ModBus
+RTUViaTCPServer	rmodbus/lib/rmodbus/rtu_via_tcp_server.rb	/^  class RTUViaTCPServer < GServer$/;"	c	class:ModBus
+RTUViaTCPSlave	rmodbus/lib/rmodbus/rtu_via_tcp_slave.rb	/^  class RTUViaTCPSlave < Slave$/;"	c	class:ModBus
+ReadOnlyProxy	rmodbus/lib/rmodbus/proxy.rb	/^  class ReadOnlyProxy$/;"	c	class:ModBus
+ReadWriteProxy	rmodbus/lib/rmodbus/proxy.rb	/^  class ReadWriteProxy < ReadOnlyProxy$/;"	c	class:ModBus
+Report	lib/updating.rb	/^  class Report < ::Exception$/;"	c	class:Updating
+ResponseMismatch	rmodbus/lib/rmodbus/errors.rb	/^    class ResponseMismatch < ModBusException$/;"	c	class:ModBus.Errors
+SMDOven	bin/solder.rb	/^class SMDOven$/;"	c
+SMDOven	lib/smdoven.rb	/^class SMDOven$/;"	c
+SOLO	lib/solo.rb	/^module SOLO$/;"	m
+SP	rmodbus/lib/rmodbus/sp.rb	/^  module SP$/;"	m	class:ModBus
+Server	rmodbus/lib/rmodbus/server.rb	/^  module Server$/;"	m	class:ModBus
+Slave	lib/rmodbus_fixes.rb	/^  class Slave$/;"	c	class:ModBus
+Slave	rmodbus/lib/rmodbus/slave.rb	/^  class Slave$/;"	c	class:ModBus
+SlaveDeviceBus	rmodbus/lib/rmodbus/errors.rb	/^    class SlaveDeviceBus < ModBusException$/;"	c	class:ModBus.Errors
+SlaveDeviceFailure	rmodbus/lib/rmodbus/errors.rb	/^    class SlaveDeviceFailure < ModBusException$/;"	c	class:ModBus.Errors
+StopRepeat	lib/timedRepeat.rb	/^  class StopRepeat < Exception$/;"	c	class:TimedRepeat
+String	rmodbus/lib/rmodbus/ext.rb	/^class String$/;"	c
+TCP	rmodbus/lib/rmodbus/tcp.rb	/^  module TCP$/;"	m	class:ModBus
+TCPClient	rmodbus/lib/rmodbus/tcp_client.rb	/^  class TCPClient < Client$/;"	c	class:ModBus
+TCPServer	rmodbus/lib/rmodbus/tcp_server.rb	/^	class TCPServer < GServer$/;"	c	class:ModBus
+TCPSlave	rmodbus/lib/rmodbus/tcp_slave.rb	/^  class TCPSlave < Slave$/;"	c	class:ModBus
+TemperatureController	lib/solo.rb	/^  class TemperatureController < ModBus::RTUSlave$/;"	c	class:SOLO
+TemperatureControllerClient	lib/solo.rb	/^  class TemperatureControllerClient < ModBus::RTUClient$/;"	c	class:SOLO
+TestClass	lib/updating.rb	/^  class TestClass$/;"	c
+Thermistor	lib/thermistor.rb	/^class Thermistor$/;"	c
+Thread	lib/updating.rb	/^class Thread$/;"	c
+Time	lib/utils.rb	/^class Time$/;"	c
+TimedRepeat	lib/timedRepeat.rb	/^class TimedRepeat$/;"	c
+Updating	lib/updating.rb	/^module Updating$/;"	m
+[]	rmodbus/lib/rmodbus/proxy.rb	/^    def [](key)$/;"	f	class:ModBus.ReadOnlyProxy
+[]=	rmodbus/lib/rmodbus/proxy.rb	/^    def []=(key, val)$/;"	f	class:ModBus.ReadWriteProxy
+cToK	lib/thermistor.rb	/^  def cToK(c)$/;"	f	class:Thermistor
+catchUp	lib/timedRepeat.rb	/^  def catchUp$/;"	f	class:TimedRepeat
+check_response_mismatch	rmodbus/lib/rmodbus/slave.rb	/^    def check_response_mismatch(request, response)$/;"	f	class:ModBus.Slave
+close	rmodbus/lib/rmodbus/client.rb	/^        def close$/;"	f	class:ModBus.open_connection
+close	rmodbus/lib/rmodbus/client.rb	/^    def close$/;"	f	class:ModBus
+closed?	rmodbus/lib/rmodbus/client.rb	/^        def closed?$/;"	f	class:ModBus.open_connection
+closed?	rmodbus/lib/rmodbus/client.rb	/^    def closed?$/;"	f	class:ModBus
+coils	rmodbus/lib/rmodbus/slave.rb	/^    def coils$/;"	f	class:ModBus.Slave
+crc16	rmodbus/lib/rmodbus/rtu.rb	/^    def crc16(msg)$/;"	f	class:ModBus.RTU
+debug	lib/smdoven.rb	/^  def debug$/;"	f	class:SMDOven
+debug=	lib/smdoven.rb	/^  def debug=(flag)$/;"	f	class:SMDOven
+debug_log	lib/rmodbus_fixes.rb	/^    def debug_log$/;"	f	class:ModBus.Debug
+debug_log=	lib/smdoven.rb	/^  def debug_log=(log)$/;"	f	class:SMDOven
+defineMethod	lib/solo.rb	/^      def defineMethod(str)$/;"	f	class:SOLO.TemperatureController
+discrete_inputs	rmodbus/lib/rmodbus/slave.rb	/^    def discrete_inputs$/;"	f	class:ModBus.Slave
+doProfile	lib/smdoven.rb	/^  def doProfile(_profile,_startTemp=processValue)$/;"	f	class:SMDOven
+dumpPDUs	lib/smdoven.rb	/^  def dumpPDUs(logfile=statusLog)$/;"	f	class:SMDOven
+dumpRegisters	lib/smdoven.rb	/^  def dumpRegisters(logfile=statusLog)$/;"	f	class:SMDOven
+each	lib/timedRepeat.rb	/^  def each$/;"	f	class:TimedRepeat
+endUpdateThread	lib/updating.rb	/^  def endUpdateThread(stuff=nil)$/;"	f	class:Updating
+exec_req	rmodbus/lib/rmodbus/server.rb	/^    def exec_req(req, coils, discrete_inputs, holding_registers, input_registers)$/;"	f	class:ModBus.Server
+extensions	lib/utils.rb	/^    def extensions$/;"	f	class:Object
+from_32f	rmodbus/lib/rmodbus/ext.rb	/^  def from_32f$/;"	f	class:Array
+from_32i	rmodbus/lib/rmodbus/ext.rb	/^  def from_32i$/;"	f	class:Array
+get_slave	lib/solo.rb	/^    def get_slave(uid,io)$/;"	f	class:SOLO.TemperatureControllerClient
+get_slave	rmodbus/lib/rmodbus/client.rb	/^    def get_slave(uid,io)$/;"	f	class:ModBus
+get_slave	rmodbus/lib/rmodbus/rtu_client.rb	/^    def get_slave(uid, io)$/;"	f	class:ModBus.RTUClient
+get_slave	rmodbus/lib/rmodbus/rtu_via_tcp_client.rb	/^    def get_slave(uid, io)$/;"	f	class:ModBus.RTUViaTCPClient
+get_slave	rmodbus/lib/rmodbus/tcp_client.rb	/^    def get_slave(uid, io)$/;"	f	class:ModBus.TCPClient
+getbyte	rmodbus/lib/rmodbus/ext.rb	/^    def getbyte(index)$/;"	f	class:String
+getword	rmodbus/lib/rmodbus/ext.rb	/^  def getword(i)$/;"	f	class:String
+goBelowTemperature	lib/smdoven.rb	/^  def goBelowTemperature(_temp)$/;"	f	class:SMDOven
+goToTemperature	lib/smdoven.rb	/^  def goToTemperature(_temp, _epsilon=1.0)$/;"	f	class:SMDOven
+holding_registers	rmodbus/lib/rmodbus/slave.rb	/^    def holding_registers$/;"	f	class:ModBus.Slave
+initialize	lib/pid.rb	/^  def initialize(kp = 1.0, ti = 0.0, td = 0.0, ilimpos=nil, ilimneg=nil)$/;"	f	class:PID
+initialize	lib/rmodbus_fixes.rb	/^    def initialize(uid, io)$/;"	f	class:ModBus.Slave
+initialize	lib/smdoven.rb	/^  def initialize(_profile,$/;"	f	class:SMDOven
+initialize	lib/temperatureControl.rb	/^  def initialize(_pid, _feedForward, _window = nil)$/;"	f	class:FeedForwardTemperatureController
+initialize	lib/thermistor.rb	/^  def initialize(_r0, _t0, _beta)$/;"	f	class:Thermistor
+initialize	lib/timedRepeat.rb	/^    def initialize(_repeater, _rep, _lateBy)$/;"	f	class:TimedRepeat.MissedRepeat
+initialize	lib/timedRepeat.rb	/^  def initialize(_period, _allowableLateness = @@allowableLateness, _initialDelay = @@initialDelay)$/;"	f	class:TimedRepeat
+initialize	lib/updating.rb	/^    def initialize(_log)$/;"	f	class:Updating.Report
+initialize	rmodbus/lib/rmodbus/client.rb	/^    def initialize(*args, &block)$/;"	f	class:ModBus.Client
+initialize	rmodbus/lib/rmodbus/errors.rb	/^      def initialize(msg, request, response)$/;"	f	class:ModBus.Errors.ResponseMismatch
+initialize	rmodbus/lib/rmodbus/proxy.rb	/^    def initialize(slave, type)$/;"	f	class:ModBus.ReadOnlyProxy
+initialize	rmodbus/lib/rmodbus/rtu_server.rb	/^    def initialize(port, baud=9600, uid=1, opts = {})$/;"	f	class:ModBus.RTUServer
+initialize	rmodbus/lib/rmodbus/rtu_via_tcp_server.rb	/^    def initialize(port = 10002, uid = 1, opts = {})$/;"	f	class:ModBus.RTUViaTCPServer
+initialize	rmodbus/lib/rmodbus/slave.rb	/^    def initialize(uid, io)$/;"	f	class:ModBus.Slave
+initialize	rmodbus/lib/rmodbus/tcp_server.rb	/^		def initialize(port = 502, uid = 1, opts = {})$/;"	f	class:ModBus.TCPServer
+initialize	rmodbus/lib/rmodbus/tcp_slave.rb	/^    def initialize(uid, io)$/;"	f	class:ModBus.TCPSlave
+initialize_io	lib/rmodbus_fixes.rb	/^    def initialize_io$/;"	f	class:ModBus.RTU
+initialize_updating	lib/updating.rb	/^  def initialize_updating$/;"	f	class:Updating
+input_registers	rmodbus/lib/rmodbus/slave.rb	/^    def input_registers$/;"	f	class:ModBus.Slave
+inspect	lib/pid.rb	/^  def inspect$/;"	f	class:PID
+inspect	lib/timedRepeat.rb	/^    def inspect$/;"	f	class:TimedRepeat.MissedRepeat
+inspect	lib/timedRepeat.rb	/^  def inspect$/;"	f	class:TimedRepeat
+join	rmodbus/lib/rmodbus/rtu_server.rb	/^    def join$/;"	f	class:ModBus.RTUServer
+kToC	lib/thermistor.rb	/^  def kToC(k)$/;"	f	class:Thermistor
+leadedProfile	bin/solder.rb	/^  def leadedProfile$/;"	f	class:SMDOven
+log	lib/rmodbus_fixes.rb	/^    def log(msg)$/;"	f	class:ModBus.Debug
+log	rmodbus/lib/rmodbus/debug.rb	/^    def log(msg)$/;"	f	class:ModBus.Debug
+logTemperature	lib/smdoven.rb	/^  def logTemperature$/;"	f	class:SMDOven
+logTemperatureHeaders	lib/smdoven.rb	/^  def logTemperatureHeaders$/;"	f	class:SMDOven
+log_error	lib/rmodbus_fixes.rb	/^    def log_error(msg)$/;"	f	class:ModBus.Debug
+log_error	rmodbus/lib/rmodbus/debug.rb	/^    def log_error(msg)$/;"	f	class:ModBus.Debug
+logging_bytes	rmodbus/lib/rmodbus/debug.rb	/^    def logging_bytes(msg)$/;"	f	class:ModBus.Debug
+lp	bin/solder.rb	/^  def lp$/;"	f
+mask_write_register	rmodbus/lib/rmodbus/slave.rb	/^    def mask_write_register(addr, and_mask, or_mask)$/;"	f	class:ModBus.Slave
+nextRep	lib/timedRepeat.rb	/^  def nextRep$/;"	f	class:TimedRepeat
+openTemperatureLog	lib/smdoven.rb	/^  def openTemperatureLog(file,headers=false)$/;"	f	class:SMDOven
+open_connection	lib/rmodbus_fixes.rb	/^    def open_connection(_port,_dataRate=9600,_opts = {})$/;"	f	class:ModBus.RTUClient
+open_connection	rmodbus/lib/rmodbus/client.rb	/^    def open_connection(*args)$/;"	f	class:ModBus
+open_connection	rmodbus/lib/rmodbus/rtu_client.rb	/^    def open_connection(port, baud=9600, opts = {})$/;"	f	class:ModBus.RTUClient
+open_connection	rmodbus/lib/rmodbus/rtu_via_tcp_client.rb	/^    def open_connection(ipaddr, port = 10002, opts = {})$/;"	f	class:ModBus.RTUViaTCPClient
+open_connection	rmodbus/lib/rmodbus/tcp_client.rb	/^    def open_connection(ipaddr, port = 502, opts = {})$/;"	f	class:ModBus.TCPClient
+open_serial_port	rmodbus/lib/rmodbus/sp.rb	/^    def open_serial_port(port, baud, opts = {})$/;"	f	class:ModBus.SP
+open_tcp_connection	rmodbus/lib/rmodbus/tcp.rb	/^    def open_tcp_connection(ipaddr, port, opts = {})$/;"	f	class:ModBus.TCP
+pack_to_word	rmodbus/lib/rmodbus/ext.rb	/^  def pack_to_word$/;"	f	class:Array
+parse_read_func	rmodbus/lib/rmodbus/server.rb	/^    def parse_read_func(req, field)$/;"	f	class:ModBus.Server
+parse_write_coil_func	rmodbus/lib/rmodbus/server.rb	/^    def parse_write_coil_func(req)$/;"	f	class:ModBus.Server
+parse_write_multiple_coils_func	rmodbus/lib/rmodbus/server.rb	/^    def parse_write_multiple_coils_func(req)$/;"	f	class:ModBus.Server
+parse_write_multiple_registers_func	rmodbus/lib/rmodbus/server.rb	/^    def parse_write_multiple_registers_func(req)$/;"	f	class:ModBus.Server
+parse_write_register_func	rmodbus/lib/rmodbus/server.rb	/^    def parse_write_register_func(req)$/;"	f	class:ModBus.Server
+printStatusReport	lib/updating.rb	/^  def printStatusReport(_log=$stderr)$/;"	f	class:Updating
+processValue	lib/smdoven.rb	/^  def processValue$/;"	f	class:SMDOven
+profile	lib/solo.rb	/^    def profile(n,a=nil)$/;"	f
+query	rmodbus/lib/rmodbus/slave.rb	/^    def query(request)$/;"	f	class:ModBus.Slave
+ramp	lib/smdoven.rb	/^  def ramp(_from,_to,_time)$/;"	f	class:SMDOven
+rampSoakTimes	lib/solo.rb	/^    def rampSoakTimes(n,a=nil)$/;"	f
+read_all_available_bytes	lib/rmodbus_fixes.rb	/^    def read_all_available_bytes(timeout =0, max = 1000)$/;"	f	class:ModBus.RTU
+read_coils	rmodbus/lib/rmodbus/slave.rb	/^    def read_coils(addr, ncoils)$/;"	f	class:ModBus.Slave
+read_data_available?	lib/rmodbus_fixes.rb	/^    def read_data_available?(timeout = 0)$/;"	f	class:ModBus.RTU
+read_discrete_inputs	rmodbus/lib/rmodbus/slave.rb	/^    def read_discrete_inputs(addr, ninputs)$/;"	f	class:ModBus.Slave
+read_holding_registers	lib/solo.rb	/^    def read_holding_registers(addr,n)$/;"	f
+read_holding_registers	rmodbus/lib/rmodbus/slave.rb	/^    def read_holding_registers(addr, nregs)$/;"	f	class:ModBus.Slave
+read_input_registers	rmodbus/lib/rmodbus/slave.rb	/^    def read_input_registers(addr, nregs)$/;"	f	class:ModBus.Slave
+read_pdu	rmodbus/lib/rmodbus/rtu_slave.rb	/^    def read_pdu$/;"	f	class:ModBus.RTUSlave
+read_pdu	rmodbus/lib/rmodbus/rtu_via_tcp_slave.rb	/^    def read_pdu$/;"	f	class:ModBus.RTUViaTCPSlave
+read_pdu	rmodbus/lib/rmodbus/tcp_slave.rb	/^    def read_pdu$/;"	f	class:ModBus.TCPSlave
+read_rtu_pdu	lib/rmodbus_fixes.rb	/^    def read_rtu_pdu$/;"	f	class:ModBus.RTU
+read_rtu_pdu	rmodbus/lib/rmodbus/rtu.rb	/^    def read_rtu_pdu$/;"	f	class:ModBus.RTU
+read_rtu_request	rmodbus/lib/rmodbus/rtu.rb	/^    def read_rtu_request(io)$/;"	f	class:ModBus.RTU
+read_rtu_response	rmodbus/lib/rmodbus/rtu.rb	/^    def read_rtu_response(io)$/;"	f	class:ModBus.RTU
+read_single_register	lib/solo.rb	/^    def read_single_register(addr)$/;"	f
+repeatAt	lib/timedRepeat.rb	/^  def self.repeatAt(_period, _allowableLateness=@@allowableLateness, _initialDelay=@@initialDelay)$/;"	F	class:TimedRepeat
+reset	lib/pid.rb	/^  def reset(actual)$/;"	f	class:PID
+reset	lib/smdoven.rb	/^  def reset$/;"	f	class:SMDOven
+reset	lib/temperatureControl.rb	/^  def reset(actual)$/;"	f	class:FeedForwardTemperatureController
+reset	lib/timedRepeat.rb	/^  def reset$/;"	f	class:TimedRepeat
+resistanceFromTemperature	lib/thermistor.rb	/^  def resistanceFromTemperature(t)$/;"	f	class:Thermistor
+runMode=	lib/solo.rb	/^    def runMode=(m=nil)$/;"	f
+send_pdu	lib/rmodbus_fixes.rb	/^    def send_pdu(pdu)$/;"	f	class:ModBus.RTU
+send_pdu	rmodbus/lib/rmodbus/rtu_slave.rb	/^    def send_pdu(pdu)$/;"	f	class:ModBus.RTUSlave
+send_pdu	rmodbus/lib/rmodbus/rtu_via_tcp_slave.rb	/^    def send_pdu(pdu)$/;"	f	class:ModBus.RTUViaTCPSlave
+send_pdu	rmodbus/lib/rmodbus/tcp_slave.rb	/^    def send_pdu(pdu)$/;"	f	class:ModBus.TCPSlave
+send_rtu_pdu	rmodbus/lib/rmodbus/rtu.rb	/^    def send_rtu_pdu(pdu)$/;"	f	class:ModBus.RTU
+serv_rtu_requests	rmodbus/lib/rmodbus/rtu.rb	/^    def serv_rtu_requests(io, &blk)$/;"	f	class:ModBus.RTU
+serve	rmodbus/lib/rmodbus/rtu_via_tcp_server.rb	/^    def serve(io)$/;"	f	class:ModBus.RTUViaTCPServer
+serve	rmodbus/lib/rmodbus/tcp_server.rb	/^		def serve(io)$/;"	f	class:ModBus.TCPServer
+setILimits	lib/pid.rb	/^  def setILimits(ilimpos=nil, ilimneg=nil)$/;"	f	class:PID
+setPatternToProfile	lib/smdoven.rb	/^  def setPatternToProfile(_pattern,_profile,_startTemp=processValue)$/;"	f	class:SMDOven
+setUpProfile	bin/solder.rb	/^  def setUpProfile(n = 0)$/;"	f	class:SMDOven
+setpointValue	lib/smdoven.rb	/^  def setpointValue$/;"	f	class:SMDOven
+start	rmodbus/lib/rmodbus/rtu_server.rb	/^    def start$/;"	f	class:ModBus.RTUServer
+startProfile	bin/solder.rb	/^  def startProfile(n = 0)$/;"	f	class:SMDOven
+startUpdateThread	lib/updating.rb	/^  def startUpdateThread(period, *args)$/;"	f	class:Updating
+statusReport	lib/updating.rb	/^  def statusReport(exc)$/;"	f	class:Updating
+statusReportLabel	lib/updating.rb	/^  def statusReportLabel$/;"	f	class:Updating
+stop	lib/timedRepeat.rb	/^  def self.stop$/;"	F	class:TimedRepeat
+stop	lib/timedRepeat.rb	/^  def stop$/;"	f	class:TimedRepeat
+stop	rmodbus/lib/rmodbus/rtu_server.rb	/^    def stop$/;"	f	class:ModBus.RTUServer
+t	bin/solder.rb	/^  def t(temp=$tempHistory.pop)$/;"	f
+tI=	lib/pid.rb	/^  def tI=(ti)$/;"	f	class:PID
+temperatureFromResistance	lib/thermistor.rb	/^  def temperatureFromResistance(r)$/;"	f	class:Thermistor
+timeSinceLast	lib/timedRepeat.rb	/^  def timeSinceLast$/;"	f	class:TimedRepeat
+timeSinceReset	lib/timedRepeat.rb	/^  def timeSinceReset$/;"	f	class:TimedRepeat
+timeTillNext	lib/timedRepeat.rb	/^  def timeTillNext$/;"	f	class:TimedRepeat
+timestamp	lib/utils.rb	/^def timestamp$/;"	f
+toRun	lib/utils.rb	/^  def self.toRun$/;"	F	class:Time
+to_32f	rmodbus/lib/rmodbus/ext.rb	/^  def to_32f$/;"	f	class:Array
+to_32i	rmodbus/lib/rmodbus/ext.rb	/^  def to_32i$/;"	f	class:Array
+to_datetime	lib/utils.rb	/^  def to_datetime$/;"	f	class:Time
+to_degC	lib/utils.rb	/^  def to_degC$/;"	f	class:Numeric
+to_degF	lib/utils.rb	/^  def to_degF$/;"	f	class:Numeric
+to_deltaC	lib/utils.rb	/^  def to_deltaC$/;"	f	class:Numeric
+to_deltaF	lib/utils.rb	/^  def to_deltaF$/;"	f	class:Numeric
+to_gm_time	lib/utils.rb	/^  def to_gm_time$/;"	f	class:Date
+to_hash	lib/utils.rb	/^  def to_hash$/;"	f	class:Array
+to_local_time	lib/utils.rb	/^  def to_local_time$/;"	f	class:Date
+to_s	lib/updating.rb	/^  def to_s$/;"	f	class:Thread
+to_time	lib/utils.rb	/^  def to_time(dest, method)$/;"	f	class:Date
+to_word	rmodbus/lib/rmodbus/ext.rb	/^  def to_word$/;"	f	class:Integer
+unpack_bits	rmodbus/lib/rmodbus/ext.rb	/^  def unpack_bits$/;"	f	class:String
+update	lib/pid.rb	/^  def update(error, actual, sPeriod)$/;"	f	class:PID
+update	lib/temperatureControl.rb	/^  def update(_error, _actual, _samplePeriod)$/;"	f	class:FeedForwardTemperatureController
+updater	lib/updating.rb	/^  def updater(period)$/;"	f	class:Updating
+waitForProfile	lib/smdoven.rb	/^  def waitForProfile$/;"	f	class:SMDOven
+wait_for_characters	lib/rmodbus_fixes.rb	/^    def wait_for_characters(n)$/;"	f	class:ModBus.RTU
+with_slave	rmodbus/lib/rmodbus/client.rb	/^    def with_slave(uid, &block)$/;"	f	class:ModBus
+write_multiple_coils	rmodbus/lib/rmodbus/slave.rb	/^    def write_multiple_coils(addr, vals)$/;"	f	class:ModBus.Slave
+write_multiple_registers	rmodbus/lib/rmodbus/slave.rb	/^    def write_multiple_registers(addr, vals)$/;"	f	class:ModBus.Slave
+write_single_coil	rmodbus/lib/rmodbus/slave.rb	/^    def write_single_coil(addr, val)$/;"	f	class:ModBus.Slave
+write_single_register	lib/solo.rb	/^    def write_single_register(addr,val)$/;"	f
+write_single_register	rmodbus/lib/rmodbus/slave.rb	/^    def write_single_register(addr, val)$/;"	f	class:ModBus.Slave

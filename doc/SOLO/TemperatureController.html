@@ -1,590 +1,742 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SOLO::TemperatureController
+  
+    &mdash; Pizza SMD Oven Controller
+  
+</title>
 
-<html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 
-<title>Class: SOLO::TemperatureController</title>
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
-
-<script type="text/javascript">
-  var rdoc_rel_prefix = "../";
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../SOLO.html" title="SOLO (module)">SOLO</a></span></span>
+     &raquo; 
+    <span class="title">TemperatureController</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: SOLO::TemperatureController
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../ModBus/RTUSlave.html" title="ModBus::RTUSlave (class)">ModBus::RTUSlave</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="../ModBus/Slave.html" title="ModBus::Slave (class)">ModBus::Slave</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="../ModBus/RTUSlave.html" title="ModBus::RTUSlave (class)">ModBus::RTUSlave</a></span></li>
+          
+            <li class="next">SOLO::TemperatureController</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="../ModBus.html" title="ModBus (module)">ModBus</a></span>, RTU</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/solo.rb</dd>
+  
+</dl>
+<div class="clear"></div>
 
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+  <h2>Constant Summary</h2>
+  
 
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/solo.rb
-  </ul>
-</nav>
+  
+  
+  
+  
+  
+  <h3 class="inherited">Constants included from <span class='object_link'><a href="../ModBus.html" title="ModBus (module)">ModBus</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus.html#VERSION-constant" title="ModBus::VERSION (constant)">VERSION</a></span></p>
 
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Constants included from <span class='object_link'><a href="../ModBus/RTU.html" title="ModBus::RTU (module)">ModBus::RTU</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/RTU.html#CrcHiTable-constant" title="ModBus::RTU::CrcHiTable (constant)">CrcHiTable</a></span>, <span class='object_link'><a href="../ModBus/RTU.html#CrcLoTable-constant" title="ModBus::RTU::CrcLoTable (constant)">CrcLoTable</a></span></p>
+
+  
+  
+  
+  
+  <h3 class="inherited">Constants inherited from <span class='object_link'><a href="../ModBus/Slave.html" title="ModBus::Slave (class)">ModBus::Slave</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/Slave.html#Exceptions-constant" title="ModBus::Slave::Exceptions (constant)">Exceptions</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="../ModBus/Slave.html" title="ModBus::Slave (class)">ModBus::Slave</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/Slave.html#uid-instance_method" title="ModBus::Slave#uid (method)">uid</a></span></p>
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="../ModBus/Options.html" title="ModBus::Options (module)">ModBus::Options</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/Options.html#raise_exception_on_mismatch-instance_method" title="ModBus::Options#raise_exception_on_mismatch (method)">raise_exception_on_mismatch</a></span>, <span class='object_link'><a href="../ModBus/Options.html#read_retries-instance_method" title="ModBus::Options#read_retries (method)">read_retries</a></span>, <span class='object_link'><a href="../ModBus/Options.html#read_retry_timeout-instance_method" title="ModBus::Options#read_retry_timeout (method)">read_retry_timeout</a></span></p>
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="../ModBus/Debug.html" title="ModBus::Debug (module)">ModBus::Debug</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/Debug.html#debug-instance_method" title="ModBus::Debug#debug (method)">debug</a></span>, <span class='object_link'><a href="../ModBus/Debug.html#debug_log-instance_method" title="ModBus::Debug#debug_log (method)">debug_log</a></span>, <span class='object_link'><a href="../ModBus/Debug.html#raise_exception_on_mismatch-instance_method" title="ModBus::Debug#raise_exception_on_mismatch (method)">raise_exception_on_mismatch</a></span>, <span class='object_link'><a href="../ModBus/Debug.html#read_retries-instance_method" title="ModBus::Debug#read_retries (method)">read_retries</a></span>, <span class='object_link'><a href="../ModBus/Debug.html#read_retry_timeout-instance_method" title="ModBus::Debug#read_retry_timeout (method)">read_retry_timeout</a></span></p>
+
+  
+  
+  
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#defineMethod-class_method" title="defineMethod (class method)">+ (Object) <strong>defineMethod</strong>(str) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#old_rst-instance_method" title="#old_rst (instance method)">- (Object) <strong>old_rst</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#profile-instance_method" title="#profile (instance method)">- (Object) <strong>profile</strong>(n, a = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rampSoakTimes-instance_method" title="#rampSoakTimes (instance method)">- (Object) <strong>rampSoakTimes</strong>(n, a = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#read_holding_registers-instance_method" title="#read_holding_registers (instance method)">- (Object) <strong>read_holding_registers</strong>(addr, n) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#read_single_register-instance_method" title="#read_single_register (instance method)">- (Object) <strong>read_single_register</strong>(addr) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+returns nil on error.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#runMode%3D-instance_method" title="#runMode= (instance method)">- (Object) <strong>runMode=</strong>(m = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#write_single_register-instance_method" title="#write_single_register (instance method)">- (Object) <strong>write_single_register</strong>(addr, val) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../ModBus/RTUSlave.html" title="ModBus::RTUSlave (class)">ModBus::RTUSlave</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/RTUSlave.html#read_pdu-instance_method" title="ModBus::RTUSlave#read_pdu (method)">#read_pdu</a></span>, <span class='object_link'><a href="../ModBus/RTUSlave.html#send_pdu-instance_method" title="ModBus::RTUSlave#send_pdu (method)">#send_pdu</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../ModBus/RTU.html" title="ModBus::RTU (module)">ModBus::RTU</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/RTU.html#crc16-instance_method" title="ModBus::RTU#crc16 (method)">#crc16</a></span>, <span class='object_link'><a href="../ModBus/RTU.html#read_rtu_pdu-instance_method" title="ModBus::RTU#read_rtu_pdu (method)">#read_rtu_pdu</a></span>, <span class='object_link'><a href="../ModBus/RTU.html#read_rtu_request-instance_method" title="ModBus::RTU#read_rtu_request (method)">#read_rtu_request</a></span>, <span class='object_link'><a href="../ModBus/RTU.html#read_rtu_response-instance_method" title="ModBus::RTU#read_rtu_response (method)">#read_rtu_response</a></span>, <span class='object_link'><a href="../ModBus/RTU.html#send_rtu_pdu-instance_method" title="ModBus::RTU#send_rtu_pdu (method)">#send_rtu_pdu</a></span>, <span class='object_link'><a href="../ModBus/RTU.html#serv_rtu_requests-instance_method" title="ModBus::RTU#serv_rtu_requests (method)">#serv_rtu_requests</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../ModBus/Slave.html" title="ModBus::Slave (class)">ModBus::Slave</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/Slave.html#check_response_mismatch-instance_method" title="ModBus::Slave#check_response_mismatch (method)">#check_response_mismatch</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#coils-instance_method" title="ModBus::Slave#coils (method)">#coils</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#discrete_inputs-instance_method" title="ModBus::Slave#discrete_inputs (method)">#discrete_inputs</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#holding_registers-instance_method" title="ModBus::Slave#holding_registers (method)">#holding_registers</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#initialize-instance_method" title="ModBus::Slave#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#input_registers-instance_method" title="ModBus::Slave#input_registers (method)">#input_registers</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#mask_write_register-instance_method" title="ModBus::Slave#mask_write_register (method)">#mask_write_register</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#query-instance_method" title="ModBus::Slave#query (method)">#query</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#read_coils-instance_method" title="ModBus::Slave#read_coils (method)">#read_coils</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#read_discrete_inputs-instance_method" title="ModBus::Slave#read_discrete_inputs (method)">#read_discrete_inputs</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#read_input_registers-instance_method" title="ModBus::Slave#read_input_registers (method)">#read_input_registers</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#write_multiple_coils-instance_method" title="ModBus::Slave#write_multiple_coils (method)">#write_multiple_coils</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#write_multiple_registers-instance_method" title="ModBus::Slave#write_multiple_registers (method)">#write_multiple_registers</a></span>, <span class='object_link'><a href="../ModBus/Slave.html#write_single_coil-instance_method" title="ModBus::Slave#write_single_coil (method)">#write_single_coil</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../ModBus/Debug.html" title="ModBus::Debug (module)">ModBus::Debug</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../ModBus/Debug.html#log-instance_method" title="ModBus::Debug#log (method)">#log</a></span>, <span class='object_link'><a href="../ModBus/Debug.html#log_error-instance_method" title="ModBus::Debug#log_error (method)">#log_error</a></span>, <span class='object_link'><a href="../ModBus/Debug.html#logging_bytes-instance_method" title="ModBus::Debug#logging_bytes (method)">#logging_bytes</a></span></p>
+
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="../ModBus/Slave.html#initialize-instance_method" title="ModBus::Slave#initialize (method)">ModBus::Slave</a></span></p>
+  
+</div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="defineMethod-class_method">
+  
+    + (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>defineMethod</strong>(str) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 132</span>
+
+<span class='kw'>def</span> <span class='id defineMethod'>defineMethod</span><span class='lparen'>(</span><span class='id str'>str</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id class_eval'>class_eval</span><span class='lparen'>(</span><span class='id str'>str</span><span class='rparen'>)</span>
+  <span class='comment'># $stderr.puts(str)
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
   </div>
 
-  <div id="class-metadata">
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+    
+      <div class="method_details first">
+  <p class="signature first" id="old_rst-instance_method">
   
-  <p class="link"><a href="../ModBus/RTUSlave.html">ModBus::RTUSlave</a>
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>old_rst</strong> 
   
-</nav>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-  <ul class="link-list">
-  
-  
-    <li><a class="include" href="../ModBus.html">ModBus</a>
-  
-  
-  </ul>
-</nav>
 
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+221</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 221</span>
 
-  <ul class="link-list">
+<span class='id alias_method'>alias_method</span> <span class='symbol'>:old_rst</span><span class='comma'>,</span> <span class='symbol'>:rampSoakTimes</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-    <li><a href="#method-c-defineMethod">::defineMethod</a>
+      <div class="method_details ">
+  <p class="signature " id="profile-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>profile</strong>(n, a = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 227</span>
+
+<span class='kw'>def</span> <span class='id profile'>profile</span><span class='lparen'>(</span><span class='id n'>n</span><span class='comma'>,</span><span class='id a'>a</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id a'>a</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+    <span class='id rampSoakSetpointValues'>rampSoakSetpointValues</span><span class='lparen'>(</span><span class='id n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id zip'>zip</span><span class='lparen'>(</span><span class='id rampSoakTimes'>rampSoakTimes</span><span class='lparen'>(</span><span class='id n'>n</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id temps'>temps</span> <span class='op'>=</span> <span class='id a'>a</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id p'>p</span><span class='op'>|</span> <span class='id p'>p</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='id times'>times</span> <span class='op'>=</span> <span class='id a'>a</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id p'>p</span><span class='op'>|</span> <span class='id p'>p</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='id rampSoakSetpointValues'>rampSoakSetpointValues</span><span class='lparen'>(</span><span class='id n'>n</span><span class='comma'>,</span><span class='id temps'>temps</span><span class='rparen'>)</span>
+    <span class='id rampSoakTimes'>rampSoakTimes</span><span class='lparen'>(</span><span class='id n'>n</span><span class='comma'>,</span><span class='id times'>times</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-    <li><a href="#method-i-old_rst">#old_rst</a>
+      <div class="method_details ">
+  <p class="signature " id="rampSoakTimes-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>rampSoakTimes</strong>(n, a = nil) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+223
+224
+225</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 223</span>
+
+<span class='kw'>def</span> <span class='id rampSoakTimes'>rampSoakTimes</span><span class='lparen'>(</span><span class='id n'>n</span><span class='comma'>,</span><span class='id a'>a</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id old_rst'>old_rst</span><span class='lparen'>(</span><span class='id n'>n</span><span class='comma'>,</span><span class='id a'>a</span><span class='rparen'>)</span><span class='period'>.</span><span class='id map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:round</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-    <li><a href="#method-i-profile">#profile</a>
+      <div class="method_details ">
+  <p class="signature " id="read_holding_registers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>read_holding_registers</strong>(addr, n)  <span class="extras">(protected)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+251
+252
+253
+254
+255
+256</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 251</span>
+
+<span class='kw'>def</span> <span class='id read_holding_registers'>read_holding_registers</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span><span class='id n'>n</span><span class='rparen'>)</span>
+  <span class='id log'>log</span> <span class='id sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>read(%04x,%d)\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id addr'>addr</span><span class='comma'>,</span><span class='id n'>n</span><span class='rparen'>)</span>
+  <span class='id v'>v</span> <span class='op'>=</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span><span class='id n'>n</span><span class='rparen'>)</span>
+  <span class='id log'>log</span> <span class='id sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> =&gt; %s\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id v'>v</span><span class='period'>.</span><span class='id inspect'>inspect</span><span class='rparen'>)</span>
+  <span class='id v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-    <li><a href="#method-i-rampSoakTimes">#rampSoakTimes</a>
-    
-    <li><a href="#method-i-read_holding_registers">#read_holding_registers</a>
-    
-    <li><a href="#method-i-read_single_register">#read_single_register</a>
-    
-    <li><a href="#method-i-runMode-3D">#runMode=</a>
-    
-    <li><a href="#method-i-write_single_register">#write_single_register</a>
-    
-  </ul>
-</nav>
+      <div class="method_details ">
+  <p class="signature " id="read_single_register-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>read_single_register</strong>(addr)  <span class="extras">(protected)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+returns nil on error
+</p>
+
 
   </div>
+</div>
+<div class="tags">
+  
 
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-  <ul>
-  
-    <li class="file"><a href="../Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="../README.html">README</a>
-  
-    <li class="file"><a href="../temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
-  
-  </ul>
-</nav>
 
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
+259
+260
+261
+262
+263
+264
+265
+266</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 259</span>
 
-  <ul class="link-list">
+<span class='kw'>def</span> <span class='id read_single_register'>read_single_register</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='rparen'>)</span>
+  <span class='id log'>log</span> <span class='id sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>read(%04x)\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id addr'>addr</span><span class='rparen'>)</span>
+  <span class='id v'>v</span> <span class='op'>=</span> <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x3</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='int'>1</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id v'>v</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+  <span class='id v'>v</span> <span class='op'>=</span> <span class='id v'>v</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>n*</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id log'>log</span> <span class='id sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  =&gt; %s\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id v'>v</span><span class='period'>.</span><span class='id inspect'>inspect</span><span class='rparen'>)</span>
+  <span class='id v'>v</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="runMode=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>runMode=</strong>(m = nil) 
   
-    <li><a href="../ModBus.html">ModBus</a>
-  
-    <li><a href="../ModBus/Client.html">ModBus::Client</a>
-  
-    <li><a href="../ModBus/Common.html">ModBus::Common</a>
-  
-    <li><a href="../ModBus/Debug.html">ModBus::Debug</a>
-  
-    <li><a href="../ModBus/Errors.html">ModBus::Errors</a>
-  
-    <li><a href="../ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
-  
-    <li><a href="../ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
-  
-    <li><a href="../ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
-  
-    <li><a href="../ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
-  
-    <li><a href="../ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
-  
-    <li><a href="../ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
-  
-    <li><a href="../ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
-  
-    <li><a href="../ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
-  
-    <li><a href="../ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
-  
-    <li><a href="../ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
-  
-    <li><a href="../ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
-  
-    <li><a href="../ModBus/Options.html">ModBus::Options</a>
-  
-    <li><a href="../ModBus/RTU.html">ModBus::RTU</a>
-  
-    <li><a href="../ModBus/RTUClient.html">ModBus::RTUClient</a>
-  
-    <li><a href="../ModBus/RTUServer.html">ModBus::RTUServer</a>
-  
-    <li><a href="../ModBus/RTUSlave.html">ModBus::RTUSlave</a>
-  
-    <li><a href="../ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
-  
-    <li><a href="../ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
-  
-    <li><a href="../ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
-  
-    <li><a href="../ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
-  
-    <li><a href="../ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
-  
-    <li><a href="../ModBus/SP.html">ModBus::SP</a>
-  
-    <li><a href="../ModBus/Server.html">ModBus::Server</a>
-  
-    <li><a href="../ModBus/Slave.html">ModBus::Slave</a>
-  
-    <li><a href="../ModBus/TCP.html">ModBus::TCP</a>
-  
-    <li><a href="../ModBus/TCPClient.html">ModBus::TCPClient</a>
-  
-    <li><a href="../ModBus/TCPServer.html">ModBus::TCPServer</a>
-  
-    <li><a href="../ModBus/TCPSlave.html">ModBus::TCPSlave</a>
-  
-    <li><a href="../GraphViewer.html">GraphViewer</a>
-  
-    <li><a href="../GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
-  
-    <li><a href="../GraphViewer/Graph.html">GraphViewer::Graph</a>
-  
-    <li><a href="../GraphViewer/Guide.html">GraphViewer::Guide</a>
-  
-    <li><a href="../SOLO.html">SOLO</a>
-  
-    <li><a href="../SOLO/TemperatureController.html">SOLO::TemperatureController</a>
-  
-    <li><a href="../SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
-  
-    <li><a href="../TimedRepeat.html">TimedRepeat</a>
-  
-    <li><a href="../TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
-  
-    <li><a href="../TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
-  
-    <li><a href="../Updating.html">Updating</a>
-  
-    <li><a href="../Updating/Done.html">Updating::Done</a>
-  
-    <li><a href="../Updating/Report.html">Updating::Report</a>
-  
-    <li><a href="../Webserver.html">Webserver</a>
-  
-    <li><a href="../Webserver/GC29Tester.html">Webserver::GC29Tester</a>
-  
-    <li><a href="../Array.html">Array</a>
-  
-    <li><a href="../Date.html">Date</a>
-  
-    <li><a href="../FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
-  
-    <li><a href="../GraphViewerServer.html">GraphViewerServer</a>
-  
-    <li><a href="../IO.html">IO</a>
-  
-    <li><a href="../Integer.html">Integer</a>
-  
-    <li><a href="../Numeric.html">Numeric</a>
-  
-    <li><a href="../Object.html">Object</a>
-  
-    <li><a href="../PID.html">PID</a>
-  
-    <li><a href="../RaiseResponseMatcher.html">RaiseResponseMatcher</a>
-  
-    <li><a href="../RaiseResponseMismatch.html">RaiseResponseMismatch</a>
-  
-    <li><a href="../SMDOven.html">SMDOven</a>
-  
-    <li><a href="../SerialPort.html">SerialPort</a>
-  
-    <li><a href="../String.html">String</a>
-  
-    <li><a href="../TestClass.html">TestClass</a>
-  
-    <li><a href="../TestIO.html">TestIO</a>
-  
-    <li><a href="../Thermistor.html">Thermistor</a>
-  
-    <li><a href="../Thread.html">Thread</a>
-  
-    <li><a href="../Time.html">Time</a>
-  
-  </ul>
-</nav>
 
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 238</span>
+
+<span class='kw'>def</span> <span class='id runMode='>runMode=</span><span class='lparen'>(</span><span class='id m'>m</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id rm'>rm</span> <span class='op'>=</span> <span class='id read_discrete_inputs'>read_discrete_inputs</span><span class='lparen'>(</span><span class='int'>0x0814</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id m'>m</span><span class='period'>.</span><span class='id nil?'>nil?</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='id rm'>rm</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id m'>m</span> <span class='op'>==</span> <span class='id rm'>rm</span>
+    <span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RUN MODE=</span><span class='embexpr_beg'>#{</span><span class='id m'>m</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id write_single_coil'>write_single_coil</span><span class='lparen'>(</span><span class='int'>0x0814</span><span class='comma'>,</span><span class='id m'>m</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write_single_register-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>write_single_register</strong>(addr, val)  <span class="extras">(protected)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+268
+269
+270
+271</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/solo.rb', line 268</span>
+
+<span class='kw'>def</span> <span class='id write_single_register'>write_single_register</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span><span class='id val'>val</span><span class='rparen'>)</span>
+  <span class='id log'>log</span> <span class='id sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>write(%04x,%d)\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id addr'>addr</span><span class='comma'>,</span><span class='id val'>val</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span><span class='id val'>val</span><span class='period'>.</span><span class='id to_i'>to_i</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
-</nav>
 
-<div id="documentation">
-  <h1 class="class">class SOLO::TemperatureController</h1>
-
-  <div id="description" class="description">
+</div>
     
-  </div><!-- description -->
+    <div id="footer">
+  Generated on Sun Oct 30 10:51:18 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.3 (ruby-1.9.2).
+</div>
 
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-
-    
-
-    <!-- Methods -->
-    
-     <section id="protected-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Protected Class Methods</h3>
-
-    
-      <div id="method-c-defineMethod" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">defineMethod</span><span
-            class="method-args">(str)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="defineMethod-source">
-            <pre><span class="ruby-comment"># File lib/solo.rb, line 131</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">defineMethod</span>(<span class="ruby-identifier">str</span>)
-  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class_eval</span>(<span class="ruby-identifier">str</span>)
-  <span class="ruby-comment"># $stderr.puts(str)</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- defineMethod-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- defineMethod-method -->
-
-    
-    </section><!-- protected-class-method-details -->
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-old_rst" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">old_rst</span><span
-            class="method-args">(n,a=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="TemperatureController.html#method-i-rampSoakTimes">rampSoakTimes</a>
-        </div>
-        
-      </div><!-- old_rst-method -->
-
-    
-      <div id="method-i-profile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">profile</span><span
-            class="method-args">(n,a=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="profile-source">
-            <pre><span class="ruby-comment"># File lib/solo.rb, line 226</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">profile</span>(<span class="ruby-identifier">n</span>,<span class="ruby-identifier">a</span>=<span class="ruby-keyword">nil</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">rampSoakSetpointValues</span>(<span class="ruby-identifier">n</span>).<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">rampSoakTimes</span>(<span class="ruby-identifier">n</span>))
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">temps</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>[<span class="ruby-value">0</span>] }
-    <span class="ruby-identifier">times</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>[<span class="ruby-value">1</span>] }
-    <span class="ruby-identifier">rampSoakSetpointValues</span>(<span class="ruby-identifier">n</span>,<span class="ruby-identifier">temps</span>)
-    <span class="ruby-identifier">rampSoakTimes</span>(<span class="ruby-identifier">n</span>,<span class="ruby-identifier">times</span>)
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- profile-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- profile-method -->
-
-    
-      <div id="method-i-rampSoakTimes" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rampSoakTimes</span><span
-            class="method-args">(n,a=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="rampSoakTimes-source">
-            <pre><span class="ruby-comment"># File lib/solo.rb, line 222</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rampSoakTimes</span>(<span class="ruby-identifier">n</span>,<span class="ruby-identifier">a</span>=<span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">old_rst</span>(<span class="ruby-identifier">n</span>,<span class="ruby-identifier">a</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:round</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rampSoakTimes-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="TemperatureController.html#method-i-old_rst">old_rst</a>
-        </div>
-        
-
-        
-      </div><!-- rampSoakTimes-method -->
-
-    
-      <div id="method-i-runMode-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">runMode=</span><span
-            class="method-args">(m=nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="runMode-3D-source">
-            <pre><span class="ruby-comment"># File lib/solo.rb, line 237</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">runMode=</span>(<span class="ruby-identifier">m</span>=<span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">rm</span> = <span class="ruby-identifier">read_discrete_inputs</span>(<span class="ruby-value">0x0814</span>,<span class="ruby-value">1</span>)[<span class="ruby-value">0</span>]
-  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">m</span>.<span class="ruby-identifier">nil?</span>)
-    <span class="ruby-keyword">return</span> <span class="ruby-identifier">rm</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">m</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">rm</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;RUN MODE=#{m}&quot;</span>
-    <span class="ruby-identifier">write_single_coil</span>(<span class="ruby-value">0x0814</span>,<span class="ruby-identifier">m</span>)
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- runMode-3D-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- runMode-3D-method -->
-
-    
-    </section><!-- public-instance-method-details -->
-  
-     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Protected Instance Methods</h3>
-
-    
-      <div id="method-i-read_holding_registers" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">read_holding_registers</span><span
-            class="method-args">(addr,n)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="read_holding_registers-source">
-            <pre><span class="ruby-comment"># File lib/solo.rb, line 250</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_holding_registers</span>(<span class="ruby-identifier">addr</span>,<span class="ruby-identifier">n</span>)
-  <span class="ruby-identifier">log</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&quot;read(%04x,%d)\n&quot;</span>, <span class="ruby-identifier">addr</span>,<span class="ruby-identifier">n</span>)
-  <span class="ruby-identifier">v</span> = <span class="ruby-keyword">super</span>(<span class="ruby-identifier">addr</span>,<span class="ruby-identifier">n</span>)
-  <span class="ruby-identifier">log</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&quot; =&gt; %s\n&quot;</span>, <span class="ruby-identifier">v</span>.<span class="ruby-identifier">inspect</span>)
-  <span class="ruby-identifier">v</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- read_holding_registers-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- read_holding_registers-method -->
-
-    
-      <div id="method-i-read_single_register" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">read_single_register</span><span
-            class="method-args">(addr)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>returns nil on error</p>
-          
-
-          
-          <div class="method-source-code" id="read_single_register-source">
-            <pre><span class="ruby-comment"># File lib/solo.rb, line 258</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_single_register</span>(<span class="ruby-identifier">addr</span>)
-  <span class="ruby-identifier">log</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&quot;read(%04x)\n&quot;</span>, <span class="ruby-identifier">addr</span>)
-  <span class="ruby-identifier">v</span> = <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x3&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">to_word</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">v</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-string">'n*'</span>)
-  <span class="ruby-identifier">log</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&quot;  =&gt; %s\n&quot;</span>, <span class="ruby-identifier">v</span>.<span class="ruby-identifier">inspect</span>)
-  <span class="ruby-identifier">v</span>[<span class="ruby-value">0</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- read_single_register-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- read_single_register-method -->
-
-    
-      <div id="method-i-write_single_register" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">write_single_register</span><span
-            class="method-args">(addr,val)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="write_single_register-source">
-            <pre><span class="ruby-comment"># File lib/solo.rb, line 267</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_single_register</span>(<span class="ruby-identifier">addr</span>,<span class="ruby-identifier">val</span>)
-  <span class="ruby-identifier">log</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-string">&quot;write(%04x,%d)\n&quot;</span>, <span class="ruby-identifier">addr</span>,<span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_i</span>)
-  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">addr</span>,<span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_i</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- write_single_register-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- write_single_register-method -->
-
-    
-    </section><!-- protected-instance-method-details -->
-  
-  </section><!-- 5Buntitled-5D -->
-
-</div><!-- documentation -->
-
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
-
+  </body>
+</html>

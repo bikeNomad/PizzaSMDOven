@@ -1,553 +1,165 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: ModBus
+  
+    &mdash; Pizza SMD Oven Controller
+  
+</title>
 
-<html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 
-<title>Module: ModBus</title>
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
-
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-<body id="top" class="module">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
-
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/rmodbus_fixes.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/client.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/debug.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/errors.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/options.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/proxy.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu_client.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu_server.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu_slave.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu_via_tcp_client.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu_via_tcp_server.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu_via_tcp_slave.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/server.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/sp.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/tcp.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/tcp_client.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/tcp_server.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/tcp_slave.rb
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/version.rb
-  </ul>
-</nav>
-
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
     
-  </div>
-
-  <div id="class-metadata">
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (M)</a> &raquo; 
     
     
+    <span class="title">ModBus</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
     
+    <iframe id="search_frame"></iframe>
     
-  </div>
+    <div id="content"><h1>Module: ModBus
+  
+  
+  
+</h1>
 
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="SMDOven.html" title="SMDOven (class)">SMDOven</a></span>, <span class='object_link'><a href="SOLO/TemperatureController.html" title="SOLO::TemperatureController (class)">SOLO::TemperatureController</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">rmodbus/lib/rmodbus/sp.rb<span class="defines">,<br />
+  rmodbus/lib/rmodbus/tcp.rb,<br /> rmodbus/lib/rmodbus/rtu.rb,<br /> rmodbus/lib/rmodbus/debug.rb,<br /> rmodbus/lib/rmodbus/proxy.rb,<br /> rmodbus/lib/rmodbus/slave.rb,<br /> rmodbus/lib/rmodbus/client.rb,<br /> rmodbus/lib/rmodbus/server.rb,<br /> rmodbus/lib/rmodbus/errors.rb,<br /> rmodbus/lib/rmodbus/version.rb,<br /> rmodbus/lib/rmodbus/options.rb,<br /> rmodbus/lib/rmodbus/tcp_slave.rb,<br /> rmodbus/lib/rmodbus/rtu_slave.rb,<br /> rmodbus/lib/rmodbus/tcp_client.rb,<br /> rmodbus/lib/rmodbus/tcp_server.rb,<br /> rmodbus/lib/rmodbus/rtu_server.rb,<br /> rmodbus/lib/rmodbus/rtu_client.rb,<br /> rmodbus/lib/rmodbus/rtu_via_tcp_slave.rb,<br /> rmodbus/lib/rmodbus/rtu_via_tcp_client.rb,<br /> rmodbus/lib/rmodbus/rtu_via_tcp_server.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
 
-  <ul>
-  
-    <li class="file"><a href="./Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="./README.html">README</a>
-  
-    <li class="file"><a href="./temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
-  
-  </ul>
-</nav>
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>
+RModBus - free implementation of ModBus protocol in Ruby.
+</p>
+<p>
+Copyright (C) 2009-2011  Timin Aleksey Copyright (C) 2010  Kelley Reynolds
+</p>
+<p>
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+more details.
+</p>
 
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./ModBus.html">ModBus</a>
-  
-    <li><a href="./ModBus/Client.html">ModBus::Client</a>
-  
-    <li><a href="./ModBus/Common.html">ModBus::Common</a>
-  
-    <li><a href="./ModBus/Debug.html">ModBus::Debug</a>
-  
-    <li><a href="./ModBus/Errors.html">ModBus::Errors</a>
-  
-    <li><a href="./ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
-  
-    <li><a href="./ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
-  
-    <li><a href="./ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
-  
-    <li><a href="./ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
-  
-    <li><a href="./ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
-  
-    <li><a href="./ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
-  
-    <li><a href="./ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
-  
-    <li><a href="./ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
-  
-    <li><a href="./ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
-  
-    <li><a href="./ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
-  
-    <li><a href="./ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
-  
-    <li><a href="./ModBus/Options.html">ModBus::Options</a>
-  
-    <li><a href="./ModBus/RTU.html">ModBus::RTU</a>
-  
-    <li><a href="./ModBus/RTUClient.html">ModBus::RTUClient</a>
-  
-    <li><a href="./ModBus/RTUServer.html">ModBus::RTUServer</a>
-  
-    <li><a href="./ModBus/RTUSlave.html">ModBus::RTUSlave</a>
-  
-    <li><a href="./ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
-  
-    <li><a href="./ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
-  
-    <li><a href="./ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
-  
-    <li><a href="./ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
-  
-    <li><a href="./ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
-  
-    <li><a href="./ModBus/SP.html">ModBus::SP</a>
-  
-    <li><a href="./ModBus/Server.html">ModBus::Server</a>
-  
-    <li><a href="./ModBus/Slave.html">ModBus::Slave</a>
-  
-    <li><a href="./ModBus/TCP.html">ModBus::TCP</a>
-  
-    <li><a href="./ModBus/TCPClient.html">ModBus::TCPClient</a>
-  
-    <li><a href="./ModBus/TCPServer.html">ModBus::TCPServer</a>
-  
-    <li><a href="./ModBus/TCPSlave.html">ModBus::TCPSlave</a>
-  
-    <li><a href="./GraphViewer.html">GraphViewer</a>
-  
-    <li><a href="./GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
-  
-    <li><a href="./GraphViewer/Graph.html">GraphViewer::Graph</a>
-  
-    <li><a href="./GraphViewer/Guide.html">GraphViewer::Guide</a>
-  
-    <li><a href="./SOLO.html">SOLO</a>
-  
-    <li><a href="./SOLO/TemperatureController.html">SOLO::TemperatureController</a>
-  
-    <li><a href="./SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
-  
-    <li><a href="./TimedRepeat.html">TimedRepeat</a>
-  
-    <li><a href="./TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
-  
-    <li><a href="./TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
-  
-    <li><a href="./Updating.html">Updating</a>
-  
-    <li><a href="./Updating/Done.html">Updating::Done</a>
-  
-    <li><a href="./Updating/Report.html">Updating::Report</a>
-  
-    <li><a href="./Webserver.html">Webserver</a>
-  
-    <li><a href="./Webserver/GC29Tester.html">Webserver::GC29Tester</a>
-  
-    <li><a href="./Array.html">Array</a>
-  
-    <li><a href="./Date.html">Date</a>
-  
-    <li><a href="./FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
-  
-    <li><a href="./GraphViewerServer.html">GraphViewerServer</a>
-  
-    <li><a href="./IO.html">IO</a>
-  
-    <li><a href="./Integer.html">Integer</a>
-  
-    <li><a href="./Numeric.html">Numeric</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./PID.html">PID</a>
-  
-    <li><a href="./RaiseResponseMatcher.html">RaiseResponseMatcher</a>
-  
-    <li><a href="./RaiseResponseMismatch.html">RaiseResponseMismatch</a>
-  
-    <li><a href="./SMDOven.html">SMDOven</a>
-  
-    <li><a href="./SerialPort.html">SerialPort</a>
-  
-    <li><a href="./String.html">String</a>
-  
-    <li><a href="./TestClass.html">TestClass</a>
-  
-    <li><a href="./TestIO.html">TestIO</a>
-  
-    <li><a href="./Thermistor.html">Thermistor</a>
-  
-    <li><a href="./Thread.html">Thread</a>
-  
-    <li><a href="./Time.html">Time</a>
-  
-  </ul>
-</nav>
 
   </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="module">module ModBus</h1>
-
-  <div id="description" class="description">
-    
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-on Ruby.</p>
-
-<p>Copyright (C) 2008-2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2010-2011  Timin Aleksey Copyright (C) 2010  Kelley Reynolds</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-on Ruby.</p>
-
-<p>Copyright (C) 2008-2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>ReadOnly and ReadWrite hash interface for modbus registers and coils</p>
-
-<p>Copyright (C) 2010  Kelley Reynolds</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2010 - 2011  Timin Aleksey Copyright (C) 2010  Kelley
-Reynolds</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2009-2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2010-2011 Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2009-2011  Timin Aleksey Copyright (C) 2010  Kelley Reynolds</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2010  Timin Aleksey Copyright (C) 2010  Kelley Reynolds</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-on Ruby.</p>
-
-<p>Copyright (C) 2008-2011  Timin Aleksey Copyright (C) 2010  Kelley Reynolds</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-in Ruby.</p>
-
-<p>Copyright (C) 2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-on Ruby.</p>
-
-<p>Copyright (C) 2008-2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-on Ruby.</p>
-
-<p>Copyright (C) 2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-<p>RModBus - free implementation of <a href="ModBus.html">ModBus</a> protocol
-on Ruby.</p>
-
-<p>Copyright (C) 2011  Timin Aleksey</p>
-
-<p>This program is free software: you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option)
-any later version.</p>
-
-<p>This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
-more details.</p>
-
-  </div><!-- description -->
-
+</div>
+<div class="tags">
   
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
 
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
     
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="ModBus/Debug.html" title="ModBus::Debug (module)">Debug</a></span>, <span class='object_link'><a href="ModBus/Errors.html" title="ModBus::Errors (module)">Errors</a></span>, <span class='object_link'><a href="ModBus/Options.html" title="ModBus::Options (module)">Options</a></span>, <span class='object_link'><a href="ModBus/RTU.html" title="ModBus::RTU (module)">RTU</a></span>, <span class='object_link'><a href="ModBus/SP.html" title="ModBus::SP (module)">SP</a></span>, <span class='object_link'><a href="ModBus/Server.html" title="ModBus::Server (module)">Server</a></span>, <span class='object_link'><a href="ModBus/TCP.html" title="ModBus::TCP (module)">TCP</a></span>
+    
+   
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="ModBus/Client.html" title="ModBus::Client (class)">Client</a></span>, <span class='object_link'><a href="ModBus/RTUClient.html" title="ModBus::RTUClient (class)">RTUClient</a></span>, <span class='object_link'><a href="ModBus/RTUServer.html" title="ModBus::RTUServer (class)">RTUServer</a></span>, <span class='object_link'><a href="ModBus/RTUSlave.html" title="ModBus::RTUSlave (class)">RTUSlave</a></span>, <span class='object_link'><a href="ModBus/RTUViaTCPClient.html" title="ModBus::RTUViaTCPClient (class)">RTUViaTCPClient</a></span>, <span class='object_link'><a href="ModBus/RTUViaTCPServer.html" title="ModBus::RTUViaTCPServer (class)">RTUViaTCPServer</a></span>, <span class='object_link'><a href="ModBus/RTUViaTCPSlave.html" title="ModBus::RTUViaTCPSlave (class)">RTUViaTCPSlave</a></span>, <span class='object_link'><a href="ModBus/ReadOnlyProxy.html" title="ModBus::ReadOnlyProxy (class)">ReadOnlyProxy</a></span>, <span class='object_link'><a href="ModBus/ReadWriteProxy.html" title="ModBus::ReadWriteProxy (class)">ReadWriteProxy</a></span>, <span class='object_link'><a href="ModBus/Slave.html" title="ModBus::Slave (class)">Slave</a></span>, <span class='object_link'><a href="ModBus/TCPClient.html" title="ModBus::TCPClient (class)">TCPClient</a></span>, <span class='object_link'><a href="ModBus/TCPServer.html" title="ModBus::TCPServer (class)">TCPServer</a></span>, <span class='object_link'><a href="ModBus/TCPSlave.html" title="ModBus::TCPSlave (class)">TCPSlave</a></span>
+    
+  
+</p>
 
-    
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
       
-        <dt id="VERSION">VERSION
-        
-        <dd class="description"><p>Package version</p>
-        
+        <dt id="VERSION-constant" class="">VERSION =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+Package version
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>1.1.0</span><span class='tstring_end'>'</span></span></pre></dd>
       
-      </dl>
-    </section>
+    </dl>
+  
+
+
+
+
+
+
+
+</div>
     
+    <div id="footer">
+  Generated on Sun Oct 30 10:51:19 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.3 (ruby-1.9.2).
+</div>
 
-    
-
-    <!-- Methods -->
-    
-  </section><!-- 5Buntitled-5D -->
-
-</div><!-- documentation -->
-
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
-
+  </body>
+</html>

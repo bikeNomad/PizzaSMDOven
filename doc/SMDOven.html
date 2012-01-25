@@ -1,1150 +1,2365 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SMDOven
+  
+    &mdash; Pizza SMD Oven Controller
+  
+</title>
 
-<html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
 
-<title>Class: SMDOven</title>
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
-
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo; 
+    
+    
+    <span class="title">SMDOven</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: SMDOven
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></li>
+          
+            <li class="next">SMDOven</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2">Forwardable</dd>
+      
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1">Debug, <span class='object_link'><a href="ModBus.html" title="ModBus (module)">ModBus</a></span>, <span class='object_link'><a href="SOLO.html" title="SOLO (module)">SOLO</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">bin/solder.rb<span class="defines">,<br />
+  lib/smdoven.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
 
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="LEADED_PROFILE-constant" class="">LEADED_PROFILE =
+          <div class="docstring">
+  <div class="discussion">
+    <p>
+Solder profile from Kester for leaded solders
+</p>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='lbracket'>[</span><span class='int'>155</span><span class='comma'>,</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='int'>180</span><span class='comma'>,</span><span class='int'>60</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='int'>215</span><span class='comma'>,</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='int'>40</span><span class='comma'>,</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span></pre></dd>
+      
+    </dl>
+  
 
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>bin/solder.rb
-    <li>lib/smdoven.rb
+  
+  
+  
+  
+  
+  <h3 class="inherited">Constants included from <span class='object_link'><a href="SOLO.html" title="SOLO (module)">SOLO</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="SOLO.html#CM_MANUAL-constant" title="SOLO::CM_MANUAL (constant)">CM_MANUAL</a></span>, <span class='object_link'><a href="SOLO.html#CM_ON_OFF-constant" title="SOLO::CM_ON_OFF (constant)">CM_ON_OFF</a></span>, <span class='object_link'><a href="SOLO.html#CM_PID-constant" title="SOLO::CM_PID (constant)">CM_PID</a></span>, <span class='object_link'><a href="SOLO.html#CM_RAMP_SOAK-constant" title="SOLO::CM_RAMP_SOAK (constant)">CM_RAMP_SOAK</a></span>, <span class='object_link'><a href="SOLO.html#CONTROL_MODES-constant" title="SOLO::CONTROL_MODES (constant)">CONTROL_MODES</a></span>, <span class='object_link'><a href="SOLO.html#HC_COOLING-constant" title="SOLO::HC_COOLING (constant)">HC_COOLING</a></span>, <span class='object_link'><a href="SOLO.html#HC_COOLING_HEATING-constant" title="SOLO::HC_COOLING_HEATING (constant)">HC_COOLING_HEATING</a></span>, <span class='object_link'><a href="SOLO.html#HC_HEATING-constant" title="SOLO::HC_HEATING (constant)">HC_HEATING</a></span>, <span class='object_link'><a href="SOLO.html#HC_HEATING_COOLING-constant" title="SOLO::HC_HEATING_COOLING (constant)">HC_HEATING_COOLING</a></span>, <span class='object_link'><a href="SOLO.html#NO_NEXT_PATTERN-constant" title="SOLO::NO_NEXT_PATTERN (constant)">NO_NEXT_PATTERN</a></span>, <span class='object_link'><a href="SOLO.html#PID_PARAMETER_GROUP_AUTO-constant" title="SOLO::PID_PARAMETER_GROUP_AUTO (constant)">PID_PARAMETER_GROUP_AUTO</a></span>, <span class='object_link'><a href="SOLO.html#PV_INITIAL_PROCESS-constant" title="SOLO::PV_INITIAL_PROCESS (constant)">PV_INITIAL_PROCESS</a></span>, <span class='object_link'><a href="SOLO.html#PV_MEMORY_ERROR-constant" title="SOLO::PV_MEMORY_ERROR (constant)">PV_MEMORY_ERROR</a></span>, <span class='object_link'><a href="SOLO.html#PV_NO_TEMPERATURE_SENSOR-constant" title="SOLO::PV_NO_TEMPERATURE_SENSOR (constant)">PV_NO_TEMPERATURE_SENSOR</a></span>, <span class='object_link'><a href="SOLO.html#PV_SENSOR_ADC_ERROR-constant" title="SOLO::PV_SENSOR_ADC_ERROR (constant)">PV_SENSOR_ADC_ERROR</a></span>, <span class='object_link'><a href="SOLO.html#PV_SENSOR_INPUT_ERROR-constant" title="SOLO::PV_SENSOR_INPUT_ERROR (constant)">PV_SENSOR_INPUT_ERROR</a></span>, <span class='object_link'><a href="SOLO.html#RO_BIT_REGISTERS-constant" title="SOLO::RO_BIT_REGISTERS (constant)">RO_BIT_REGISTERS</a></span>, <span class='object_link'><a href="SOLO.html#RO_DATA_REGISTERS-constant" title="SOLO::RO_DATA_REGISTERS (constant)">RO_DATA_REGISTERS</a></span>, <span class='object_link'><a href="SOLO.html#RUN_MODE_RUN-constant" title="SOLO::RUN_MODE_RUN (constant)">RUN_MODE_RUN</a></span>, <span class='object_link'><a href="SOLO.html#RUN_MODE_STOP-constant" title="SOLO::RUN_MODE_STOP (constant)">RUN_MODE_STOP</a></span>, <span class='object_link'><a href="SOLO.html#RW_BIT_REGISTERS-constant" title="SOLO::RW_BIT_REGISTERS (constant)">RW_BIT_REGISTERS</a></span>, <span class='object_link'><a href="SOLO.html#RW_DATA_REGISTERS-constant" title="SOLO::RW_DATA_REGISTERS (constant)">RW_DATA_REGISTERS</a></span>, <span class='object_link'><a href="SOLO.html#RW_MULTI_PER_RS_PATTERN-constant" title="SOLO::RW_MULTI_PER_RS_PATTERN (constant)">RW_MULTI_PER_RS_PATTERN</a></span>, <span class='object_link'><a href="SOLO.html#RW_MULTI_PER_RS_STEP-constant" title="SOLO::RW_MULTI_PER_RS_STEP (constant)">RW_MULTI_PER_RS_STEP</a></span></p>
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Constants included from <span class='object_link'><a href="ModBus.html" title="ModBus (module)">ModBus</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ModBus.html#VERSION-constant" title="ModBus::VERSION (constant)">VERSION</a></span></p>
+
+  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#defaultAllowableLateness-class_method" title="defaultAllowableLateness (class method)">+ (Object) <strong>defaultAllowableLateness</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute defaultAllowableLateness.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#defaultDataRate-class_method" title="defaultDataRate (class method)">+ (Object) <strong>defaultDataRate</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute defaultDataRate.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#defaultSamplingPeriod-class_method" title="defaultSamplingPeriod (class method)">+ (Object) <strong>defaultSamplingPeriod</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute defaultSamplingPeriod.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#defaultSerialOptions-class_method" title="defaultSerialOptions (class method)">+ (Object) <strong>defaultSerialOptions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute defaultSerialOptions.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#defaultSlaveAddress-class_method" title="defaultSlaveAddress (class method)">+ (Object) <strong>defaultSlaveAddress</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute defaultSlaveAddress.
+</p>
+</div></span>
+  
+</li>
+
+    
   </ul>
-</nav>
 
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#client-instance_method" title="#client (instance method)">- (Object) <strong>client</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute client.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#slave-instance_method" title="#slave (instance method)">- (Object) <strong>slave</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute slave.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#slaveAddress-instance_method" title="#slaveAddress (instance method)">- (Object) <strong>slaveAddress</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute slaveAddress.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#statusLog-instance_method" title="#statusLog (instance method)">- (Object) <strong>statusLog</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute statusLog.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#temperatureLog-instance_method" title="#temperatureLog (instance method)">- (Object) <strong>temperatureLog</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute temperatureLog.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#temperatureLogOpened-instance_method" title="#temperatureLogOpened (instance method)">- (Object) <strong>temperatureLogOpened</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute temperatureLogOpened.
+</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#debug-instance_method" title="#debug (instance method)">- (Object) <strong>debug</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#debug%3D-instance_method" title="#debug= (instance method)">- (Object) <strong>debug=</strong>(flag) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#debug_log%3D-instance_method" title="#debug_log= (instance method)">- (Object) <strong>debug_log=</strong>(log) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#doProfile-instance_method" title="#doProfile (instance method)">- (Object) <strong>doProfile</strong>(_profile, _startTemp = processValue) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+profile is array of [temperature,time] values.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dumpPDUs-instance_method" title="#dumpPDUs (instance method)">- (Object) <strong>dumpPDUs</strong>(logfile = statusLog) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dumpRegisters-instance_method" title="#dumpRegisters (instance method)">- (Object) <strong>dumpRegisters</strong>(logfile = statusLog) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+dump contents of my registers to logfile.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#goBelowTemperature-instance_method" title="#goBelowTemperature (instance method)">- (Object) <strong>goBelowTemperature</strong>(_temp) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+wait until the temperature drops below _temp.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#goToTemperature-instance_method" title="#goToTemperature (instance method)">- (Object) <strong>goToTemperature</strong>(_temp, _epsilon = 1.0) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (SMDOven) <strong>initialize</strong>(_profile, _portname, _dataRate = self.class.defaultDataRate, _slaveAddress = self.class.defaultSlaveAddress, _opts = self.class.defaultSerialOptions) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of SMDOven.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#leadedProfile-instance_method" title="#leadedProfile (instance method)">- (Object) <strong>leadedProfile</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logTemperature-instance_method" title="#logTemperature (instance method)">- (Object) <strong>logTemperature</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#logTemperatureHeaders-instance_method" title="#logTemperatureHeaders (instance method)">- (Object) <strong>logTemperatureHeaders</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#openTemperatureLog-instance_method" title="#openTemperatureLog (instance method)">- (Object) <strong>openTemperatureLog</strong>(file, headers = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#processValue-instance_method" title="#processValue (instance method)">- (Object) <strong>processValue</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ramp-instance_method" title="#ramp (instance method)">- (Object) <strong>ramp</strong>(_from, _to, _time) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reset-instance_method" title="#reset (instance method)">- (Object) <strong>reset</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+attempt to re-init the serial port after an error.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setPatternToProfile-instance_method" title="#setPatternToProfile (instance method)">- (Object) <strong>setPatternToProfile</strong>(_pattern, _profile, _startTemp = processValue) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+profile is array of [temperature,time] values.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setpointValue-instance_method" title="#setpointValue (instance method)">- (Object) <strong>setpointValue</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setUpProfile-instance_method" title="#setUpProfile (instance method)">- (Object) <strong>setUpProfile</strong>(n = 0) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startProfile-instance_method" title="#startProfile (instance method)">- (Object) <strong>startProfile</strong>(n = 0) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#waitForProfile-instance_method" title="#waitForProfile (instance method)">- (Object) <strong>waitForProfile</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SMDOven (class)">SMDOven</a></span></tt>) <strong>initialize</strong>(_profile, _portname, _dataRate = self.class.defaultDataRate, _slaveAddress = self.class.defaultSlaveAddress, _opts = self.class.defaultSerialOptions) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of SMDOven
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 29</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id _profile'>_profile</span><span class='comma'>,</span>
+               <span class='id _portname'>_portname</span><span class='comma'>,</span>
+               <span class='id _dataRate'>_dataRate</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id defaultDataRate'>defaultDataRate</span><span class='comma'>,</span>
+               <span class='id _slaveAddress'>_slaveAddress</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id defaultSlaveAddress'>defaultSlaveAddress</span><span class='comma'>,</span>
+               <span class='id _opts'>_opts</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id defaultSerialOptions'>defaultSerialOptions</span><span class='rparen'>)</span>
+  <span class='ivar'>@client</span> <span class='op'>=</span> <span class='const'>TemperatureControllerClient</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id _portname'>_portname</span><span class='comma'>,</span> <span class='id _dataRate'>_dataRate</span><span class='comma'>,</span> <span class='id _opts'>_opts</span><span class='rparen'>)</span>
+  <span class='ivar'>@slaveAddress</span> <span class='op'>=</span> <span class='id _slaveAddress'>_slaveAddress</span>
+  <span class='ivar'>@slave</span> <span class='op'>=</span> <span class='ivar'>@client</span><span class='period'>.</span><span class='id with_slave'>with_slave</span><span class='lparen'>(</span><span class='id _slaveAddress'>_slaveAddress</span><span class='rparen'>)</span>
+  <span class='ivar'>@opts</span> <span class='op'>=</span> <span class='id _opts'>_opts</span>
+  <span class='ivar'>@temperatureLog</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@temperatureLogOpened</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@statusLog</span> <span class='op'>=</span> <span class='gvar'>$stderr</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="class_attr_details" class="attr_details">
+    <h2>Class Attribute Details</h2>
+    
+      
+      <span id="defaultAllowableLateness=-class_method"></span>
+      <span id="defaultAllowableLateness-class_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="defaultAllowableLateness-class_method">
+  
+    + (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>defaultAllowableLateness</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute defaultAllowableLateness
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id defaultAllowableLateness'>defaultAllowableLateness</span>
+  <span class='ivar'>@defaultAllowableLateness</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="defaultDataRate=-class_method"></span>
+      <span id="defaultDataRate-class_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="defaultDataRate-class_method">
+  
+    + (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>defaultDataRate</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute defaultDataRate
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id defaultDataRate'>defaultDataRate</span>
+  <span class='ivar'>@defaultDataRate</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="defaultSamplingPeriod=-class_method"></span>
+      <span id="defaultSamplingPeriod-class_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="defaultSamplingPeriod-class_method">
+  
+    + (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>defaultSamplingPeriod</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute defaultSamplingPeriod
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id defaultSamplingPeriod'>defaultSamplingPeriod</span>
+  <span class='ivar'>@defaultSamplingPeriod</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="defaultSerialOptions=-class_method"></span>
+      <span id="defaultSerialOptions-class_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="defaultSerialOptions-class_method">
+  
+    + (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>defaultSerialOptions</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute defaultSerialOptions
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id defaultSerialOptions'>defaultSerialOptions</span>
+  <span class='ivar'>@defaultSerialOptions</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="defaultSlaveAddress=-class_method"></span>
+      <span id="defaultSlaveAddress-class_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="defaultSlaveAddress-class_method">
+  
+    + (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>defaultSlaveAddress</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute defaultSlaveAddress
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id defaultSlaveAddress'>defaultSlaveAddress</span>
+  <span class='ivar'>@defaultSlaveAddress</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
   </div>
 
-  <div id="class-metadata">
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+      
+      <span id=""></span>
+      <span id="client-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="client-instance_method">
   
-  <p class="link"><a href="Object.html">Object</a>
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>client</strong>  <span class="extras">(readonly)</span>
   
-</nav>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute client
+</p>
 
-  <ul class="link-list">
-  
-  
-    <li><a class="include" href="SOLO.html">SOLO</a>
-  
-  
-  </ul>
-</nav>
-
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li><a href="#method-c-new">::new</a>
-    
-    <li><a href="#method-i-doProfile">#doProfile</a>
-    
-    <li><a href="#method-i-dumpPDUs">#dumpPDUs</a>
-    
-    <li><a href="#method-i-dumpRegisters">#dumpRegisters</a>
-    
-    <li><a href="#method-i-goBelowTemperature">#goBelowTemperature</a>
-    
-    <li><a href="#method-i-goToTemperature">#goToTemperature</a>
-    
-    <li><a href="#method-i-leadedProfile">#leadedProfile</a>
-    
-    <li><a href="#method-i-logTemperature">#logTemperature</a>
-    
-    <li><a href="#method-i-logTemperatureHeaders">#logTemperatureHeaders</a>
-    
-    <li><a href="#method-i-processValue">#processValue</a>
-    
-    <li><a href="#method-i-ramp">#ramp</a>
-    
-    <li><a href="#method-i-reset">#reset</a>
-    
-    <li><a href="#method-i-setPatternToProfile">#setPatternToProfile</a>
-    
-    <li><a href="#method-i-setUpProfile">#setUpProfile</a>
-    
-    <li><a href="#method-i-setpointValue">#setpointValue</a>
-    
-    <li><a href="#method-i-startProfile">#startProfile</a>
-    
-    <li><a href="#method-i-temperatureLog-3D">#temperatureLog=</a>
-    
-    <li><a href="#method-i-waitForProfile">#waitForProfile</a>
-    
-  </ul>
-</nav>
 
   </div>
+</div>
+<div class="tags">
+  
 
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-  <ul>
-  
-    <li class="file"><a href="./Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="./README.html">README</a>
-  
-    <li class="file"><a href="./temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
-  
-    <li class="file"><a href="./temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
-  
-  </ul>
-</nav>
 
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 43</span>
 
-  <ul class="link-list">
-  
-    <li><a href="./ModBus.html">ModBus</a>
-  
-    <li><a href="./ModBus/Client.html">ModBus::Client</a>
-  
-    <li><a href="./ModBus/Common.html">ModBus::Common</a>
-  
-    <li><a href="./ModBus/Debug.html">ModBus::Debug</a>
-  
-    <li><a href="./ModBus/Errors.html">ModBus::Errors</a>
-  
-    <li><a href="./ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
-  
-    <li><a href="./ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
-  
-    <li><a href="./ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
-  
-    <li><a href="./ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
-  
-    <li><a href="./ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
-  
-    <li><a href="./ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
-  
-    <li><a href="./ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
-  
-    <li><a href="./ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
-  
-    <li><a href="./ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
-  
-    <li><a href="./ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
-  
-    <li><a href="./ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
-  
-    <li><a href="./ModBus/Options.html">ModBus::Options</a>
-  
-    <li><a href="./ModBus/RTU.html">ModBus::RTU</a>
-  
-    <li><a href="./ModBus/RTUClient.html">ModBus::RTUClient</a>
-  
-    <li><a href="./ModBus/RTUServer.html">ModBus::RTUServer</a>
-  
-    <li><a href="./ModBus/RTUSlave.html">ModBus::RTUSlave</a>
-  
-    <li><a href="./ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
-  
-    <li><a href="./ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
-  
-    <li><a href="./ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
-  
-    <li><a href="./ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
-  
-    <li><a href="./ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
-  
-    <li><a href="./ModBus/SP.html">ModBus::SP</a>
-  
-    <li><a href="./ModBus/Server.html">ModBus::Server</a>
-  
-    <li><a href="./ModBus/Slave.html">ModBus::Slave</a>
-  
-    <li><a href="./ModBus/TCP.html">ModBus::TCP</a>
-  
-    <li><a href="./ModBus/TCPClient.html">ModBus::TCPClient</a>
-  
-    <li><a href="./ModBus/TCPServer.html">ModBus::TCPServer</a>
-  
-    <li><a href="./ModBus/TCPSlave.html">ModBus::TCPSlave</a>
-  
-    <li><a href="./GraphViewer.html">GraphViewer</a>
-  
-    <li><a href="./GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
-  
-    <li><a href="./GraphViewer/Graph.html">GraphViewer::Graph</a>
-  
-    <li><a href="./GraphViewer/Guide.html">GraphViewer::Guide</a>
-  
-    <li><a href="./SOLO.html">SOLO</a>
-  
-    <li><a href="./SOLO/TemperatureController.html">SOLO::TemperatureController</a>
-  
-    <li><a href="./SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
-  
-    <li><a href="./TimedRepeat.html">TimedRepeat</a>
-  
-    <li><a href="./TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
-  
-    <li><a href="./TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
-  
-    <li><a href="./Updating.html">Updating</a>
-  
-    <li><a href="./Updating/Done.html">Updating::Done</a>
-  
-    <li><a href="./Updating/Report.html">Updating::Report</a>
-  
-    <li><a href="./Webserver.html">Webserver</a>
-  
-    <li><a href="./Webserver/GC29Tester.html">Webserver::GC29Tester</a>
-  
-    <li><a href="./Array.html">Array</a>
-  
-    <li><a href="./Date.html">Date</a>
-  
-    <li><a href="./FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
-  
-    <li><a href="./GraphViewerServer.html">GraphViewerServer</a>
-  
-    <li><a href="./IO.html">IO</a>
-  
-    <li><a href="./Integer.html">Integer</a>
-  
-    <li><a href="./Numeric.html">Numeric</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./PID.html">PID</a>
-  
-    <li><a href="./RaiseResponseMatcher.html">RaiseResponseMatcher</a>
-  
-    <li><a href="./RaiseResponseMismatch.html">RaiseResponseMismatch</a>
-  
-    <li><a href="./SMDOven.html">SMDOven</a>
-  
-    <li><a href="./SerialPort.html">SerialPort</a>
-  
-    <li><a href="./String.html">String</a>
-  
-    <li><a href="./TestClass.html">TestClass</a>
-  
-    <li><a href="./TestIO.html">TestIO</a>
-  
-    <li><a href="./Thermistor.html">Thermistor</a>
-  
-    <li><a href="./Thread.html">Thread</a>
-  
-    <li><a href="./Time.html">Time</a>
-  
-  </ul>
-</nav>
+<span class='kw'>def</span> <span class='id client'>client</span>
+  <span class='ivar'>@client</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="slave-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="slave-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>slave</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute slave
+</p>
+
 
   </div>
-</nav>
+</div>
+<div class="tags">
+  
 
-<div id="documentation">
-  <h1 class="class">class SMDOven</h1>
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-  <div id="description" class="description">
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id slave'>slave</span>
+  <span class='ivar'>@slave</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-  </div><!-- description -->
+      
+      <span id="slaveAddress=-instance_method"></span>
+      <span id="slaveAddress-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="slaveAddress-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>slaveAddress</strong> 
+  
 
   
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute slaveAddress
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
   
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id slaveAddress'>slaveAddress</span>
+  <span class='ivar'>@slaveAddress</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="statusLog=-instance_method"></span>
+      <span id="statusLog-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="statusLog-instance_method">
   
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt id="LEADED_PROFILE">LEADED_PROFILE
-        
-        <dd class="description"><p>Solder profile from Kester for leaded solders</p>
-        
-      
-      </dl>
-    </section>
-    
-
-    
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
-
-      
-      <div id="attribute-c-defaultAllowableLateness" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">defaultAllowableLateness</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-c-defaultDataRate" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">defaultDataRate</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-c-defaultSamplingPeriod" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">defaultSamplingPeriod</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-c-defaultSerialOptions" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">defaultSerialOptions</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-c-defaultSlaveAddress" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">defaultSlaveAddress</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-client" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">client</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-portname" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">portname</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-statusLog" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">statusLog</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-temperatureLog" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">temperatureLog</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-temperatureLogOpened" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">temperatureLogOpened</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-    </section><!-- attribute-method-details -->
-    
-
-    <!-- Methods -->
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(_profile, _portname, _dataRate = self.class.defaultDataRate, _slaveAddress = self.class.defaultSlaveAddress, _opts = self.class.defaultSerialOptions)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">_profile</span>,
-               <span class="ruby-identifier">_portname</span>,
-               <span class="ruby-identifier">_dataRate</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">defaultDataRate</span>,
-               <span class="ruby-identifier">_slaveAddress</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">defaultSlaveAddress</span>,
-               <span class="ruby-identifier">_opts</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">defaultSerialOptions</span>)
-  <span class="ruby-ivar">@client</span> = <span class="ruby-constant">TemperatureControllerClient</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">_portname</span>, <span class="ruby-identifier">_dataRate</span>, <span class="ruby-identifier">_opts</span>)
-  <span class="ruby-ivar">@slave</span> = <span class="ruby-constant">TemperatureControllerClient</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">_portname</span>, <span class="ruby-identifier">_dataRate</span>, <span class="ruby-identifier">_slaveAddress</span>, <span class="ruby-identifier">_opts</span>)
-  <span class="ruby-ivar">@portname</span> = <span class="ruby-identifier">_portname</span>
-  <span class="ruby-ivar">@opts</span> = <span class="ruby-identifier">_opts</span>
-  <span class="ruby-ivar">@temperatureLog</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-ivar">@temperatureLogOpened</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-ivar">@statusLog</span> = <span class="ruby-identifier">$stderr</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
-
-    
-    </section><!-- public-class-method-details -->
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>statusLog</strong> 
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
 
-    
-      <div id="method-i-doProfile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">doProfile</span><span
-            class="method-args">(_profile,_startTemp=processValue)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>profile is array of [temperature,time] values</p>
-          
-
-          
-          <div class="method-source-code" id="doProfile-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 151</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">doProfile</span>(<span class="ruby-identifier">_profile</span>,<span class="ruby-identifier">_startTemp</span>=<span class="ruby-identifier">processValue</span>)
-  <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">_profile</span>.<span class="ruby-identifier">pretty_print_inspect</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-  <span class="ruby-identifier">startTemp</span> = <span class="ruby-identifier">_startTemp</span>
-  <span class="ruby-identifier">_profile</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">step</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{i} #{startTemp} =&gt; #{step[0]} over #{step[1]} secs&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-    <span class="ruby-identifier">endTemp</span> = <span class="ruby-identifier">step</span>[<span class="ruby-value">0</span>]
-    <span class="ruby-identifier">stepTime</span> = <span class="ruby-identifier">step</span>[<span class="ruby-value">1</span>]
-    <span class="ruby-identifier">ramp</span>(<span class="ruby-identifier">startTemp</span>, <span class="ruby-identifier">endTemp</span>, <span class="ruby-identifier">stepTime</span>)
-    <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;  waiting for temp to go from #{processValue} to #{endTemp}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-    <span class="ruby-identifier">goToTemperature</span>(<span class="ruby-identifier">endTemp</span>)
-    <span class="ruby-identifier">startTemp</span> = <span class="ruby-identifier">endTemp</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- doProfile-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- doProfile-method -->
-
-    
-      <div id="method-i-dumpPDUs" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">dumpPDUs</span><span
-            class="method-args">(logfile=statusLog)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="dumpPDUs-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 207</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">dumpPDUs</span>(<span class="ruby-identifier">logfile</span>=<span class="ruby-identifier">statusLog</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">printf</span>(<span class="ruby-string">&quot;XMIT: %s\n&quot;</span>, <span class="ruby-identifier">logging_bytes</span>(<span class="ruby-identifier">client</span>.<span class="ruby-identifier">transmit_pdu</span>))
-  <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">printf</span>(<span class="ruby-string">&quot;RCV: %s\n&quot;</span>, <span class="ruby-identifier">logging_bytes</span>(<span class="ruby-identifier">client</span>.<span class="ruby-identifier">receive_pdu</span>))
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- dumpPDUs-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- dumpPDUs-method -->
-
-    
-      <div id="method-i-dumpRegisters" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">dumpRegisters</span><span
-            class="method-args">(logfile=statusLog)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>dump contents of my registers to logfile</p>
-          
-
-          
-          <div class="method-source-code" id="dumpRegisters-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 179</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">dumpRegisters</span>(<span class="ruby-identifier">logfile</span>=<span class="ruby-identifier">statusLog</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">pidParameters</span> = <span class="ruby-node">%w(targetSetpointValue proportionalBand integralTime derivativeTime integralOffset)</span>
-
-  <span class="ruby-identifier">cm</span> = <span class="ruby-identifier">controlMode</span>
-  <span class="ruby-identifier">ppg</span> = <span class="ruby-identifier">pidParameterGroup</span>
-  <span class="ruby-identifier">controlMode</span> = <span class="ruby-constant">CM_PID</span>
-  <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;pidParameterGroup = #{ppg}&quot;</span>)
-  <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-string">&quot;pidParameterGroup   &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">pidParameters</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;  &quot;</span>))
-  <span class="ruby-value">4</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">g</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">pidParameterGroup</span>= <span class="ruby-identifier">g</span>
-    <span class="ruby-identifier">vals</span> = [<span class="ruby-identifier">pidParameterGroup</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">pidParameters</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">p</span>) }
-    <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">printf</span>(<span class="ruby-string">&quot;%17s  %20s  %16s  %12s  %14s  %14s\n&quot;</span>, *<span class="ruby-identifier">vals</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">controlMode</span> = <span class="ruby-identifier">controlMode</span>
-  <span class="ruby-identifier">pidParameterGroup</span>= <span class="ruby-identifier">ppg</span>
-
-  (<span class="ruby-constant">RO_DATA_REGISTERS</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RW_DATA_REGISTERS</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">+</span> <span class="ruby-constant">RW_BIT_REGISTERS</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">pidParameters</span>).<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{k} = #{self.send(k)}&quot;</span> }
-
-  <span class="ruby-value">8</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;\npattern #{n}\n&quot;</span>)
-    <span class="ruby-identifier">lsn</span> = <span class="ruby-identifier">lastStepNumber</span>(<span class="ruby-identifier">n</span>)
-    <span class="ruby-constant">RW_MULTI_PER_RS_STEP</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{k}[#{n}] = #{self.send(k,n).slice(0 .. lsn).inspect}&quot;</span> }
-    <span class="ruby-constant">RW_MULTI_PER_RS_PATTERN</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">logfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{k}[#{n}] = #{self.send(k,n).inspect}&quot;</span> }
-  <span class="ruby-keyword">end</span>
-
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- dumpRegisters-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- dumpRegisters-method -->
-
-    
-      <div id="method-i-goBelowTemperature" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">goBelowTemperature</span><span
-            class="method-args">(_temp)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>wait until the temperature drops below _temp</p>
-          
-
-          
-          <div class="method-source-code" id="goBelowTemperature-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 102</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">goBelowTemperature</span>(<span class="ruby-identifier">_temp</span>)
-  <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;waiting for temperature to go below #{_temp}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">processValue</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">_temp</span>
-    <span class="ruby-identifier">logTemperature</span>()
-    <span class="ruby-identifier">sleep</span> <span class="ruby-value">1.0</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- goBelowTemperature-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- goBelowTemperature-method -->
-
-    
-      <div id="method-i-goToTemperature" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">goToTemperature</span><span
-            class="method-args">(_temp, _epsilon=1.0)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="goToTemperature-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 85</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">goToTemperature</span>(<span class="ruby-identifier">_temp</span>, <span class="ruby-identifier">_epsilon</span>=<span class="ruby-value">1.0</span>)
-  <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;waiting for temperature to go within #{_epsilon} degC of #{_temp}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">setpointValue</span>= <span class="ruby-identifier">_temp</span>
-  <span class="ruby-keyword">while</span> (<span class="ruby-identifier">processValue</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">_temp</span>).<span class="ruby-identifier">abs</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">_epsilon</span>
-    <span class="ruby-identifier">logTemperature</span>()
-    <span class="ruby-identifier">sleep</span> <span class="ruby-value">1.0</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- goToTemperature-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- goToTemperature-method -->
-
-    
-      <div id="method-i-leadedProfile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">leadedProfile</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="leadedProfile-source">
-            <pre><span class="ruby-comment"># File bin/solder.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">leadedProfile</span>
-  <span class="ruby-identifier">controlMode</span>= <span class="ruby-constant">CM_ON_OFF</span>
-  <span class="ruby-identifier">sleep</span>(<span class="ruby-value">1.0</span>)
-  <span class="ruby-identifier">runMode</span>= <span class="ruby-constant">RUN_MODE_RUN</span>
-  <span class="ruby-identifier">sleep</span>(<span class="ruby-value">1.0</span>)
-  <span class="ruby-identifier">goBelowTemperature</span>(<span class="ruby-value">40.0</span>)
-  <span class="ruby-identifier">doProfile</span>(<span class="ruby-constant">LEADED_PROFILE</span>, <span class="ruby-value">25</span>)
-  <span class="ruby-identifier">sleep</span>(<span class="ruby-value">1.0</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- leadedProfile-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- leadedProfile-method -->
-
-    
-      <div id="method-i-logTemperature" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">logTemperature</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="logTemperature-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 123</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">logTemperature</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">temperatureLog</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">pv</span> = <span class="ruby-identifier">processValue</span>
-  <span class="ruby-identifier">sv</span> = <span class="ruby-identifier">setpointValue</span>
-  <span class="ruby-comment"># timestamp = Time.now.strftime(&quot;%H:%M:%S&quot;)</span>
-  <span class="ruby-identifier">timestamp</span> = (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">temperatureLogOpened</span>).<span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">temperatureLog</span>.<span class="ruby-identifier">printf</span>(<span class="ruby-string">&quot;%s,%.1f,%.1f,%.1f,%.1f\n&quot;</span>, <span class="ruby-identifier">timestamp</span>, <span class="ruby-identifier">sv</span>, <span class="ruby-identifier">pv</span>, <span class="ruby-identifier">output1Level</span>, <span class="ruby-identifier">output2Level</span>)
-  <span class="ruby-identifier">temperatureLog</span>.<span class="ruby-identifier">fsync</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- logTemperature-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- logTemperature-method -->
-
-    
-      <div id="method-i-logTemperatureHeaders" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">logTemperatureHeaders</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="logTemperatureHeaders-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 118</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">logTemperatureHeaders</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">temperatureLog</span>.<span class="ruby-identifier">nil?</span>
-  <span class="ruby-identifier">temperatureLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-string">&quot;time,setpoint,process,output1,output2&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- logTemperatureHeaders-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- logTemperatureHeaders-method -->
-
-    
-      <div id="method-i-processValue" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">processValue</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="processValue-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 67</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">processValue</span>
-  <span class="ruby-identifier">pv</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">processValue</span>
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">pv</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-string">&quot;PV nil; retrying&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-    <span class="ruby-identifier">pv</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">processValue</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">pv</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- processValue-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- processValue-method -->
-
-    
-      <div id="method-i-ramp" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ramp</span><span
-            class="method-args">(_from,_to,_time)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="ramp-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 133</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ramp</span>(<span class="ruby-identifier">_from</span>,<span class="ruby-identifier">_to</span>,<span class="ruby-identifier">_time</span>)
-  <span class="ruby-identifier">temp</span> = <span class="ruby-identifier">_from</span>
-  <span class="ruby-keyword">begin</span>
-    <span class="ruby-constant">TimedRepeat</span>.<span class="ruby-identifier">repeatAt</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">defaultSamplingPeriod</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">defaultAllowableLateness</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timeSinceReset</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">_time</span>
-        <span class="ruby-identifier">t</span>.<span class="ruby-identifier">stop</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">tdelta</span> = <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timeSinceLast</span>
-      <span class="ruby-identifier">temp</span> = <span class="ruby-identifier">_from</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">_to</span><span class="ruby-operator">-</span><span class="ruby-identifier">_from</span>) * <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timeSinceReset</span> <span class="ruby-operator">/</span> <span class="ruby-identifier">_time</span>
-      <span class="ruby-identifier">client</span>.<span class="ruby-identifier">setpointValue</span>= <span class="ruby-identifier">temp</span>
-      <span class="ruby-identifier">logTemperature</span>()
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">TimedRepeat</span><span class="ruby-operator">::</span><span class="ruby-constant">MissedRepeat</span>
-    <span class="ruby-keyword">retry</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- ramp-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- ramp-method -->
-
-    
-      <div id="method-i-reset" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">reset</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>attempt to re-init the serial port after an error</p>
-          
-
-          
-          <div class="method-source-code" id="reset-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 111</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">reset</span>
-  <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-string">&quot;attempting to reset client&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-  <span class="ruby-identifier">client</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">sleep</span>(<span class="ruby-value">5</span>)
-  <span class="ruby-ivar">@client</span> = <span class="ruby-constant">TemperatureControllerClient</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@portname</span>, <span class="ruby-identifier">client</span>.<span class="ruby-identifier">baud</span>, <span class="ruby-identifier">client</span>.<span class="ruby-identifier">slave</span>, <span class="ruby-ivar">@opts</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- reset-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- reset-method -->
-
-    
-      <div id="method-i-setPatternToProfile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">setPatternToProfile</span><span
-            class="method-args">(_pattern,_profile,_startTemp=processValue)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>profile is array of [temperature,time] values</p>
-          
-
-          
-          <div class="method-source-code" id="setPatternToProfile-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 166</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">setPatternToProfile</span>(<span class="ruby-identifier">_pattern</span>,<span class="ruby-identifier">_profile</span>,<span class="ruby-identifier">_startTemp</span>=<span class="ruby-identifier">processValue</span>)
-  <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;setting pattern #{_pattern} to #{_profile.pretty_print_inspect}&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-  <span class="ruby-identifier">values</span> = <span class="ruby-identifier">_profile</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>[<span class="ruby-value">0</span>] }
-  <span class="ruby-identifier">rampSoakSetpointValues</span>(<span class="ruby-identifier">_pattern</span>, <span class="ruby-identifier">values</span>)
-  <span class="ruby-identifier">times</span> = <span class="ruby-identifier">_profile</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">s</span>[<span class="ruby-value">1</span>], <span class="ruby-value">60</span>].<span class="ruby-identifier">max</span> }
-  <span class="ruby-identifier">rampSoakTimes</span>(<span class="ruby-identifier">_pattern</span>, <span class="ruby-identifier">times</span>)
-  <span class="ruby-identifier">nextPatternNumber</span>(<span class="ruby-identifier">_pattern</span>, <span class="ruby-constant">NO_NEXT_PATTERN</span>)
-  <span class="ruby-identifier">startingRampSoakPattern</span>= <span class="ruby-identifier">_pattern</span>
-  <span class="ruby-identifier">lastStepNumber</span>(<span class="ruby-identifier">_pattern</span>, <span class="ruby-identifier">_profile</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)
-  <span class="ruby-identifier">additionalCycles</span>(<span class="ruby-identifier">_pattern</span>, <span class="ruby-value">0</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- setPatternToProfile-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- setPatternToProfile-method -->
-
-    
-      <div id="method-i-setUpProfile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">setUpProfile</span><span
-            class="method-args">(n = 0)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="setUpProfile-source">
-            <pre><span class="ruby-comment"># File bin/solder.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">setUpProfile</span>(<span class="ruby-identifier">n</span> = <span class="ruby-value">0</span>)
-  <span class="ruby-identifier">pidParameterGroup</span>= <span class="ruby-constant">PID_PARAMETER_GROUP_AUTO</span> 
-  <span class="ruby-identifier">controlMode</span>= <span class="ruby-constant">CM_RAMP_SOAK</span>
-  <span class="ruby-comment"># set up profile in unit</span>
-  <span class="ruby-identifier">setPatternToProfile</span>(<span class="ruby-identifier">n</span>, <span class="ruby-constant">LEADED_PROFILE</span>, <span class="ruby-value">25</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- setUpProfile-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- setUpProfile-method -->
-
-    
-      <div id="method-i-setpointValue" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">setpointValue</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="setpointValue-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 76</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">setpointValue</span>
-  <span class="ruby-identifier">sv</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">setpointValue</span>
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">sv</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">statusLog</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-string">&quot;SV nil; retrying&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">statusLog</span>
-    <span class="ruby-identifier">sv</span> = <span class="ruby-identifier">client</span>.<span class="ruby-identifier">setpointValue</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">sv</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- setpointValue-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- setpointValue-method -->
-
-    
-      <div id="method-i-startProfile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">startProfile</span><span
-            class="method-args">(n = 0)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="startProfile-source">
-            <pre><span class="ruby-comment"># File bin/solder.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">startProfile</span>(<span class="ruby-identifier">n</span> = <span class="ruby-value">0</span>)
-  <span class="ruby-identifier">runMode</span> = <span class="ruby-constant">RUN_MODE_STOP</span>
-  <span class="ruby-identifier">controlMode</span> = <span class="ruby-constant">CM_RAMP_SOAK</span>
-  <span class="ruby-identifier">startingRampSoakPattern</span> = <span class="ruby-identifier">n</span>
-  <span class="ruby-identifier">holdRampSoakControl</span> = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">stopRampSoakControl</span> = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">runMode</span> = <span class="ruby-constant">RUN_MODE_RUN</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- startProfile-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- startProfile-method -->
-
-    
-      <div id="method-i-temperatureLog-3D" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">temperatureLog=</span><span
-            class="method-args">(file,headers=false)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="temperatureLog-3D-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">temperatureLog=</span>(<span class="ruby-identifier">file</span>,<span class="ruby-identifier">headers</span>=<span class="ruby-keyword">false</span>)
-  <span class="ruby-ivar">@temperatureLog</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@temperatureLog</span>
-  <span class="ruby-ivar">@temperatureLog</span> = <span class="ruby-identifier">file</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@temperatureLog</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-ivar">@temperatureLogOpened</span> = <span class="ruby-keyword">nil</span>
-    <span class="ruby-keyword">return</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">logTemperatureHeaders</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">headers</span>
-  <span class="ruby-ivar">@temperatureLogOpened</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- temperatureLog-3D-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- temperatureLog-3D-method -->
-
-    
-      <div id="method-i-waitForProfile" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">waitForProfile</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="waitForProfile-source">
-            <pre><span class="ruby-comment"># File lib/smdoven.rb, line 94</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">waitForProfile</span>
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">rampSoakControlStatus</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">logTemperature</span>()
-    <span class="ruby-identifier">sleep</span> <span class="ruby-value">1.0</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- waitForProfile-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- waitForProfile-method -->
-
-    
-    </section><!-- public-instance-method-details -->
   
-  </section><!-- 5Buntitled-5D -->
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute statusLog
+</p>
 
-</div><!-- documentation -->
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 44</span>
 
+<span class='kw'>def</span> <span class='id statusLog'>statusLog</span>
+  <span class='ivar'>@statusLog</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="temperatureLog-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="temperatureLog-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>temperatureLog</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute temperatureLog
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id temperatureLog'>temperatureLog</span>
+  <span class='ivar'>@temperatureLog</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="temperatureLogOpened=-instance_method"></span>
+      <span id="temperatureLogOpened-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="temperatureLogOpened-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>temperatureLogOpened</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute temperatureLogOpened
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id temperatureLogOpened'>temperatureLogOpened</span>
+  <span class='ivar'>@temperatureLogOpened</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="debug-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>debug</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id debug'>debug</span>
+  <span class='id client'>client</span><span class='period'>.</span><span class='id debug'>debug</span> <span class='op'>||</span> <span class='id slave'>slave</span><span class='period'>.</span><span class='id debug'>debug</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="debug=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>debug=</strong>(flag) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 73</span>
+
+<span class='kw'>def</span> <span class='id debug='>debug=</span><span class='lparen'>(</span><span class='id flag'>flag</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+  <span class='id client'>client</span><span class='period'>.</span><span class='id debug'>debug</span><span class='op'>=</span> <span class='id flag'>flag</span>
+  <span class='id slave'>slave</span><span class='period'>.</span><span class='id debug'>debug</span><span class='op'>=</span> <span class='id flag'>flag</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="debug_log=-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>debug_log=</strong>(log) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+79
+80
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 79</span>
+
+<span class='kw'>def</span> <span class='id debug_log='>debug_log=</span><span class='lparen'>(</span><span class='id log'>log</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+  <span class='id client'>client</span><span class='period'>.</span><span class='id debug_log'>debug_log</span><span class='op'>=</span> <span class='id log'>log</span>
+  <span class='id slave'>slave</span><span class='period'>.</span><span class='id debug_log'>debug_log</span><span class='op'>=</span> <span class='id log'>log</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="doProfile-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>doProfile</strong>(_profile, _startTemp = processValue) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+profile is array of [temperature,time] values
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id doProfile'>doProfile</span><span class='lparen'>(</span><span class='id _profile'>_profile</span><span class='comma'>,</span><span class='id _startTemp'>_startTemp</span><span class='op'>=</span><span class='id processValue'>processValue</span><span class='rparen'>)</span>
+  <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='id _profile'>_profile</span><span class='period'>.</span><span class='id pretty_print_inspect'>pretty_print_inspect</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+  <span class='id startTemp'>startTemp</span> <span class='op'>=</span> <span class='id _startTemp'>_startTemp</span>
+  <span class='id _profile'>_profile</span><span class='period'>.</span><span class='id each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id step'>step</span><span class='comma'>,</span><span class='id i'>i</span><span class='op'>|</span>
+    <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id i'>i</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id startTemp'>startTemp</span><span class='rbrace'>}</span><span class='tstring_content'> =&gt; </span><span class='embexpr_beg'>#{</span><span class='id step'>step</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> over </span><span class='embexpr_beg'>#{</span><span class='id step'>step</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> secs</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+    <span class='id endTemp'>endTemp</span> <span class='op'>=</span> <span class='id step'>step</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id stepTime'>stepTime</span> <span class='op'>=</span> <span class='id step'>step</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='id ramp'>ramp</span><span class='lparen'>(</span><span class='id startTemp'>startTemp</span><span class='comma'>,</span> <span class='id endTemp'>endTemp</span><span class='comma'>,</span> <span class='id stepTime'>stepTime</span><span class='rparen'>)</span>
+    <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  waiting for temp to go from </span><span class='embexpr_beg'>#{</span><span class='id processValue'>processValue</span><span class='rbrace'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id endTemp'>endTemp</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+    <span class='id goToTemperature'>goToTemperature</span><span class='lparen'>(</span><span class='id endTemp'>endTemp</span><span class='rparen'>)</span>
+    <span class='id startTemp'>startTemp</span> <span class='op'>=</span> <span class='id endTemp'>endTemp</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="dumpPDUs-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>dumpPDUs</strong>(logfile = statusLog) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+227
+228
+229
+230
+231</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 227</span>
+
+<span class='kw'>def</span> <span class='id dumpPDUs'>dumpPDUs</span><span class='lparen'>(</span><span class='id logfile'>logfile</span><span class='op'>=</span><span class='id statusLog'>statusLog</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+  <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id printf'>printf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>XMIT: %s\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id logging_bytes'>logging_bytes</span><span class='lparen'>(</span><span class='id slave'>slave</span><span class='period'>.</span><span class='id transmit_pdu'>transmit_pdu</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id printf'>printf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RCV: %s\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id logging_bytes'>logging_bytes</span><span class='lparen'>(</span><span class='id slave'>slave</span><span class='period'>.</span><span class='id receive_pdu'>receive_pdu</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="dumpRegisters-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>dumpRegisters</strong>(logfile = statusLog) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+dump contents of my registers to logfile
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 199</span>
+
+<span class='kw'>def</span> <span class='id dumpRegisters'>dumpRegisters</span><span class='lparen'>(</span><span class='id logfile'>logfile</span><span class='op'>=</span><span class='id statusLog'>statusLog</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+  <span class='id pidParameters'>pidParameters</span> <span class='op'>=</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>targetSetpointValue</span><span class='words_sep'> </span><span class='tstring_content'>proportionalBand</span><span class='words_sep'> </span><span class='tstring_content'>integralTime</span><span class='words_sep'> </span><span class='tstring_content'>derivativeTime</span><span class='words_sep'> </span><span class='tstring_content'>integralOffset</span><span class='words_sep'>)</span>
+
+  <span class='id cm'>cm</span> <span class='op'>=</span> <span class='id controlMode'>controlMode</span>
+  <span class='id ppg'>ppg</span> <span class='op'>=</span> <span class='id pidParameterGroup'>pidParameterGroup</span>
+  <span class='id controlMode'>controlMode</span> <span class='op'>=</span> <span class='const'>CM_PID</span>
+  <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pidParameterGroup = </span><span class='embexpr_beg'>#{</span><span class='id ppg'>ppg</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pidParameterGroup   </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id pidParameters'>pidParameters</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='int'>4</span><span class='period'>.</span><span class='id times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id g'>g</span><span class='op'>|</span>
+    <span class='id pidParameterGroup'>pidParameterGroup</span><span class='op'>=</span> <span class='id g'>g</span>
+    <span class='id vals'>vals</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id pidParameterGroup'>pidParameterGroup</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id pidParameters'>pidParameters</span><span class='period'>.</span><span class='id collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id p'>p</span><span class='op'>|</span> <span class='kw'>self</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='id p'>p</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id printf'>printf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%17s  %20s  %16s  %12s  %14s  %14s\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id vals'>vals</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id controlMode'>controlMode</span> <span class='op'>=</span> <span class='id controlMode'>controlMode</span>
+  <span class='id pidParameterGroup'>pidParameterGroup</span><span class='op'>=</span> <span class='id ppg'>ppg</span>
+
+  <span class='lparen'>(</span><span class='const'>RO_DATA_REGISTERS</span><span class='period'>.</span><span class='id keys'>keys</span> <span class='op'>+</span> <span class='const'>RW_DATA_REGISTERS</span><span class='period'>.</span><span class='id keys'>keys</span> <span class='op'>+</span> <span class='const'>RW_BIT_REGISTERS</span><span class='period'>.</span><span class='id keys'>keys</span> <span class='op'>-</span> <span class='id pidParameters'>pidParameters</span><span class='rparen'>)</span><span class='period'>.</span><span class='id sort'>sort</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id k'>k</span><span class='op'>|</span> <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id k'>k</span><span class='rbrace'>}</span><span class='tstring_content'> = </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='id k'>k</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+
+  <span class='int'>8</span><span class='period'>.</span><span class='id times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id n'>n</span><span class='op'>|</span>
+    <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\npattern </span><span class='embexpr_beg'>#{</span><span class='id n'>n</span><span class='rbrace'>}</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id lsn'>lsn</span> <span class='op'>=</span> <span class='id lastStepNumber'>lastStepNumber</span><span class='lparen'>(</span><span class='id n'>n</span><span class='rparen'>)</span>
+    <span class='const'>RW_MULTI_PER_RS_STEP</span><span class='period'>.</span><span class='id keys'>keys</span><span class='period'>.</span><span class='id sort'>sort</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id k'>k</span><span class='op'>|</span> <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id k'>k</span><span class='rbrace'>}</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id n'>n</span><span class='rbrace'>}</span><span class='tstring_content'>] = </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='id k'>k</span><span class='comma'>,</span><span class='id n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id slice'>slice</span><span class='lparen'>(</span><span class='int'>0</span> <span class='op'>..</span> <span class='id lsn'>lsn</span><span class='rparen'>)</span><span class='period'>.</span><span class='id inspect'>inspect</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+    <span class='const'>RW_MULTI_PER_RS_PATTERN</span><span class='period'>.</span><span class='id keys'>keys</span><span class='period'>.</span><span class='id sort'>sort</span><span class='period'>.</span><span class='id each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id k'>k</span><span class='op'>|</span> <span class='id logfile'>logfile</span><span class='period'>.</span><span class='id puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id k'>k</span><span class='rbrace'>}</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id n'>n</span><span class='rbrace'>}</span><span class='tstring_content'>] = </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id send'>send</span><span class='lparen'>(</span><span class='id k'>k</span><span class='comma'>,</span><span class='id n'>n</span><span class='rparen'>)</span><span class='period'>.</span><span class='id inspect'>inspect</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="goBelowTemperature-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>goBelowTemperature</strong>(_temp) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+wait until the temperature drops below _temp
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+120
+121
+122
+123
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 120</span>
+
+<span class='kw'>def</span> <span class='id goBelowTemperature'>goBelowTemperature</span><span class='lparen'>(</span><span class='id _temp'>_temp</span><span class='rparen'>)</span>
+  <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>waiting for temperature to go below </span><span class='embexpr_beg'>#{</span><span class='id _temp'>_temp</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+  <span class='kw'>while</span> <span class='id processValue'>processValue</span> <span class='op'>&gt;</span> <span class='id _temp'>_temp</span>
+    <span class='id logTemperature'>logTemperature</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id sleep'>sleep</span> <span class='float'>1.0</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="goToTemperature-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>goToTemperature</strong>(_temp, _epsilon = 1.0) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107
+108
+109
+110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id goToTemperature'>goToTemperature</span><span class='lparen'>(</span><span class='id _temp'>_temp</span><span class='comma'>,</span> <span class='id _epsilon'>_epsilon</span><span class='op'>=</span><span class='float'>1.0</span><span class='rparen'>)</span>
+  <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>waiting for temperature to go within </span><span class='embexpr_beg'>#{</span><span class='id _epsilon'>_epsilon</span><span class='rbrace'>}</span><span class='tstring_content'> degC of </span><span class='embexpr_beg'>#{</span><span class='id _temp'>_temp</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+  <span class='id slave'>slave</span><span class='period'>.</span><span class='id setpointValue'>setpointValue</span><span class='op'>=</span> <span class='id _temp'>_temp</span>
+  <span class='kw'>while</span> <span class='lparen'>(</span><span class='id processValue'>processValue</span> <span class='op'>-</span> <span class='id _temp'>_temp</span><span class='rparen'>)</span><span class='period'>.</span><span class='id abs'>abs</span> <span class='op'>&gt;</span> <span class='id _epsilon'>_epsilon</span>
+    <span class='id logTemperature'>logTemperature</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id sleep'>sleep</span> <span class='float'>1.0</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="leadedProfile-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>leadedProfile</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'bin/solder.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id leadedProfile'>leadedProfile</span>
+  <span class='id controlMode'>controlMode</span><span class='op'>=</span> <span class='const'>CM_ON_OFF</span>
+  <span class='id sleep'>sleep</span><span class='lparen'>(</span><span class='float'>1.0</span><span class='rparen'>)</span>
+  <span class='id runMode'>runMode</span><span class='op'>=</span> <span class='const'>RUN_MODE_RUN</span>
+  <span class='id sleep'>sleep</span><span class='lparen'>(</span><span class='float'>1.0</span><span class='rparen'>)</span>
+  <span class='id goBelowTemperature'>goBelowTemperature</span><span class='lparen'>(</span><span class='float'>40.0</span><span class='rparen'>)</span>
+  <span class='id doProfile'>doProfile</span><span class='lparen'>(</span><span class='const'>LEADED_PROFILE</span><span class='comma'>,</span> <span class='int'>25</span><span class='rparen'>)</span>
+  <span class='id sleep'>sleep</span><span class='lparen'>(</span><span class='float'>1.0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="logTemperature-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>logTemperature</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+143
+144
+145
+146
+147
+148
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 143</span>
+
+<span class='kw'>def</span> <span class='id logTemperature'>logTemperature</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id temperatureLog'>temperatureLog</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+  <span class='id pv'>pv</span> <span class='op'>=</span> <span class='id processValue'>processValue</span>
+  <span class='id sv'>sv</span> <span class='op'>=</span> <span class='id setpointValue'>setpointValue</span>
+  <span class='comment'># timestamp = Time.now.strftime(&quot;%H:%M:%S&quot;)
+</span>  <span class='id timestamp'>timestamp</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span> <span class='op'>-</span> <span class='id temperatureLogOpened'>temperatureLogOpened</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+  <span class='id temperatureLog'>temperatureLog</span><span class='period'>.</span><span class='id printf'>printf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%s,%.1f,%.1f,%.1f,%.1f\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id timestamp'>timestamp</span><span class='comma'>,</span> <span class='id sv'>sv</span><span class='comma'>,</span> <span class='id pv'>pv</span><span class='comma'>,</span> <span class='id output1Level'>output1Level</span><span class='comma'>,</span> <span class='id output2Level'>output2Level</span><span class='rparen'>)</span>
+  <span class='id temperatureLog'>temperatureLog</span><span class='period'>.</span><span class='id fsync'>fsync</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="logTemperatureHeaders-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>logTemperatureHeaders</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140
+141</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id logTemperatureHeaders'>logTemperatureHeaders</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id temperatureLog'>temperatureLog</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+  <span class='id temperatureLog'>temperatureLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>time,setpoint,process,output1,output2</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="openTemperatureLog-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>openTemperatureLog</strong>(file, headers = false) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id openTemperatureLog'>openTemperatureLog</span><span class='lparen'>(</span><span class='id file'>file</span><span class='comma'>,</span><span class='id headers'>headers</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='ivar'>@temperatureLog</span><span class='period'>.</span><span class='id close'>close</span> <span class='kw'>if</span> <span class='ivar'>@temperatureLog</span>
+  <span class='ivar'>@temperatureLog</span> <span class='op'>=</span> <span class='id file'>file</span>
+  <span class='kw'>if</span> <span class='ivar'>@temperatureLog</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+    <span class='ivar'>@temperatureLogOpened</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='kw'>return</span>
+  <span class='kw'>end</span>
+  <span class='id logTemperatureHeaders'>logTemperatureHeaders</span> <span class='kw'>if</span> <span class='id headers'>headers</span>
+  <span class='ivar'>@temperatureLogOpened</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id now'>now</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="processValue-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>processValue</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id processValue'>processValue</span>
+  <span class='id pv'>pv</span> <span class='op'>=</span> <span class='id slave'>slave</span><span class='period'>.</span><span class='id processValue'>processValue</span>
+  <span class='kw'>while</span> <span class='id pv'>pv</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+    <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PV nil; retrying</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+    <span class='id pv'>pv</span> <span class='op'>=</span> <span class='id slave'>slave</span><span class='period'>.</span><span class='id processValue'>processValue</span>
+  <span class='kw'>end</span>
+  <span class='id pv'>pv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="ramp-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>ramp</strong>(_from, _to, _time) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 153</span>
+
+<span class='kw'>def</span> <span class='id ramp'>ramp</span><span class='lparen'>(</span><span class='id _from'>_from</span><span class='comma'>,</span><span class='id _to'>_to</span><span class='comma'>,</span><span class='id _time'>_time</span><span class='rparen'>)</span>
+  <span class='id temp'>temp</span> <span class='op'>=</span> <span class='id _from'>_from</span>
+  <span class='kw'>begin</span>
+    <span class='const'>TimedRepeat</span><span class='period'>.</span><span class='id repeatAt'>repeatAt</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id defaultSamplingPeriod'>defaultSamplingPeriod</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id class'>class</span><span class='period'>.</span><span class='id defaultAllowableLateness'>defaultAllowableLateness</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id t'>t</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id t'>t</span><span class='period'>.</span><span class='id timeSinceReset'>timeSinceReset</span> <span class='op'>&gt;=</span> <span class='id _time'>_time</span>
+        <span class='id t'>t</span><span class='period'>.</span><span class='id stop'>stop</span>
+      <span class='kw'>end</span>
+      <span class='id tdelta'>tdelta</span> <span class='op'>=</span> <span class='id t'>t</span><span class='period'>.</span><span class='id timeSinceLast'>timeSinceLast</span>
+      <span class='id temp'>temp</span> <span class='op'>=</span> <span class='id _from'>_from</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id _to'>_to</span><span class='op'>-</span><span class='id _from'>_from</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='id t'>t</span><span class='period'>.</span><span class='id timeSinceReset'>timeSinceReset</span> <span class='op'>/</span> <span class='id _time'>_time</span>
+      <span class='id slave'>slave</span><span class='period'>.</span><span class='id setpointValue'>setpointValue</span><span class='op'>=</span> <span class='id temp'>temp</span>
+      <span class='id logTemperature'>logTemperature</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>TimedRepeat</span><span class='op'>::</span><span class='const'>MissedRepeat</span>
+    <span class='kw'>retry</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="reset-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>reset</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+attempt to re-init the serial port after an error
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131
+132
+133
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id reset'>reset</span>
+  <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attempting to reset client</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+  <span class='id client'>client</span><span class='period'>.</span><span class='id close'>close</span>
+  <span class='id sleep'>sleep</span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span>
+  <span class='ivar'>@client</span> <span class='op'>=</span> <span class='const'>TemperatureControllerClient</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id client'>client</span><span class='period'>.</span><span class='id port'>port</span><span class='comma'>,</span> <span class='id client'>client</span><span class='period'>.</span><span class='id baud'>baud</span><span class='comma'>,</span> <span class='ivar'>@opts</span><span class='rparen'>)</span>
+  <span class='ivar'>@slave</span> <span class='op'>=</span> <span class='ivar'>@client</span><span class='period'>.</span><span class='id with_slave'>with_slave</span><span class='lparen'>(</span><span class='ivar'>@slaveAddress</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id debug'>debug</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@debug</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setPatternToProfile-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>setPatternToProfile</strong>(_pattern, _profile, _startTemp = processValue) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+profile is array of [temperature,time] values
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 186</span>
+
+<span class='kw'>def</span> <span class='id setPatternToProfile'>setPatternToProfile</span><span class='lparen'>(</span><span class='id _pattern'>_pattern</span><span class='comma'>,</span><span class='id _profile'>_profile</span><span class='comma'>,</span><span class='id _startTemp'>_startTemp</span><span class='op'>=</span><span class='id processValue'>processValue</span><span class='rparen'>)</span>
+  <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>setting pattern </span><span class='embexpr_beg'>#{</span><span class='id _pattern'>_pattern</span><span class='rbrace'>}</span><span class='tstring_content'> to </span><span class='embexpr_beg'>#{</span><span class='id _profile'>_profile</span><span class='period'>.</span><span class='id pretty_print_inspect'>pretty_print_inspect</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+  <span class='id values'>values</span> <span class='op'>=</span> <span class='id _profile'>_profile</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id s'>s</span><span class='op'>|</span> <span class='id s'>s</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='id rampSoakSetpointValues'>rampSoakSetpointValues</span><span class='lparen'>(</span><span class='id _pattern'>_pattern</span><span class='comma'>,</span> <span class='id values'>values</span><span class='rparen'>)</span>
+  <span class='id times'>times</span> <span class='op'>=</span> <span class='id _profile'>_profile</span><span class='period'>.</span><span class='id map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id s'>s</span><span class='op'>|</span> <span class='lbracket'>[</span><span class='id s'>s</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='int'>60</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id max'>max</span> <span class='rbrace'>}</span>
+  <span class='id rampSoakTimes'>rampSoakTimes</span><span class='lparen'>(</span><span class='id _pattern'>_pattern</span><span class='comma'>,</span> <span class='id times'>times</span><span class='rparen'>)</span>
+  <span class='id nextPatternNumber'>nextPatternNumber</span><span class='lparen'>(</span><span class='id _pattern'>_pattern</span><span class='comma'>,</span> <span class='const'>NO_NEXT_PATTERN</span><span class='rparen'>)</span>
+  <span class='id startingRampSoakPattern'>startingRampSoakPattern</span><span class='op'>=</span> <span class='id _pattern'>_pattern</span>
+  <span class='id lastStepNumber'>lastStepNumber</span><span class='lparen'>(</span><span class='id _pattern'>_pattern</span><span class='comma'>,</span> <span class='id _profile'>_profile</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
+  <span class='id additionalCycles'>additionalCycles</span><span class='lparen'>(</span><span class='id _pattern'>_pattern</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setpointValue-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>setpointValue</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96
+97
+98
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id setpointValue'>setpointValue</span>
+  <span class='id sv'>sv</span> <span class='op'>=</span> <span class='id slave'>slave</span><span class='period'>.</span><span class='id setpointValue'>setpointValue</span>
+  <span class='kw'>while</span> <span class='id sv'>sv</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+    <span class='id statusLog'>statusLog</span><span class='period'>.</span><span class='id puts'>puts</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SV nil; retrying</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id statusLog'>statusLog</span>
+    <span class='id sv'>sv</span> <span class='op'>=</span> <span class='id slave'>slave</span><span class='period'>.</span><span class='id setpointValue'>setpointValue</span>
+  <span class='kw'>end</span>
+  <span class='id sv'>sv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setUpProfile-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>setUpProfile</strong>(n = 0) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'bin/solder.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id setUpProfile'>setUpProfile</span><span class='lparen'>(</span><span class='id n'>n</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id pidParameterGroup'>pidParameterGroup</span><span class='op'>=</span> <span class='const'>PID_PARAMETER_GROUP_AUTO</span> 
+  <span class='id controlMode'>controlMode</span><span class='op'>=</span> <span class='const'>CM_RAMP_SOAK</span>
+  <span class='comment'># set up profile in unit
+</span>  <span class='id setPatternToProfile'>setPatternToProfile</span><span class='lparen'>(</span><span class='id n'>n</span><span class='comma'>,</span> <span class='const'>LEADED_PROFILE</span><span class='comma'>,</span> <span class='int'>25</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="startProfile-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>startProfile</strong>(n = 0) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52
+53
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'bin/solder.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id startProfile'>startProfile</span><span class='lparen'>(</span><span class='id n'>n</span> <span class='op'>=</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id runMode'>runMode</span> <span class='op'>=</span> <span class='const'>RUN_MODE_STOP</span>
+  <span class='id controlMode'>controlMode</span> <span class='op'>=</span> <span class='const'>CM_RAMP_SOAK</span>
+  <span class='id startingRampSoakPattern'>startingRampSoakPattern</span> <span class='op'>=</span> <span class='id n'>n</span>
+  <span class='id holdRampSoakControl'>holdRampSoakControl</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id stopRampSoakControl'>stopRampSoakControl</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id runMode'>runMode</span> <span class='op'>=</span> <span class='const'>RUN_MODE_RUN</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="waitForProfile-instance_method">
+  
+    - (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>waitForProfile</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+112
+113
+114
+115
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/smdoven.rb', line 112</span>
+
+<span class='kw'>def</span> <span class='id waitForProfile'>waitForProfile</span>
+  <span class='kw'>while</span> <span class='id rampSoakControlStatus'>rampSoakControlStatus</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id logTemperature'>logTemperature</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='id sleep'>sleep</span> <span class='float'>1.0</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 30 10:51:18 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

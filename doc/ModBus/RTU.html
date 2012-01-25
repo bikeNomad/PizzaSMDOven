@@ -1,283 +1,664 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: ModBus::RTU
+  
+    &mdash; Pizza SMD Oven Controller
+  
+</title>
 
-<html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 
-<title>Module: ModBus::RTU</title>
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
-
-<script type="text/javascript">
-  var rdoc_rel_prefix = "../";
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
 
 
-<body id="top" class="module">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../ModBus.html" title="ModBus (module)">ModBus</a></span></span>
+     &raquo; 
+    <span class="title">RTU</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Module: ModBus::RTU
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+    <dt class="r1">Included in:</dt>
+    <dd class="r1"><span class='object_link'><a href="Client.html" title="ModBus::Client (class)">Client</a></span>, <span class='object_link'><a href="RTUClient.html" title="ModBus::RTUClient (class)">RTUClient</a></span>, <span class='object_link'><a href="RTUServer.html" title="ModBus::RTUServer (class)">RTUServer</a></span>, <span class='object_link'><a href="RTUSlave.html" title="ModBus::RTUSlave (class)">RTUSlave</a></span>, <span class='object_link'><a href="RTUViaTCPClient.html" title="ModBus::RTUViaTCPClient (class)">RTUViaTCPClient</a></span>, <span class='object_link'><a href="RTUViaTCPServer.html" title="ModBus::RTUViaTCPServer (class)">RTUViaTCPServer</a></span>, <span class='object_link'><a href="RTUViaTCPSlave.html" title="ModBus::RTUViaTCPSlave (class)">RTUViaTCPSlave</a></span></dd>
+    
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">rmodbus/lib/rmodbus/rtu.rb</dd>
+  
+</dl>
+<div class="clear"></div>
 
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="CrcHiTable-constant" class="">CrcHiTable =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span>
+<span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span>
+<span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span>
+<span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span>
+<span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span>
+<span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span>
+<span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span>
+<span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span>
+<span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span>
+<span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span>
+<span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span>
+<span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span>
+<span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span>
+<span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span>
+<span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span>
+<span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span>
+<span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span>
+<span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x40</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span>
+<span class='int'>0x40</span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="CrcLoTable-constant" class="">CrcLoTable =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span>
+<span class='int'>0x00</span><span class='comma'>,</span> <span class='int'>0xC0</span><span class='comma'>,</span> <span class='int'>0xC1</span><span class='comma'>,</span> <span class='int'>0x01</span><span class='comma'>,</span> <span class='int'>0xC3</span><span class='comma'>,</span> <span class='int'>0x03</span><span class='comma'>,</span> <span class='int'>0x02</span><span class='comma'>,</span> <span class='int'>0xC2</span><span class='comma'>,</span> <span class='int'>0xC6</span><span class='comma'>,</span> <span class='int'>0x06</span><span class='comma'>,</span> <span class='int'>0x07</span><span class='comma'>,</span> <span class='int'>0xC7</span><span class='comma'>,</span> <span class='int'>0x05</span><span class='comma'>,</span> <span class='int'>0xC5</span><span class='comma'>,</span> <span class='int'>0xC4</span><span class='comma'>,</span>
+<span class='int'>0x04</span><span class='comma'>,</span> <span class='int'>0xCC</span><span class='comma'>,</span> <span class='int'>0x0C</span><span class='comma'>,</span> <span class='int'>0x0D</span><span class='comma'>,</span> <span class='int'>0xCD</span><span class='comma'>,</span> <span class='int'>0x0F</span><span class='comma'>,</span> <span class='int'>0xCF</span><span class='comma'>,</span> <span class='int'>0xCE</span><span class='comma'>,</span> <span class='int'>0x0E</span><span class='comma'>,</span> <span class='int'>0x0A</span><span class='comma'>,</span> <span class='int'>0xCA</span><span class='comma'>,</span> <span class='int'>0xCB</span><span class='comma'>,</span> <span class='int'>0x0B</span><span class='comma'>,</span> <span class='int'>0xC9</span><span class='comma'>,</span> <span class='int'>0x09</span><span class='comma'>,</span>
+<span class='int'>0x08</span><span class='comma'>,</span> <span class='int'>0xC8</span><span class='comma'>,</span> <span class='int'>0xD8</span><span class='comma'>,</span> <span class='int'>0x18</span><span class='comma'>,</span> <span class='int'>0x19</span><span class='comma'>,</span> <span class='int'>0xD9</span><span class='comma'>,</span> <span class='int'>0x1B</span><span class='comma'>,</span> <span class='int'>0xDB</span><span class='comma'>,</span> <span class='int'>0xDA</span><span class='comma'>,</span> <span class='int'>0x1A</span><span class='comma'>,</span> <span class='int'>0x1E</span><span class='comma'>,</span> <span class='int'>0xDE</span><span class='comma'>,</span> <span class='int'>0xDF</span><span class='comma'>,</span> <span class='int'>0x1F</span><span class='comma'>,</span> <span class='int'>0xDD</span><span class='comma'>,</span>
+<span class='int'>0x1D</span><span class='comma'>,</span> <span class='int'>0x1C</span><span class='comma'>,</span> <span class='int'>0xDC</span><span class='comma'>,</span> <span class='int'>0x14</span><span class='comma'>,</span> <span class='int'>0xD4</span><span class='comma'>,</span> <span class='int'>0xD5</span><span class='comma'>,</span> <span class='int'>0x15</span><span class='comma'>,</span> <span class='int'>0xD7</span><span class='comma'>,</span> <span class='int'>0x17</span><span class='comma'>,</span> <span class='int'>0x16</span><span class='comma'>,</span> <span class='int'>0xD6</span><span class='comma'>,</span> <span class='int'>0xD2</span><span class='comma'>,</span> <span class='int'>0x12</span><span class='comma'>,</span> <span class='int'>0x13</span><span class='comma'>,</span> <span class='int'>0xD3</span><span class='comma'>,</span>
+<span class='int'>0x11</span><span class='comma'>,</span> <span class='int'>0xD1</span><span class='comma'>,</span> <span class='int'>0xD0</span><span class='comma'>,</span> <span class='int'>0x10</span><span class='comma'>,</span> <span class='int'>0xF0</span><span class='comma'>,</span> <span class='int'>0x30</span><span class='comma'>,</span> <span class='int'>0x31</span><span class='comma'>,</span> <span class='int'>0xF1</span><span class='comma'>,</span> <span class='int'>0x33</span><span class='comma'>,</span> <span class='int'>0xF3</span><span class='comma'>,</span> <span class='int'>0xF2</span><span class='comma'>,</span> <span class='int'>0x32</span><span class='comma'>,</span> <span class='int'>0x36</span><span class='comma'>,</span> <span class='int'>0xF6</span><span class='comma'>,</span> <span class='int'>0xF7</span><span class='comma'>,</span>
+<span class='int'>0x37</span><span class='comma'>,</span> <span class='int'>0xF5</span><span class='comma'>,</span> <span class='int'>0x35</span><span class='comma'>,</span> <span class='int'>0x34</span><span class='comma'>,</span> <span class='int'>0xF4</span><span class='comma'>,</span> <span class='int'>0x3C</span><span class='comma'>,</span> <span class='int'>0xFC</span><span class='comma'>,</span> <span class='int'>0xFD</span><span class='comma'>,</span> <span class='int'>0x3D</span><span class='comma'>,</span> <span class='int'>0xFF</span><span class='comma'>,</span> <span class='int'>0x3F</span><span class='comma'>,</span> <span class='int'>0x3E</span><span class='comma'>,</span> <span class='int'>0xFE</span><span class='comma'>,</span> <span class='int'>0xFA</span><span class='comma'>,</span> <span class='int'>0x3A</span><span class='comma'>,</span>
+<span class='int'>0x3B</span><span class='comma'>,</span> <span class='int'>0xFB</span><span class='comma'>,</span> <span class='int'>0x39</span><span class='comma'>,</span> <span class='int'>0xF9</span><span class='comma'>,</span> <span class='int'>0xF8</span><span class='comma'>,</span> <span class='int'>0x38</span><span class='comma'>,</span> <span class='int'>0x28</span><span class='comma'>,</span> <span class='int'>0xE8</span><span class='comma'>,</span> <span class='int'>0xE9</span><span class='comma'>,</span> <span class='int'>0x29</span><span class='comma'>,</span> <span class='int'>0xEB</span><span class='comma'>,</span> <span class='int'>0x2B</span><span class='comma'>,</span> <span class='int'>0x2A</span><span class='comma'>,</span> <span class='int'>0xEA</span><span class='comma'>,</span> <span class='int'>0xEE</span><span class='comma'>,</span>
+<span class='int'>0x2E</span><span class='comma'>,</span> <span class='int'>0x2F</span><span class='comma'>,</span> <span class='int'>0xEF</span><span class='comma'>,</span> <span class='int'>0x2D</span><span class='comma'>,</span> <span class='int'>0xED</span><span class='comma'>,</span> <span class='int'>0xEC</span><span class='comma'>,</span> <span class='int'>0x2C</span><span class='comma'>,</span> <span class='int'>0xE4</span><span class='comma'>,</span> <span class='int'>0x24</span><span class='comma'>,</span> <span class='int'>0x25</span><span class='comma'>,</span> <span class='int'>0xE5</span><span class='comma'>,</span> <span class='int'>0x27</span><span class='comma'>,</span> <span class='int'>0xE7</span><span class='comma'>,</span> <span class='int'>0xE6</span><span class='comma'>,</span> <span class='int'>0x26</span><span class='comma'>,</span>
+<span class='int'>0x22</span><span class='comma'>,</span> <span class='int'>0xE2</span><span class='comma'>,</span> <span class='int'>0xE3</span><span class='comma'>,</span> <span class='int'>0x23</span><span class='comma'>,</span> <span class='int'>0xE1</span><span class='comma'>,</span> <span class='int'>0x21</span><span class='comma'>,</span> <span class='int'>0x20</span><span class='comma'>,</span> <span class='int'>0xE0</span><span class='comma'>,</span> <span class='int'>0xA0</span><span class='comma'>,</span> <span class='int'>0x60</span><span class='comma'>,</span> <span class='int'>0x61</span><span class='comma'>,</span> <span class='int'>0xA1</span><span class='comma'>,</span> <span class='int'>0x63</span><span class='comma'>,</span> <span class='int'>0xA3</span><span class='comma'>,</span> <span class='int'>0xA2</span><span class='comma'>,</span>
+<span class='int'>0x62</span><span class='comma'>,</span> <span class='int'>0x66</span><span class='comma'>,</span> <span class='int'>0xA6</span><span class='comma'>,</span> <span class='int'>0xA7</span><span class='comma'>,</span> <span class='int'>0x67</span><span class='comma'>,</span> <span class='int'>0xA5</span><span class='comma'>,</span> <span class='int'>0x65</span><span class='comma'>,</span> <span class='int'>0x64</span><span class='comma'>,</span> <span class='int'>0xA4</span><span class='comma'>,</span> <span class='int'>0x6C</span><span class='comma'>,</span> <span class='int'>0xAC</span><span class='comma'>,</span> <span class='int'>0xAD</span><span class='comma'>,</span> <span class='int'>0x6D</span><span class='comma'>,</span> <span class='int'>0xAF</span><span class='comma'>,</span> <span class='int'>0x6F</span><span class='comma'>,</span>
+<span class='int'>0x6E</span><span class='comma'>,</span> <span class='int'>0xAE</span><span class='comma'>,</span> <span class='int'>0xAA</span><span class='comma'>,</span> <span class='int'>0x6A</span><span class='comma'>,</span> <span class='int'>0x6B</span><span class='comma'>,</span> <span class='int'>0xAB</span><span class='comma'>,</span> <span class='int'>0x69</span><span class='comma'>,</span> <span class='int'>0xA9</span><span class='comma'>,</span> <span class='int'>0xA8</span><span class='comma'>,</span> <span class='int'>0x68</span><span class='comma'>,</span> <span class='int'>0x78</span><span class='comma'>,</span> <span class='int'>0xB8</span><span class='comma'>,</span> <span class='int'>0xB9</span><span class='comma'>,</span> <span class='int'>0x79</span><span class='comma'>,</span> <span class='int'>0xBB</span><span class='comma'>,</span>
+<span class='int'>0x7B</span><span class='comma'>,</span> <span class='int'>0x7A</span><span class='comma'>,</span> <span class='int'>0xBA</span><span class='comma'>,</span> <span class='int'>0xBE</span><span class='comma'>,</span> <span class='int'>0x7E</span><span class='comma'>,</span> <span class='int'>0x7F</span><span class='comma'>,</span> <span class='int'>0xBF</span><span class='comma'>,</span> <span class='int'>0x7D</span><span class='comma'>,</span> <span class='int'>0xBD</span><span class='comma'>,</span> <span class='int'>0xBC</span><span class='comma'>,</span> <span class='int'>0x7C</span><span class='comma'>,</span> <span class='int'>0xB4</span><span class='comma'>,</span> <span class='int'>0x74</span><span class='comma'>,</span> <span class='int'>0x75</span><span class='comma'>,</span> <span class='int'>0xB5</span><span class='comma'>,</span>
+<span class='int'>0x77</span><span class='comma'>,</span> <span class='int'>0xB7</span><span class='comma'>,</span> <span class='int'>0xB6</span><span class='comma'>,</span> <span class='int'>0x76</span><span class='comma'>,</span> <span class='int'>0x72</span><span class='comma'>,</span> <span class='int'>0xB2</span><span class='comma'>,</span> <span class='int'>0xB3</span><span class='comma'>,</span> <span class='int'>0x73</span><span class='comma'>,</span> <span class='int'>0xB1</span><span class='comma'>,</span> <span class='int'>0x71</span><span class='comma'>,</span> <span class='int'>0x70</span><span class='comma'>,</span> <span class='int'>0xB0</span><span class='comma'>,</span> <span class='int'>0x50</span><span class='comma'>,</span> <span class='int'>0x90</span><span class='comma'>,</span> <span class='int'>0x91</span><span class='comma'>,</span>
+<span class='int'>0x51</span><span class='comma'>,</span> <span class='int'>0x93</span><span class='comma'>,</span> <span class='int'>0x53</span><span class='comma'>,</span> <span class='int'>0x52</span><span class='comma'>,</span> <span class='int'>0x92</span><span class='comma'>,</span> <span class='int'>0x96</span><span class='comma'>,</span> <span class='int'>0x56</span><span class='comma'>,</span> <span class='int'>0x57</span><span class='comma'>,</span> <span class='int'>0x97</span><span class='comma'>,</span> <span class='int'>0x55</span><span class='comma'>,</span> <span class='int'>0x95</span><span class='comma'>,</span> <span class='int'>0x94</span><span class='comma'>,</span> <span class='int'>0x54</span><span class='comma'>,</span> <span class='int'>0x9C</span><span class='comma'>,</span> <span class='int'>0x5C</span><span class='comma'>,</span>
+<span class='int'>0x5D</span><span class='comma'>,</span> <span class='int'>0x9D</span><span class='comma'>,</span> <span class='int'>0x5F</span><span class='comma'>,</span> <span class='int'>0x9F</span><span class='comma'>,</span> <span class='int'>0x9E</span><span class='comma'>,</span> <span class='int'>0x5E</span><span class='comma'>,</span> <span class='int'>0x5A</span><span class='comma'>,</span> <span class='int'>0x9A</span><span class='comma'>,</span> <span class='int'>0x9B</span><span class='comma'>,</span> <span class='int'>0x5B</span><span class='comma'>,</span> <span class='int'>0x99</span><span class='comma'>,</span> <span class='int'>0x59</span><span class='comma'>,</span> <span class='int'>0x58</span><span class='comma'>,</span> <span class='int'>0x98</span><span class='comma'>,</span> <span class='int'>0x88</span><span class='comma'>,</span>
+<span class='int'>0x48</span><span class='comma'>,</span> <span class='int'>0x49</span><span class='comma'>,</span> <span class='int'>0x89</span><span class='comma'>,</span> <span class='int'>0x4B</span><span class='comma'>,</span> <span class='int'>0x8B</span><span class='comma'>,</span> <span class='int'>0x8A</span><span class='comma'>,</span> <span class='int'>0x4A</span><span class='comma'>,</span> <span class='int'>0x4E</span><span class='comma'>,</span> <span class='int'>0x8E</span><span class='comma'>,</span> <span class='int'>0x8F</span><span class='comma'>,</span> <span class='int'>0x4F</span><span class='comma'>,</span> <span class='int'>0x8D</span><span class='comma'>,</span> <span class='int'>0x4D</span><span class='comma'>,</span> <span class='int'>0x4C</span><span class='comma'>,</span> <span class='int'>0x8C</span><span class='comma'>,</span>
+<span class='int'>0x44</span><span class='comma'>,</span> <span class='int'>0x84</span><span class='comma'>,</span> <span class='int'>0x85</span><span class='comma'>,</span> <span class='int'>0x45</span><span class='comma'>,</span> <span class='int'>0x87</span><span class='comma'>,</span> <span class='int'>0x47</span><span class='comma'>,</span> <span class='int'>0x46</span><span class='comma'>,</span> <span class='int'>0x86</span><span class='comma'>,</span> <span class='int'>0x82</span><span class='comma'>,</span> <span class='int'>0x42</span><span class='comma'>,</span> <span class='int'>0x43</span><span class='comma'>,</span> <span class='int'>0x83</span><span class='comma'>,</span> <span class='int'>0x41</span><span class='comma'>,</span> <span class='int'>0x81</span><span class='comma'>,</span> <span class='int'>0x80</span><span class='comma'>,</span>
+<span class='int'>0x40</span><span class='rbracket'>]</span></pre></dd>
+      
+    </dl>
+  
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
 
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/rtu.rb
-  </ul>
-</nav>
 
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#crc16-instance_method" title="#crc16 (instance method)">- (Object) <strong>crc16</strong>(msg) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Calc CRC16 for massage.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#read_rtu_pdu-instance_method" title="#read_rtu_pdu (instance method)">- (Object) <strong>read_rtu_pdu</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#read_rtu_request-instance_method" title="#read_rtu_request (instance method)">- (Object) <strong>read_rtu_request</strong>(io) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#read_rtu_response-instance_method" title="#read_rtu_response (instance method)">- (Object) <strong>read_rtu_response</strong>(io) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+We have to read specific amounts of numbers of bytes from the network
+depending on the function code and content.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#send_rtu_pdu-instance_method" title="#send_rtu_pdu (instance method)">- (Object) <strong>send_rtu_pdu</strong>(pdu) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#serv_rtu_requests-instance_method" title="#serv_rtu_requests (instance method)">- (Object) <strong>serv_rtu_requests</strong>(io, &amp;blk) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="crc16-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>crc16</strong>(msg)  <span class="extras">(private)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Calc CRC16 for massage
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/rtu.rb', line 118</span>
+
+<span class='kw'>def</span> <span class='id crc16'>crc16</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='rparen'>)</span>
+  <span class='id crc_lo'>crc_lo</span> <span class='op'>=</span> <span class='int'>0xff</span>
+  <span class='id crc_hi'>crc_hi</span> <span class='op'>=</span> <span class='int'>0xff</span>
+
+  <span class='id msg'>msg</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>c*</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id byte'>byte</span><span class='op'>|</span>
+    <span class='id i'>i</span> <span class='op'>=</span> <span class='id crc_hi'>crc_hi</span> <span class='op'>^</span> <span class='id byte'>byte</span>
+    <span class='id crc_hi'>crc_hi</span> <span class='op'>=</span> <span class='id crc_lo'>crc_lo</span> <span class='op'>^</span> <span class='const'>CrcHiTable</span><span class='lbracket'>[</span><span class='id i'>i</span><span class='rbracket'>]</span>
+    <span class='id crc_lo'>crc_lo</span> <span class='op'>=</span> <span class='const'>CrcLoTable</span><span class='lbracket'>[</span><span class='id i'>i</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id crc_hi'>crc_hi</span> <span class='op'>&lt;&lt;</span> <span class='int'>8</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id crc_lo'>crc_lo</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_rtu_pdu-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>read_rtu_pdu</strong>  <span class="extras">(private)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/rtu.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='id read_rtu_pdu'>read_rtu_pdu</span>
+  <span class='id msg'>msg</span> <span class='op'>=</span> <span class='id read_rtu_response'>read_rtu_response</span><span class='lparen'>(</span><span class='ivar'>@io</span><span class='rparen'>)</span>
+
+  <span class='id log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Rx (</span><span class='embexpr_beg'>#{</span><span class='id msg'>msg</span><span class='period'>.</span><span class='id size'>size</span><span class='rbrace'>}</span><span class='tstring_content'> bytes): </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id logging_bytes'>logging_bytes</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id msg'>msg</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='ivar'>@uid</span>
+    <span class='kw'>return</span> <span class='id msg'>msg</span><span class='lbracket'>[</span><span class='int'>1</span><span class='op'>..</span><span class='op'>-</span><span class='int'>3</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id msg'>msg</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>n</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id crc16'>crc16</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='op'>-</span><span class='int'>3</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='id log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ignore package: don't match CRC</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ignore package: don't match uid ID</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id loop'>loop</span> <span class='kw'>do</span>
+    <span class='comment'>#waite timeout
+</span>    <span class='id sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.1</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_rtu_request-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>read_rtu_request</strong>(io)  <span class="extras">(private)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/rtu.rb', line 74</span>
+
+<span class='kw'>def</span> <span class='id read_rtu_request'>read_rtu_request</span><span class='lparen'>(</span><span class='id io'>io</span><span class='rparen'>)</span>
+	<span class='comment'># Read the slave_id and function code
+</span>	<span class='id msg'>msg</span> <span class='op'>=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
+
+	<span class='comment'># If msg is nil, then our client never sent us anything and it's time to disconnect
+</span>	<span class='kw'>return</span> <span class='kw'>if</span> <span class='id msg'>msg</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+
+	<span class='id function_code'>function_code</span> <span class='op'>=</span> <span class='id msg'>msg</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+	<span class='kw'>if</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>2</span><span class='comma'>,</span> <span class='int'>3</span><span class='comma'>,</span> <span class='int'>4</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='int'>6</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id include?'>include?</span><span class='lparen'>(</span><span class='id function_code'>function_code</span><span class='rparen'>)</span>
+		<span class='comment'># read 6 more bytes and return the message total message
+</span>		<span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>6</span><span class='rparen'>)</span>
+	<span class='kw'>elsif</span> <span class='lbracket'>[</span><span class='int'>15</span><span class='comma'>,</span> <span class='int'>16</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id include?'>include?</span><span class='lparen'>(</span><span class='id function_code'>function_code</span><span class='rparen'>)</span>
+		<span class='comment'># Read in first register, register count, and data bytes
+</span>		<span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span>
+		<span class='comment'># Read in however much data we need to + 2 CRC bytes
+</span>		<span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>6</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>2</span><span class='rparen'>)</span>
+	<span class='kw'>else</span>
+		<span class='id raise'>raise</span> <span class='const'>ModBus</span><span class='op'>::</span><span class='const'>Errors</span><span class='op'>::</span><span class='const'>IllegalFunction</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Illegal function: </span><span class='embexpr_beg'>#{</span><span class='id function_code'>function_code</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+	<span class='kw'>end</span>
+
+	<span class='id log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Server RX (</span><span class='embexpr_beg'>#{</span><span class='id msg'>msg</span><span class='period'>.</span><span class='id size'>size</span><span class='rbrace'>}</span><span class='tstring_content'> bytes): </span><span class='embexpr_beg'>#{</span><span class='id logging_bytes'>logging_bytes</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+
+	<span class='id msg'>msg</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_rtu_response-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>read_rtu_response</strong>(io)  <span class="extras">(private)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+We have to read specific amounts of numbers of bytes from the network
+depending on the function code and content
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/rtu.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id read_rtu_response'>read_rtu_response</span><span class='lparen'>(</span><span class='id io'>io</span><span class='rparen'>)</span>
+ <span class='comment'># Read the slave_id and function code
+</span>  <span class='id msg'>msg</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>while</span> <span class='id msg'>msg</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+   <span class='id msg'>msg</span> <span class='op'>=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span>
+    <span class='id sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.01</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='id function_code'>function_code</span> <span class='op'>=</span> <span class='id msg'>msg</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id function_code'>function_code</span>
+    <span class='kw'>when</span> <span class='int'>1</span><span class='comma'>,</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>3</span><span class='comma'>,</span><span class='int'>4</span> <span class='kw'>then</span>
+      <span class='comment'># read the third byte to find out how much more
+</span>      <span class='comment'># we need to read + CRC
+</span>      <span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+      <span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='op'>+</span><span class='int'>2</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>5</span><span class='comma'>,</span><span class='int'>6</span><span class='comma'>,</span><span class='int'>15</span><span class='comma'>,</span><span class='int'>16</span> <span class='kw'>then</span>
+      <span class='comment'># We just read in an additional 6 bytes
+</span>      <span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>6</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>22</span> <span class='kw'>then</span>
+      <span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>8</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>0x80</span><span class='op'>..</span><span class='int'>0xff</span> <span class='kw'>then</span>
+      <span class='id msg'>msg</span> <span class='op'>+=</span> <span class='id io'>io</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id raise'>raise</span> <span class='const'>ModBus</span><span class='op'>::</span><span class='const'>Errors</span><span class='op'>::</span><span class='const'>IllegalFunction</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Illegal function: </span><span class='embexpr_beg'>#{</span><span class='id function_code'>function_code</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="send_rtu_pdu-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>send_rtu_pdu</strong>(pdu)  <span class="extras">(private)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+48
+49
+50
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/rtu.rb', line 48</span>
+
+<span class='kw'>def</span> <span class='id send_rtu_pdu'>send_rtu_pdu</span><span class='lparen'>(</span><span class='id pdu'>pdu</span><span class='rparen'>)</span>
+  <span class='id msg'>msg</span> <span class='op'>=</span> <span class='ivar'>@uid</span><span class='period'>.</span><span class='id chr'>chr</span> <span class='op'>+</span> <span class='id pdu'>pdu</span>
+  <span class='id msg'>msg</span> <span class='op'>&lt;&lt;</span> <span class='id crc16'>crc16</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_word'>to_word</span>
+  <span class='ivar'>@io</span><span class='period'>.</span><span class='id write'>write</span> <span class='id msg'>msg</span>
+
+  <span class='id log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tx (</span><span class='embexpr_beg'>#{</span><span class='id msg'>msg</span><span class='period'>.</span><span class='id size'>size</span><span class='rbrace'>}</span><span class='tstring_content'> bytes): </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id logging_bytes'>logging_bytes</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="serv_rtu_requests-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>serv_rtu_requests</strong>(io, &amp;blk)  <span class="extras">(private)</span>
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/rtu.rb', line 99</span>
+
+<span class='kw'>def</span> <span class='id serv_rtu_requests'>serv_rtu_requests</span><span class='lparen'>(</span><span class='id io'>io</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='rparen'>)</span>
+  <span class='id loop'>loop</span> <span class='kw'>do</span>
+    <span class='comment'># read the RTU message
+</span>    <span class='id msg'>msg</span> <span class='op'>=</span> <span class='id read_rtu_request'>read_rtu_request</span><span class='lparen'>(</span><span class='id io'>io</span><span class='rparen'>)</span>
+    <span class='comment'># If there is no RTU message, we're done serving this client
+</span>    <span class='kw'>break</span> <span class='kw'>if</span> <span class='id msg'>msg</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+
+    <span class='kw'>if</span> <span class='id msg'>msg</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='ivar'>@uid</span> <span class='kw'>and</span> <span class='id msg'>msg</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>n</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id crc16'>crc16</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='op'>-</span><span class='int'>3</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id pdu'>pdu</span> <span class='op'>=</span> <span class='kw'>yield</span> <span class='id msg'>msg</span>
+      <span class='id resp'>resp</span> <span class='op'>=</span> <span class='ivar'>@uid</span><span class='period'>.</span><span class='id chr'>chr</span> <span class='op'>+</span> <span class='id pdu'>pdu</span>
+      <span class='id resp'>resp</span> <span class='op'>&lt;&lt;</span> <span class='id crc16'>crc16</span><span class='lparen'>(</span><span class='id resp'>resp</span><span class='rparen'>)</span><span class='period'>.</span><span class='id to_word'>to_word</span>
+      <span class='id log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Server TX (</span><span class='embexpr_beg'>#{</span><span class='id resp'>resp</span><span class='period'>.</span><span class='id size'>size</span><span class='rbrace'>}</span><span class='tstring_content'> bytes): </span><span class='embexpr_beg'>#{</span><span class='id logging_bytes'>logging_bytes</span><span class='lparen'>(</span><span class='id resp'>resp</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id io'>io</span><span class='period'>.</span><span class='id write'>write</span> <span class='id resp'>resp</span>
+  <span class='kw'>end</span>
+    <span class='id sleep'>sleep</span><span class='lparen'>(</span><span class='float'>0.01</span><span class='rparen'>)</span>
+ <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
   </div>
 
-  <div id="class-metadata">
+</div>
     
-    
-    
-    
-  </div>
+    <div id="footer">
+  Generated on Sun Oct 30 10:51:19 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.3 (ruby-1.9.2).
+</div>
 
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="../Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="../README.html">README</a>
-  
-    <li class="file"><a href="../temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="../ModBus.html">ModBus</a>
-  
-    <li><a href="../ModBus/Client.html">ModBus::Client</a>
-  
-    <li><a href="../ModBus/Common.html">ModBus::Common</a>
-  
-    <li><a href="../ModBus/Debug.html">ModBus::Debug</a>
-  
-    <li><a href="../ModBus/Errors.html">ModBus::Errors</a>
-  
-    <li><a href="../ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
-  
-    <li><a href="../ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
-  
-    <li><a href="../ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
-  
-    <li><a href="../ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
-  
-    <li><a href="../ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
-  
-    <li><a href="../ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
-  
-    <li><a href="../ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
-  
-    <li><a href="../ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
-  
-    <li><a href="../ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
-  
-    <li><a href="../ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
-  
-    <li><a href="../ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
-  
-    <li><a href="../ModBus/Options.html">ModBus::Options</a>
-  
-    <li><a href="../ModBus/RTU.html">ModBus::RTU</a>
-  
-    <li><a href="../ModBus/RTUClient.html">ModBus::RTUClient</a>
-  
-    <li><a href="../ModBus/RTUServer.html">ModBus::RTUServer</a>
-  
-    <li><a href="../ModBus/RTUSlave.html">ModBus::RTUSlave</a>
-  
-    <li><a href="../ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
-  
-    <li><a href="../ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
-  
-    <li><a href="../ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
-  
-    <li><a href="../ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
-  
-    <li><a href="../ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
-  
-    <li><a href="../ModBus/SP.html">ModBus::SP</a>
-  
-    <li><a href="../ModBus/Server.html">ModBus::Server</a>
-  
-    <li><a href="../ModBus/Slave.html">ModBus::Slave</a>
-  
-    <li><a href="../ModBus/TCP.html">ModBus::TCP</a>
-  
-    <li><a href="../ModBus/TCPClient.html">ModBus::TCPClient</a>
-  
-    <li><a href="../ModBus/TCPServer.html">ModBus::TCPServer</a>
-  
-    <li><a href="../ModBus/TCPSlave.html">ModBus::TCPSlave</a>
-  
-    <li><a href="../GraphViewer.html">GraphViewer</a>
-  
-    <li><a href="../GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
-  
-    <li><a href="../GraphViewer/Graph.html">GraphViewer::Graph</a>
-  
-    <li><a href="../GraphViewer/Guide.html">GraphViewer::Guide</a>
-  
-    <li><a href="../SOLO.html">SOLO</a>
-  
-    <li><a href="../SOLO/TemperatureController.html">SOLO::TemperatureController</a>
-  
-    <li><a href="../SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
-  
-    <li><a href="../TimedRepeat.html">TimedRepeat</a>
-  
-    <li><a href="../TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
-  
-    <li><a href="../TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
-  
-    <li><a href="../Updating.html">Updating</a>
-  
-    <li><a href="../Updating/Done.html">Updating::Done</a>
-  
-    <li><a href="../Updating/Report.html">Updating::Report</a>
-  
-    <li><a href="../Webserver.html">Webserver</a>
-  
-    <li><a href="../Webserver/GC29Tester.html">Webserver::GC29Tester</a>
-  
-    <li><a href="../Array.html">Array</a>
-  
-    <li><a href="../Date.html">Date</a>
-  
-    <li><a href="../FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
-  
-    <li><a href="../GraphViewerServer.html">GraphViewerServer</a>
-  
-    <li><a href="../IO.html">IO</a>
-  
-    <li><a href="../Integer.html">Integer</a>
-  
-    <li><a href="../Numeric.html">Numeric</a>
-  
-    <li><a href="../Object.html">Object</a>
-  
-    <li><a href="../PID.html">PID</a>
-  
-    <li><a href="../RaiseResponseMatcher.html">RaiseResponseMatcher</a>
-  
-    <li><a href="../RaiseResponseMismatch.html">RaiseResponseMismatch</a>
-  
-    <li><a href="../SMDOven.html">SMDOven</a>
-  
-    <li><a href="../SerialPort.html">SerialPort</a>
-  
-    <li><a href="../String.html">String</a>
-  
-    <li><a href="../TestClass.html">TestClass</a>
-  
-    <li><a href="../TestIO.html">TestIO</a>
-  
-    <li><a href="../Thermistor.html">Thermistor</a>
-  
-    <li><a href="../Thread.html">Thread</a>
-  
-    <li><a href="../Time.html">Time</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="module">module ModBus::RTU</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt id="CrcHiTable">CrcHiTable
-        
-        <dd class="description">
-        
-      
-        <dt id="CrcLoTable">CrcLoTable
-        
-        <dd class="description">
-        
-      
-      </dl>
-    </section>
-    
-
-    
-
-    <!-- Methods -->
-    
-  </section><!-- 5Buntitled-5D -->
-
-</div><!-- documentation -->
-
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
-
+  </body>
+</html>

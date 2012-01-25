@@ -1,1269 +1,2437 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: ModBus::Slave
+  
+    &mdash; Pizza SMD Oven Controller
+  
+</title>
 
-<html>
-<head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 
-<title>Class: ModBus::Slave</title>
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
-
-<script type="text/javascript">
-  var rdoc_rel_prefix = "../";
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
 </script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (S)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../ModBus.html" title="ModBus (module)">ModBus</a></span></span>
+     &raquo; 
+    <span class="title">Slave</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a id="class_list_link" href="#">Class List</a>
+  
+    <a id="method_list_link" href="#">Method List</a>
+  
+    <a id="file_list_link" href="#">File List</a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: ModBus::Slave
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></li>
+          
+            <li class="next">ModBus::Slave</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="Debug.html" title="ModBus::Debug (module)">Debug</a></span>, <span class='object_link'><a href="Errors.html" title="ModBus::Errors (module)">Errors</a></span>, <span class='object_link'><a href="Options.html" title="ModBus::Options (module)">Options</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">rmodbus/lib/rmodbus/slave.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="RTUSlave.html" title="ModBus::RTUSlave (class)">RTUSlave</a></span>, <span class='object_link'><a href="RTUViaTCPSlave.html" title="ModBus::RTUViaTCPSlave (class)">RTUViaTCPSlave</a></span>, <span class='object_link'><a href="TCPSlave.html" title="ModBus::TCPSlave (class)">TCPSlave</a></span></p>
+</div>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="Exceptions-constant" class="">Exceptions =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+      <span class='int'>1</span> <span class='op'>=&gt;</span> <span class='const'>IllegalFunction</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The function code received in the query is not an allowable action for the server</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='int'>2</span> <span class='op'>=&gt;</span> <span class='const'>IllegalDataAddress</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The data address received in the query is not an allowable address for the server</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='int'>3</span> <span class='op'>=&gt;</span> <span class='const'>IllegalDataValue</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A value contained in the query data field is not an allowable value for server</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='int'>4</span> <span class='op'>=&gt;</span> <span class='const'>SlaveDeviceFailure</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>An unrecoverable error occurred while the server was attempting to perform the requested action</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='int'>5</span> <span class='op'>=&gt;</span> <span class='const'>Acknowledge</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The server has accepted the request and is processing it, but a long duration of time will be required to do so</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='int'>6</span> <span class='op'>=&gt;</span> <span class='const'>SlaveDeviceBus</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The server is engaged in processing a long duration program command</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+      <span class='int'>8</span> <span class='op'>=&gt;</span> <span class='const'>MemoryParityError</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The extended file area failed to pass a consistency check</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
 
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#uid-instance_method" title="#uid (instance method)">- (Object) <strong>uid</strong> </a>
+    
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
 
+  
+    <span class="summary_desc"><div class='inline'><p>
+Number of times to retry on read and read timeouts.
+</p>
+</div></span>
+  
+</li>
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>/Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb
+    
   </ul>
-</nav>
 
+
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="Options.html" title="ModBus::Options (module)">Options</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Options.html#raise_exception_on_mismatch-instance_method" title="ModBus::Options#raise_exception_on_mismatch (method)">raise_exception_on_mismatch</a></span>, <span class='object_link'><a href="Options.html#read_retries-instance_method" title="ModBus::Options#read_retries (method)">read_retries</a></span>, <span class='object_link'><a href="Options.html#read_retry_timeout-instance_method" title="ModBus::Options#read_retry_timeout (method)">read_retry_timeout</a></span></p>
+
+  
+  
+  
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="Debug.html" title="ModBus::Debug (module)">Debug</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Debug.html#debug-instance_method" title="ModBus::Debug#debug (method)">debug</a></span>, <span class='object_link'><a href="Debug.html#debug_log-instance_method" title="ModBus::Debug#debug_log (method)">debug_log</a></span>, <span class='object_link'><a href="Debug.html#raise_exception_on_mismatch-instance_method" title="ModBus::Debug#raise_exception_on_mismatch (method)">raise_exception_on_mismatch</a></span>, <span class='object_link'><a href="Debug.html#read_retries-instance_method" title="ModBus::Debug#read_retries (method)">read_retries</a></span>, <span class='object_link'><a href="Debug.html#read_retry_timeout-instance_method" title="ModBus::Debug#read_retry_timeout (method)">read_retry_timeout</a></span></p>
+
+  
+  
+  
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#check_response_mismatch-instance_method" title="#check_response_mismatch (instance method)">- (Object) <strong>check_response_mismatch</strong>(request, response) </a>
+    
+
+    
+  </span>
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#coils-instance_method" title="#coils (instance method)">- (ReadWriteProxy) <strong>coils</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns a ModBus::ReadWriteProxy hash interface for coils.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#discrete_inputs-instance_method" title="#discrete_inputs (instance method)">- (ReadOnlyProxy) <strong>discrete_inputs</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns a ModBus::ReadOnlyProxy hash interface for discrete inputs.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#holding_registers-instance_method" title="#holding_registers (instance method)">- (ReadWriteProxy) <strong>holding_registers</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns a ModBus::ReadWriteProxy hash interface for holding registers.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Slave) <strong>initialize</strong>(uid, io) </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+A new instance of Slave.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#input_registers-instance_method" title="#input_registers (instance method)">- (ReadOnlyProxy) <strong>input_registers</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns a read/write ModBus::ReadOnlyProxy hash interface for coils.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mask_write_register-instance_method" title="#mask_write_register (instance method)">- (Object) <strong>mask_write_register</strong>(addr, and_mask, or_mask) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Mask a holding register.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#query-instance_method" title="#query (instance method)">- (String) <strong>query</strong>(request) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Request pdu to slave device.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_coils-instance_method" title="#read_coils (instance method)">- (Array) <strong>read_coils</strong>(addr, ncoils) </a>
+    
+
+    
+      (also: #read_coil)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Read coils.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_discrete_inputs-instance_method" title="#read_discrete_inputs (instance method)">- (Array) <strong>read_discrete_inputs</strong>(addr, ninputs) </a>
+    
+
+    
+      (also: #read_discrete_input)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Read discrete inputs.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_holding_registers-instance_method" title="#read_holding_registers (instance method)">- (Array) <strong>read_holding_registers</strong>(addr, nregs) </a>
+    
+
+    
+      (also: #read_holding_register)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Read holding registers.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_input_registers-instance_method" title="#read_input_registers (instance method)">- (Array) <strong>read_input_registers</strong>(addr, nregs) </a>
+    
+
+    
+      (also: #read_input_register)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Read input registers.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_multiple_coils-instance_method" title="#write_multiple_coils (instance method)">- (Object) <strong>write_multiple_coils</strong>(addr, vals) </a>
+    
+
+    
+      (also: #write_coils)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Write multiple coils.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_multiple_registers-instance_method" title="#write_multiple_registers (instance method)">- (Object) <strong>write_multiple_registers</strong>(addr, vals) </a>
+    
+
+    
+      (also: #write_holding_registers)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Write multiple holding registers.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_single_coil-instance_method" title="#write_single_coil (instance method)">- (Object) <strong>write_single_coil</strong>(addr, val) </a>
+    
+
+    
+      (also: #write_coil)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Write a single coil.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_single_register-instance_method" title="#write_single_register (instance method)">- (Object) <strong>write_single_register</strong>(addr, val) </a>
+    
+
+    
+      (also: #write_holding_register)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Write a single holding register.
+</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Debug.html" title="ModBus::Debug (module)">Debug</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Debug.html#log-instance_method" title="ModBus::Debug#log (method)">#log</a></span>, <span class='object_link'><a href="Debug.html#log_error-instance_method" title="ModBus::Debug#log_error (method)">#log_error</a></span>, <span class='object_link'><a href="Debug.html#logging_bytes-instance_method" title="ModBus::Debug#logging_bytes (method)">#logging_bytes</a></span></p>
+
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="ModBus::Slave (class)">Slave</a></span></tt>) <strong>initialize</strong>(uid, io) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+A new instance of Slave
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span><span class='lparen'>(</span><span class='id uid'>uid</span><span class='comma'>,</span> <span class='id io'>io</span><span class='rparen'>)</span>
+ <span class='ivar'>@uid</span> <span class='op'>=</span> <span class='id uid'>uid</span>
+  <span class='ivar'>@io</span> <span class='op'>=</span> <span class='id io'>io</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="uid=-instance_method"></span>
+      <span id="uid-instance_method"></span>
+      <div class="method_details first">
+  <p class="signature first" id="uid-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>uid</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Number of times to retry on read and read timeouts
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id uid'>uid</span>
+  <span class='ivar'>@uid</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
   </div>
 
-  <div id="class-metadata">
-    
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
-  
-  <p class="link"><a href="../Object.html">Object</a>
-  
-</nav>
 
-    <!-- Included Modules -->
-<nav id="includes-section" class="section">
-  <h3 class="section-header">Included Modules</h3>
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="check_response_mismatch-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>check_response_mismatch</strong>(request, response)  <span class="extras">(private)</span>
+  
 
-  <ul class="link-list">
   
-  
-    <li><a class="include" href="Errors.html">ModBus::Errors</a>
-  
-  
-  
-    <li><a class="include" href="Debug.html">ModBus::Debug</a>
-  
-  
-  
-    <li><a class="include" href="Options.html">ModBus::Options</a>
-  
-  
-  </ul>
-</nav>
-
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
+</p><div class="docstring">
+  <div class="discussion">
     
-    <li><a href="#method-c-new">::new</a>
-    
-    <li><a href="#method-i-coils">#coils</a>
-    
-    <li><a href="#method-i-discrete_inputs">#discrete_inputs</a>
-    
-    <li><a href="#method-i-holding_registers">#holding_registers</a>
-    
-    <li><a href="#method-i-input_registers">#input_registers</a>
-    
-    <li><a href="#method-i-mask_write_register">#mask_write_register</a>
-    
-    <li><a href="#method-i-query">#query</a>
-    
-    <li><a href="#method-i-read_coil">#read_coil</a>
-    
-    <li><a href="#method-i-read_coils">#read_coils</a>
-    
-    <li><a href="#method-i-read_discrete_input">#read_discrete_input</a>
-    
-    <li><a href="#method-i-read_discrete_inputs">#read_discrete_inputs</a>
-    
-    <li><a href="#method-i-read_holding_register">#read_holding_register</a>
-    
-    <li><a href="#method-i-read_holding_registers">#read_holding_registers</a>
-    
-    <li><a href="#method-i-read_input_register">#read_input_register</a>
-    
-    <li><a href="#method-i-read_input_registers">#read_input_registers</a>
-    
-    <li><a href="#method-i-write_coil">#write_coil</a>
-    
-    <li><a href="#method-i-write_coils">#write_coils</a>
-    
-    <li><a href="#method-i-write_holding_register">#write_holding_register</a>
-    
-    <li><a href="#method-i-write_holding_registers">#write_holding_registers</a>
-    
-    <li><a href="#method-i-write_multiple_coils">#write_multiple_coils</a>
-    
-    <li><a href="#method-i-write_multiple_registers">#write_multiple_registers</a>
-    
-    <li><a href="#method-i-write_single_coil">#write_single_coil</a>
-    
-    <li><a href="#method-i-write_single_register">#write_single_register</a>
-    
-  </ul>
-</nav>
 
   </div>
+</div>
+<div class="tags">
+  
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/ResponseMismatch.html" title="ModBus::Errors::ResponseMismatch (class)">ResponseMismatch</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
 
-  <ul>
-  
-    <li class="file"><a href="../Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="../README.html">README</a>
-  
-    <li class="file"><a href="../temperature_log_111029_115745_txt.html">temperature_log_111029_115745</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120448_txt.html">temperature_log_111029_120448</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120558_txt.html">temperature_log_111029_120558</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120620_txt.html">temperature_log_111029_120620</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120709_txt.html">temperature_log_111029_120709</a>
-  
-    <li class="file"><a href="../temperature_log_111029_120937_txt.html">temperature_log_111029_120937</a>
-  
-  </ul>
-</nav>
 
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 272</span>
 
-  <ul class="link-list">
-  
-    <li><a href="../ModBus.html">ModBus</a>
-  
-    <li><a href="../ModBus/Client.html">ModBus::Client</a>
-  
-    <li><a href="../ModBus/Common.html">ModBus::Common</a>
-  
-    <li><a href="../ModBus/Debug.html">ModBus::Debug</a>
-  
-    <li><a href="../ModBus/Errors.html">ModBus::Errors</a>
-  
-    <li><a href="../ModBus/Errors/Acknowledge.html">ModBus::Errors::Acknowledge</a>
-  
-    <li><a href="../ModBus/Errors/IllegalDataAddress.html">ModBus::Errors::IllegalDataAddress</a>
-  
-    <li><a href="../ModBus/Errors/IllegalDataValue.html">ModBus::Errors::IllegalDataValue</a>
-  
-    <li><a href="../ModBus/Errors/IllegalFunction.html">ModBus::Errors::IllegalFunction</a>
-  
-    <li><a href="../ModBus/Errors/MemoryParityError.html">ModBus::Errors::MemoryParityError</a>
-  
-    <li><a href="../ModBus/Errors/ModBusException.html">ModBus::Errors::ModBusException</a>
-  
-    <li><a href="../ModBus/Errors/ModBusTimeout.html">ModBus::Errors::ModBusTimeout</a>
-  
-    <li><a href="../ModBus/Errors/ProxyException.html">ModBus::Errors::ProxyException</a>
-  
-    <li><a href="../ModBus/Errors/ResponseMismatch.html">ModBus::Errors::ResponseMismatch</a>
-  
-    <li><a href="../ModBus/Errors/SlaveDeviceBus.html">ModBus::Errors::SlaveDeviceBus</a>
-  
-    <li><a href="../ModBus/Errors/SlaveDeviceFailure.html">ModBus::Errors::SlaveDeviceFailure</a>
-  
-    <li><a href="../ModBus/Options.html">ModBus::Options</a>
-  
-    <li><a href="../ModBus/RTU.html">ModBus::RTU</a>
-  
-    <li><a href="../ModBus/RTUClient.html">ModBus::RTUClient</a>
-  
-    <li><a href="../ModBus/RTUServer.html">ModBus::RTUServer</a>
-  
-    <li><a href="../ModBus/RTUSlave.html">ModBus::RTUSlave</a>
-  
-    <li><a href="../ModBus/RTUViaTCPClient.html">ModBus::RTUViaTCPClient</a>
-  
-    <li><a href="../ModBus/RTUViaTCPServer.html">ModBus::RTUViaTCPServer</a>
-  
-    <li><a href="../ModBus/RTUViaTCPSlave.html">ModBus::RTUViaTCPSlave</a>
-  
-    <li><a href="../ModBus/ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
-  
-    <li><a href="../ModBus/ReadWriteProxy.html">ModBus::ReadWriteProxy</a>
-  
-    <li><a href="../ModBus/SP.html">ModBus::SP</a>
-  
-    <li><a href="../ModBus/Server.html">ModBus::Server</a>
-  
-    <li><a href="../ModBus/Slave.html">ModBus::Slave</a>
-  
-    <li><a href="../ModBus/TCP.html">ModBus::TCP</a>
-  
-    <li><a href="../ModBus/TCPClient.html">ModBus::TCPClient</a>
-  
-    <li><a href="../ModBus/TCPServer.html">ModBus::TCPServer</a>
-  
-    <li><a href="../ModBus/TCPSlave.html">ModBus::TCPSlave</a>
-  
-    <li><a href="../GraphViewer.html">GraphViewer</a>
-  
-    <li><a href="../GraphViewer/CSVFile.html">GraphViewer::CSVFile</a>
-  
-    <li><a href="../GraphViewer/Graph.html">GraphViewer::Graph</a>
-  
-    <li><a href="../GraphViewer/Guide.html">GraphViewer::Guide</a>
-  
-    <li><a href="../SOLO.html">SOLO</a>
-  
-    <li><a href="../SOLO/TemperatureController.html">SOLO::TemperatureController</a>
-  
-    <li><a href="../SOLO/TemperatureControllerClient.html">SOLO::TemperatureControllerClient</a>
-  
-    <li><a href="../TimedRepeat.html">TimedRepeat</a>
-  
-    <li><a href="../TimedRepeat/MissedRepeat.html">TimedRepeat::MissedRepeat</a>
-  
-    <li><a href="../TimedRepeat/StopRepeat.html">TimedRepeat::StopRepeat</a>
-  
-    <li><a href="../Updating.html">Updating</a>
-  
-    <li><a href="../Updating/Done.html">Updating::Done</a>
-  
-    <li><a href="../Updating/Report.html">Updating::Report</a>
-  
-    <li><a href="../Webserver.html">Webserver</a>
-  
-    <li><a href="../Webserver/GC29Tester.html">Webserver::GC29Tester</a>
-  
-    <li><a href="../Array.html">Array</a>
-  
-    <li><a href="../Date.html">Date</a>
-  
-    <li><a href="../FeedForwardTemperatureController.html">FeedForwardTemperatureController</a>
-  
-    <li><a href="../GraphViewerServer.html">GraphViewerServer</a>
-  
-    <li><a href="../IO.html">IO</a>
-  
-    <li><a href="../Integer.html">Integer</a>
-  
-    <li><a href="../Numeric.html">Numeric</a>
-  
-    <li><a href="../Object.html">Object</a>
-  
-    <li><a href="../PID.html">PID</a>
-  
-    <li><a href="../RaiseResponseMatcher.html">RaiseResponseMatcher</a>
-  
-    <li><a href="../RaiseResponseMismatch.html">RaiseResponseMismatch</a>
-  
-    <li><a href="../SMDOven.html">SMDOven</a>
-  
-    <li><a href="../SerialPort.html">SerialPort</a>
-  
-    <li><a href="../String.html">String</a>
-  
-    <li><a href="../TestClass.html">TestClass</a>
-  
-    <li><a href="../TestIO.html">TestIO</a>
-  
-    <li><a href="../Thermistor.html">Thermistor</a>
-  
-    <li><a href="../Thread.html">Thread</a>
-  
-    <li><a href="../Time.html">Time</a>
-  
-  </ul>
-</nav>
+<span class='kw'>def</span> <span class='id check_response_mismatch'>check_response_mismatch</span><span class='lparen'>(</span><span class='id request'>request</span><span class='comma'>,</span> <span class='id response'>response</span><span class='rparen'>)</span>
+  <span class='id read_func'>read_func</span> <span class='op'>=</span> <span class='id response'>response</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id data'>data</span> <span class='op'>=</span> <span class='id response'>response</span><span class='lbracket'>[</span><span class='int'>2</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+  <span class='comment'>#Mismatch functional code
+</span>  <span class='id send_func'>send_func</span> <span class='op'>=</span> <span class='id request'>request</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id read_func'>read_func</span> <span class='op'>!=</span> <span class='id send_func'>send_func</span>
+    <span class='id msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Function code is mismatch (expected </span><span class='embexpr_beg'>#{</span><span class='id send_func'>send_func</span><span class='rbrace'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id read_func'>read_func</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>case</span> <span class='id read_func'>read_func</span>
+  <span class='kw'>when</span> <span class='int'>1</span><span class='comma'>,</span><span class='int'>2</span>
+    <span class='id bc'>bc</span> <span class='op'>=</span> <span class='id request'>request</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span><span class='op'>/</span><span class='int'>8</span> <span class='op'>+</span> <span class='int'>1</span>
+    <span class='kw'>if</span> <span class='id data'>data</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>!=</span> <span class='id bc'>bc</span>
+      <span class='id msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Byte count is mismatch (expected </span><span class='embexpr_beg'>#{</span><span class='id bc'>bc</span><span class='rbrace'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id data'>data</span><span class='period'>.</span><span class='id size'>size</span><span class='rbrace'>}</span><span class='tstring_content'> bytes)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>when</span> <span class='int'>3</span><span class='comma'>,</span><span class='int'>4</span>
+    <span class='id rc'>rc</span> <span class='op'>=</span> <span class='id request'>request</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span> 
+    <span class='kw'>if</span> <span class='id data'>data</span><span class='period'>.</span><span class='id size'>size</span><span class='op'>/</span><span class='int'>2</span> <span class='op'>!=</span> <span class='id rc'>rc</span>
+      <span class='id msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Register count is mismatch (expected </span><span class='embexpr_beg'>#{</span><span class='id rc'>rc</span><span class='rbrace'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id data'>data</span><span class='period'>.</span><span class='id size'>size</span><span class='op'>/</span><span class='int'>2</span><span class='rbrace'>}</span><span class='tstring_content'> regs)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>when</span> <span class='int'>5</span><span class='comma'>,</span><span class='int'>6</span>
+    <span class='id exp_addr'>exp_addr</span> <span class='op'>=</span> <span class='id request'>request</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id got_addr'>got_addr</span> <span class='op'>=</span> <span class='id response'>response</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id exp_addr'>exp_addr</span> <span class='op'>!=</span> <span class='id got_addr'>got_addr</span>
+      <span class='id msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Address is mismatch (expected </span><span class='embexpr_beg'>#{</span><span class='id exp_addr'>exp_addr</span><span class='rbrace'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id got_addr'>got_addr</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='id exp_val'>exp_val</span> <span class='op'>=</span> <span class='id request'>request</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span>
+    <span class='id got_val'>got_val</span> <span class='op'>=</span> <span class='id response'>response</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id exp_val'>exp_val</span> <span class='op'>!=</span> <span class='id got_val'>got_val</span>
+      <span class='id msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Value is mismatch (expected 0x</span><span class='embexpr_beg'>#{</span><span class='id exp_val'>exp_val</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='int'>16</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>, got 0x</span><span class='embexpr_beg'>#{</span><span class='id got_val'>got_val</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='lparen'>(</span><span class='int'>16</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>when</span> <span class='int'>15</span><span class='comma'>,</span><span class='int'>16</span>
+    <span class='id exp_addr'>exp_addr</span> <span class='op'>=</span> <span class='id request'>request</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id got_addr'>got_addr</span> <span class='op'>=</span> <span class='id response'>response</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id exp_addr'>exp_addr</span> <span class='op'>!=</span> <span class='id got_addr'>got_addr</span>
+      <span class='id msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Address is mismatch (expected </span><span class='embexpr_beg'>#{</span><span class='id exp_addr'>exp_addr</span><span class='rbrace'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id got_addr'>got_addr</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  
+    <span class='id exp_quant'>exp_quant</span> <span class='op'>=</span> <span class='id request'>request</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span>
+    <span class='id got_quant'>got_quant</span> <span class='op'>=</span> <span class='id response'>response</span><span class='period'>.</span><span class='id getword'>getword</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id exp_quant'>exp_quant</span> <span class='op'>!=</span> <span class='id got_quant'>got_quant</span>
+      <span class='id msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Quantity is mismatch (expected </span><span class='embexpr_beg'>#{</span><span class='id exp_quant'>exp_quant</span><span class='rbrace'>}</span><span class='tstring_content'>, got </span><span class='embexpr_beg'>#{</span><span class='id got_quant'>got_quant</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fuiction (</span><span class='embexpr_beg'>#{</span><span class='id read_func'>read_func</span><span class='rbrace'>}</span><span class='tstring_content'>) is not supported raising response mismatch</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id raise'>raise</span> <span class='const'>ResponseMismatch</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='id msg'>msg</span><span class='comma'>,</span> <span class='id request'>request</span><span class='comma'>,</span> <span class='id response'>response</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id msg'>msg</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="coils-instance_method">
+  
+    - (<tt><span class='object_link'><a href="ReadWriteProxy.html" title="ModBus::ReadWriteProxy (class)">ReadWriteProxy</a></span></tt>) <strong>coils</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns a ModBus::ReadWriteProxy hash interface for coils
+</p>
+
 
   </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="class">class ModBus::Slave</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
+</div>
+<div class="tags">
   
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
+  <div class="examples">
+    <h3>Examples:</h3>
     
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">coils[addr] =&gt; [1]
+coils[addr1..addr2] =&gt; [1, 0, ..]
+coils[addr] = 0 =&gt; [0]
+coils[addr1..addr2] = [1, 0, ..] =&gt; [1, 0, ..]</pre>
+    
+  </div>
 
-    
-
-    
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
       
-        <dt id="Exceptions">Exceptions
-        
-        <dd class="description">
-        
       
-      </dl>
-    </section>
-    
-
-    
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
-
+        <span class='type'>(<tt><span class='object_link'><a href="ReadWriteProxy.html" title="ModBus::ReadWriteProxy (class)">ReadWriteProxy</a></span></tt>)</span>
       
-      <div id="attribute-i-uid" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">uid</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        <p>Number of times to retry on read and read timeouts</p>
-        
-        </div>
-      </div>
       
-    </section><!-- attribute-method-details -->
-    
-
-    <!-- Methods -->
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(uid, io)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 32</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">uid</span>, <span class="ruby-identifier">io</span>)
-        <span class="ruby-ivar">@uid</span> = <span class="ruby-identifier">uid</span>
-  <span class="ruby-ivar">@io</span> = <span class="ruby-identifier">io</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
-
-    
-    </section><!-- public-class-method-details -->
+      
+        &mdash;
+        <div class='inline'><p>
+proxy object
+</p>
+</div>
+      
+    </li>
   
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+</ul>
 
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id coils'>coils</span>
+  <span class='const'>ModBus</span><span class='op'>::</span><span class='const'>ReadWriteProxy</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='symbol'>:coil</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
     
-      <div id="method-i-coils" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">coils</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns a <a href="ReadWriteProxy.html">ModBus::ReadWriteProxy</a> hash
-interface for coils</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">coils</span>[<span class="ruby-identifier">addr</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>]
-<span class="ruby-identifier">coils</span>[<span class="ruby-identifier">addr1</span><span class="ruby-operator">..</span><span class="ruby-identifier">addr2</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-<span class="ruby-identifier">coils</span>[<span class="ruby-identifier">addr</span>] = <span class="ruby-value">0</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">0</span>]
-<span class="ruby-identifier">coils</span>[<span class="ruby-identifier">addr1</span><span class="ruby-operator">..</span><span class="ruby-identifier">addr2</span>] = [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@return [ReadWriteProxy] proxy object</p>
-          
-
-          
-          <div class="method-source-code" id="coils-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 46</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">coils</span>
-  <span class="ruby-constant">ModBus</span><span class="ruby-operator">::</span><span class="ruby-constant">ReadWriteProxy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:coil</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- coils-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- coils-method -->
-
-    
-      <div id="method-i-discrete_inputs" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">discrete_inputs</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns a <a href="ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a> hash
-interface for discrete inputs</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">discrete_inputs</span>[<span class="ruby-identifier">addr</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>]
-<span class="ruby-identifier">discrete_inputs</span>[<span class="ruby-identifier">addr1</span><span class="ruby-operator">..</span><span class="ruby-identifier">addr2</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@return [ReadOnlyProxy] proxy object</p>
-          
-
-          
-          <div class="method-source-code" id="discrete_inputs-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 114</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">discrete_inputs</span>
-  <span class="ruby-constant">ModBus</span><span class="ruby-operator">::</span><span class="ruby-constant">ReadOnlyProxy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:discrete_input</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- discrete_inputs-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- discrete_inputs-method -->
-
-    
-      <div id="method-i-holding_registers" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">holding_registers</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns a <a href="ReadWriteProxy.html">ModBus::ReadWriteProxy</a> hash
-interface for holding registers</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">holding_registers</span>[<span class="ruby-identifier">addr</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">123</span>]
-<span class="ruby-identifier">holding_registers</span>[<span class="ruby-identifier">addr1</span><span class="ruby-operator">..</span><span class="ruby-identifier">addr2</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">123</span>, <span class="ruby-value">234</span>, <span class="ruby-operator">..</span>]
-<span class="ruby-identifier">holding_registers</span>[<span class="ruby-identifier">addr</span>] = <span class="ruby-value">123</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">123</span>
-<span class="ruby-identifier">holding_registers</span>[<span class="ruby-identifier">addr1</span><span class="ruby-operator">..</span><span class="ruby-identifier">addr2</span>] = [<span class="ruby-value">234</span>, <span class="ruby-value">345</span>, <span class="ruby-operator">..</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">234</span>, <span class="ruby-value">345</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@return [ReadWriteProxy] proxy object</p>
-          
-
-          
-          <div class="method-source-code" id="holding_registers-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 164</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">holding_registers</span>
-  <span class="ruby-constant">ModBus</span><span class="ruby-operator">::</span><span class="ruby-constant">ReadWriteProxy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:holding_register</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- holding_registers-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- holding_registers-method -->
-
-    
-      <div id="method-i-input_registers" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">input_registers</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Returns a read/write <a href="ReadOnlyProxy.html">ModBus::ReadOnlyProxy</a>
-hash interface for coils</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">input_registers</span>[<span class="ruby-identifier">addr</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>]
-<span class="ruby-identifier">input_registers</span>[<span class="ruby-identifier">addr1</span><span class="ruby-operator">..</span><span class="ruby-identifier">addr2</span>] =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@return [ReadOnlyProxy] proxy object</p>
-          
-
-          
-          <div class="method-source-code" id="input_registers-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 138</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">input_registers</span>
-  <span class="ruby-constant">ModBus</span><span class="ruby-operator">::</span><span class="ruby-constant">ReadOnlyProxy</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-value">:input_register</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- input_registers-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- input_registers-method -->
-
-    
-      <div id="method-i-mask_write_register" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mask_write_register</span><span
-            class="method-args">(addr, and_mask, or_mask)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Mask a holding register</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">mask_write_register</span>(<span class="ruby-value">1</span>, <span class="ruby-value">0xAAAA</span>, <span class="ruby-value">0x00FF</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>
-</pre>
-
-<p>@param [Integer] addr address registers @param [Integer] and_mask mask for
-AND operation @param [Integer] or_mask mask for OR operation</p>
-          
-
-          
-          <div class="method-source-code" id="mask_write_register-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 222</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mask_write_register</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">and_mask</span>, <span class="ruby-identifier">or_mask</span>)
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x16&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">and_mask</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">or_mask</span>.<span class="ruby-identifier">to_word</span>)
-  <span class="ruby-keyword">self</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mask_write_register-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mask_write_register-method -->
-
-    
-      <div id="method-i-query" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">query</span><span
-            class="method-args">(request)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Request pdu to slave device</p>
-
-<p>@param [String] pdu request to slave @return [String] received data</p>
-
-<p>@raise [ResponseMismatch] the received echo response differs from the
-request @raise [ModBusTimeout] timed out during read attempt @raise
-[ModBusException] unknown error @raise [IllegalFunction] function code
-received in the query is not an allowable action for the server @raise
-[IllegalDataAddress] data address received in the query is not an allowable
-address for the server @raise [IllegalDataValue] value contained in the
-query data field is not an allowable value for server @raise
-[SlaveDeviceFailure] unrecoverable error occurred while the server was
-attempting to perform the requested action @raise [Acknowledge] server has
-accepted the request and is processing it, but a long duration of time will
-be required to do so @raise [SlaveDeviceBus] server is engaged in
-processing a long duration program command @raise [MemoryParityError]
-extended file area failed to pass a consistency check</p>
-          
-
-          
-          <div class="method-source-code" id="query-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 242</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">query</span>(<span class="ruby-identifier">request</span>)
-  <span class="ruby-identifier">tried</span> = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">response</span> = <span class="ruby-string">&quot;&quot;</span>
-  <span class="ruby-keyword">begin</span>
-    <span class="ruby-identifier">timeout</span>(<span class="ruby-ivar">@read_retry_timeout</span>, <span class="ruby-constant">ModBusTimeout</span>) <span class="ruby-keyword">do</span>
-      <span class="ruby-identifier">send_pdu</span>(<span class="ruby-identifier">request</span>)
-      <span class="ruby-identifier">response</span> = <span class="ruby-identifier">read_pdu</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ModBusTimeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
-    <span class="ruby-identifier">log</span> <span class="ruby-node">&quot;Timeout of read operation: (#{@read_retries - tried})&quot;</span>
-    <span class="ruby-identifier">tried</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">retry</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tried</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@read_retries</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ModBusTimeout</span>.<span class="ruby-identifier">new</span>, <span class="ruby-string">&quot;Timed out during read attempt&quot;</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-
-  <span class="ruby-identifier">read_func</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">getbyte</span>(<span class="ruby-value">0</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">read_func</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0x80</span>
-    <span class="ruby-identifier">exc_id</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">getbyte</span>(<span class="ruby-value">1</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exceptions</span>[<span class="ruby-identifier">exc_id</span>] <span class="ruby-keyword">unless</span> <span class="ruby-constant">Exceptions</span>[<span class="ruby-identifier">exc_id</span>].<span class="ruby-identifier">nil?</span>
-
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ModBusException</span>.<span class="ruby-identifier">new</span>, <span class="ruby-string">&quot;Unknown error&quot;</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">check_response_mismatch</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">raise_exception_on_mismatch</span>
-  <span class="ruby-identifier">response</span>[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- query-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- query-method -->
-
-    
-      <div id="method-i-read_coil" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">read_coil</span><span
-            class="method-args">(addr, ncoils)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-read_coils">read_coils</a>
-        </div>
-        
-      </div><!-- read_coil-method -->
-
-    
-      <div id="method-i-read_coils" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">read_coils</span><span
-            class="method-args">(addr, ncoils)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Read coils</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">read_coils</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ncoils</span>) =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@param [Integer] addr address first coil @param [Integer] ncoils number
-coils @return [Array] coils</p>
-          
-
-          
-          <div class="method-source-code" id="read_coils-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 58</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_coils</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ncoils</span>)
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x1&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ncoils</span>.<span class="ruby-identifier">to_word</span>).<span class="ruby-identifier">unpack_bits</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">ncoils</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- read_coils-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-read_coil">read_coil</a>
-        </div>
-        
-
-        
-      </div><!-- read_coils-method -->
-
-    
-      <div id="method-i-read_discrete_input" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">read_discrete_input</span><span
-            class="method-args">(addr, ninputs)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-read_discrete_inputs">read_discrete_inputs</a>
-        </div>
-        
-      </div><!-- read_discrete_input-method -->
-
-    
-      <div id="method-i-read_discrete_inputs" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">read_discrete_inputs</span><span
-            class="method-args">(addr, ninputs)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Read discrete inputs</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">read_discrete_inputs</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ninputs</span>) =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@param [Integer] addr address first input @<a
-href="http://Integer">param</a> ninputs number inputs @return [Array]
-inputs</p>
-          
-
-          
-          <div class="method-source-code" id="read_discrete_inputs-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 126</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_discrete_inputs</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">ninputs</span>)
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x2&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">ninputs</span>.<span class="ruby-identifier">to_word</span>).<span class="ruby-identifier">unpack_bits</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">ninputs</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- read_discrete_inputs-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-read_discrete_input">read_discrete_input</a>
-        </div>
-        
-
-        
-      </div><!-- read_discrete_inputs-method -->
-
-    
-      <div id="method-i-read_holding_register" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">read_holding_register</span><span
-            class="method-args">(addr, nregs)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-read_holding_registers">read_holding_registers</a>
-        </div>
-        
-      </div><!-- read_holding_register-method -->
-
-    
-      <div id="method-i-read_holding_registers" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">read_holding_registers</span><span
-            class="method-args">(addr, nregs)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Read holding registers</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">read_holding_registers</span>(<span class="ruby-value">1</span>, <span class="ruby-value">5</span>) =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@param [Integer] addr address first registers @param [Integer] nregs number
-registers @return [Array] registers</p>
-          
-
-          
-          <div class="method-source-code" id="read_holding_registers-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 176</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_holding_registers</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">nregs</span>)
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x3&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">nregs</span>.<span class="ruby-identifier">to_word</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-string">'n*'</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- read_holding_registers-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-read_holding_register">read_holding_register</a>
-        </div>
-        
-
-        
-      </div><!-- read_holding_registers-method -->
-
-    
-      <div id="method-i-read_input_register" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">read_input_register</span><span
-            class="method-args">(addr, nregs)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-read_input_registers">read_input_registers</a>
-        </div>
-        
-      </div><!-- read_input_register-method -->
-
-    
-      <div id="method-i-read_input_registers" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">read_input_registers</span><span
-            class="method-args">(addr, nregs)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Read input registers</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">read_input_registers</span>(<span class="ruby-value">1</span>, <span class="ruby-value">5</span>) =<span class="ruby-operator">&gt;</span> [<span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-operator">..</span>]
-</pre>
-
-<p>@param [Integer] addr address first registers @param [Integer] nregs number
-registers @return [Array] registers</p>
-          
-
-          
-          <div class="method-source-code" id="read_input_registers-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 150</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_input_registers</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">nregs</span>)
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x4&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">nregs</span>.<span class="ruby-identifier">to_word</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-string">'n*'</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- read_input_registers-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-read_input_register">read_input_register</a>
-        </div>
-        
-
-        
-      </div><!-- read_input_registers-method -->
-
-    
-      <div id="method-i-write_coil" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">write_coil</span><span
-            class="method-args">(addr, val)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-write_single_coil">write_single_coil</a>
-        </div>
-        
-      </div><!-- write_coil-method -->
-
-    
-      <div id="method-i-write_coils" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">write_coils</span><span
-            class="method-args">(addr, vals)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-write_multiple_coils">write_multiple_coils</a>
-        </div>
-        
-      </div><!-- write_coils-method -->
-
-    
-      <div id="method-i-write_holding_register" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">write_holding_register</span><span
-            class="method-args">(addr, val)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-write_single_register">write_single_register</a>
-        </div>
-        
-      </div><!-- write_holding_register-method -->
-
-    
-      <div id="method-i-write_holding_registers" class="method-detail method-alias">
-        
-        <div class="method-heading">
-          <span class="method-name">write_holding_registers</span><span
-            class="method-args">(addr, vals)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-        </div>
-
-        
-
-        
-        <div class="aliases">
-          Alias for: <a href="Slave.html#method-i-write_multiple_registers">write_multiple_registers</a>
-        </div>
-        
-      </div><!-- write_holding_registers-method -->
-
-    
-      <div id="method-i-write_multiple_coils" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">write_multiple_coils</span><span
-            class="method-args">(addr, vals)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Write multiple coils</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">write_multiple_coils</span>(<span class="ruby-value">1</span>, [<span class="ruby-value">0</span>,<span class="ruby-value">1</span>,<span class="ruby-value">0</span>,<span class="ruby-value">1</span>]) =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>
-</pre>
-
-<p>@param [Integer] addr address first coil @param [Array] vals written coils</p>
-          
-
-          
-          <div class="method-source-code" id="write_multiple_coils-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 88</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_multiple_coils</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">vals</span>)
-  <span class="ruby-identifier">nbyte</span> = ((<span class="ruby-identifier">vals</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) <span class="ruby-operator">&gt;&gt;</span> <span class="ruby-value">3</span>) <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-  <span class="ruby-identifier">sum</span> = <span class="ruby-value">0</span>
-  (<span class="ruby-identifier">vals</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">downto</span>(<span class="ruby-value">0</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">sum</span> = <span class="ruby-identifier">sum</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">sum</span> <span class="ruby-operator">|=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">vals</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">s_val</span> = <span class="ruby-string">&quot;&quot;</span>
-  <span class="ruby-identifier">nbyte</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword">do</span>
-    <span class="ruby-identifier">s_val</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">sum</span> &amp; <span class="ruby-value">0xff</span>).<span class="ruby-identifier">chr</span>
-    <span class="ruby-identifier">sum</span> <span class="ruby-operator">&gt;&gt;=</span> <span class="ruby-value">8</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\xf&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">vals</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">nbyte</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">s_val</span>)
-  <span class="ruby-keyword">self</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- write_multiple_coils-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-write_coils">write_coils</a>
-        </div>
-        
-
-        
-      </div><!-- write_multiple_coils-method -->
-
-    
-      <div id="method-i-write_multiple_registers" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">write_multiple_registers</span><span
-            class="method-args">(addr, vals)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Write multiple holding registers</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">write_multiple_registers</span>(<span class="ruby-value">1</span>, [<span class="ruby-value">0xaa</span>, <span class="ruby-value">0</span>]) =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>
-</pre>
-
-<p>@param [Integer] addr address first registers @param [Array] val written
-registers @return self</p>
-          
-
-          
-          <div class="method-source-code" id="write_multiple_registers-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 204</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_multiple_registers</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">vals</span>)
-  <span class="ruby-identifier">s_val</span> = <span class="ruby-string">&quot;&quot;</span>
-  <span class="ruby-identifier">vals</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">reg</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">s_val</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">reg</span>.<span class="ruby-identifier">to_word</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x10&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">vals</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">vals</span>.<span class="ruby-identifier">size</span> * <span class="ruby-value">2</span>).<span class="ruby-identifier">chr</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">s_val</span>)
-  <span class="ruby-keyword">self</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- write_multiple_registers-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-write_holding_registers">write_holding_registers</a>
-        </div>
-        
-
-        
-      </div><!-- write_multiple_registers-method -->
-
-    
-      <div id="method-i-write_single_coil" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">write_single_coil</span><span
-            class="method-args">(addr, val)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Write a single coil</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">write_single_coil</span>(<span class="ruby-value">1</span>, <span class="ruby-value">0</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>
-</pre>
-
-<p>@param [Integer] addr address coil @param [Integer] val value coil (0 or
-other) @return self</p>
-          
-
-          
-          <div class="method-source-code" id="write_single_coil-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 71</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_single_coil</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">val</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x5&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-value">0</span>.<span class="ruby-identifier">to_word</span>)
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x5&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-value">0xff00</span>.<span class="ruby-identifier">to_word</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">self</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- write_single_coil-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-write_coil">write_coil</a>
-        </div>
-        
-
-        
-      </div><!-- write_single_coil-method -->
-
-    
-      <div id="method-i-write_single_register" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">write_single_register</span><span
-            class="method-args">(addr, val)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Write a single holding register</p>
-
-<p>@example</p>
-
-<pre class="ruby"><span class="ruby-identifier">write_single_register</span>(<span class="ruby-value">1</span>, <span class="ruby-value">0xaa</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">self</span>
-</pre>
-
-<p>@param [Integer] addr address registers @param [Integer] val written to
-register @return self</p>
-          
-
-          
-          <div class="method-source-code" id="write_single_register-source">
-            <pre><span class="ruby-comment"># File /Users/ned/.rvm/gems/ruby-1.9.2-p290/gems/rmodbus-1.1.0/lib/rmodbus/slave.rb, line 189</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_single_register</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-identifier">val</span>)
-  <span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;\x6&quot;&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">addr</span>.<span class="ruby-identifier">to_word</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_word</span>)
-  <span class="ruby-keyword">self</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- write_single_register-source -->
-          
-        </div>
-
-        
-        <div class="aliases">
-          Also aliased as: <a href="Slave.html#method-i-write_holding_register">write_holding_register</a>
-        </div>
-        
-
-        
-      </div><!-- write_single_register-method -->
-
-    
-    </section><!-- public-instance-method-details -->
+      <div class="method_details ">
+  <p class="signature " id="discrete_inputs-instance_method">
   
-  </section><!-- 5Buntitled-5D -->
+    - (<tt><span class='object_link'><a href="ReadOnlyProxy.html" title="ModBus::ReadOnlyProxy (class)">ReadOnlyProxy</a></span></tt>) <strong>discrete_inputs</strong> 
+  
 
-</div><!-- documentation -->
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns a ModBus::ReadOnlyProxy hash interface for discrete inputs
+</p>
 
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">discrete_inputs[addr] =&gt; [1]
+discrete_inputs[addr1..addr2] =&gt; [1, 0, ..]</pre>
+    
+  </div>
 
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ReadOnlyProxy.html" title="ModBus::ReadOnlyProxy (class)">ReadOnlyProxy</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+proxy object
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id discrete_inputs'>discrete_inputs</span>
+  <span class='const'>ModBus</span><span class='op'>::</span><span class='const'>ReadOnlyProxy</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='symbol'>:discrete_input</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="holding_registers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="ReadWriteProxy.html" title="ModBus::ReadWriteProxy (class)">ReadWriteProxy</a></span></tt>) <strong>holding_registers</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns a ModBus::ReadWriteProxy hash interface for holding registers
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">holding_registers[addr] =&gt; [123]
+holding_registers[addr1..addr2] =&gt; [123, 234, ..]
+holding_registers[addr] = 123 =&gt; 123
+holding_registers[addr1..addr2] = [234, 345, ..] =&gt; [234, 345, ..]</pre>
+    
+  </div>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ReadWriteProxy.html" title="ModBus::ReadWriteProxy (class)">ReadWriteProxy</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+proxy object
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id holding_registers'>holding_registers</span>
+  <span class='const'>ModBus</span><span class='op'>::</span><span class='const'>ReadWriteProxy</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='symbol'>:holding_register</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="input_registers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="ReadOnlyProxy.html" title="ModBus::ReadOnlyProxy (class)">ReadOnlyProxy</a></span></tt>) <strong>input_registers</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns a read/write ModBus::ReadOnlyProxy hash interface for coils
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">input_registers[addr] =&gt; [1]
+input_registers[addr1..addr2] =&gt; [1, 0, ..]</pre>
+    
+  </div>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ReadOnlyProxy.html" title="ModBus::ReadOnlyProxy (class)">ReadOnlyProxy</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+proxy object
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id input_registers'>input_registers</span>
+  <span class='const'>ModBus</span><span class='op'>::</span><span class='const'>ReadOnlyProxy</span><span class='period'>.</span><span class='id new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='symbol'>:input_register</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="mask_write_register-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>mask_write_register</strong>(addr, and_mask, or_mask) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Mask a holding register
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">mask_write_register(1, 0xAAAA, 0x00FF) =&gt; self</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address registers
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>and_mask</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+mask for AND operation
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>or_mask</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+mask for OR operation
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+222
+223
+224
+225</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 222</span>
+
+<span class='kw'>def</span> <span class='id mask_write_register'>mask_write_register</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id and_mask'>and_mask</span><span class='comma'>,</span> <span class='id or_mask'>or_mask</span><span class='rparen'>)</span>
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x16</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id and_mask'>and_mask</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id or_mask'>or_mask</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="query-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>query</strong>(request) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Request pdu to slave device
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>pdu</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+request to slave
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+received data
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+<h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/ResponseMismatch.html" title="ModBus::Errors::ResponseMismatch (class)">ResponseMismatch</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the received echo response differs from the request
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/ModBusTimeout.html" title="ModBus::Errors::ModBusTimeout (class)">ModBusTimeout</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+timed out during read attempt
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/ModBusException.html" title="ModBus::Errors::ModBusException (class)">ModBusException</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+unknown error
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/IllegalFunction.html" title="ModBus::Errors::IllegalFunction (class)">IllegalFunction</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+function code received in the query is not an allowable action for the
+server
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/IllegalDataAddress.html" title="ModBus::Errors::IllegalDataAddress (class)">IllegalDataAddress</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+data address received in the query is not an allowable address for the
+server
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/IllegalDataValue.html" title="ModBus::Errors::IllegalDataValue (class)">IllegalDataValue</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+value contained in the query data field is not an allowable value for
+server
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/SlaveDeviceFailure.html" title="ModBus::Errors::SlaveDeviceFailure (class)">SlaveDeviceFailure</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+unrecoverable error occurred while the server was attempting to perform the
+requested action
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/Acknowledge.html" title="ModBus::Errors::Acknowledge (class)">Acknowledge</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+server has accepted the request and is processing it, but a long duration
+of time will be required to do so
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/SlaveDeviceBus.html" title="ModBus::Errors::SlaveDeviceBus (class)">SlaveDeviceBus</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+server is engaged in processing a long duration program command
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/MemoryParityError.html" title="ModBus::Errors::MemoryParityError (class)">MemoryParityError</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+extended file area failed to pass a consistency check
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 242</span>
+
+<span class='kw'>def</span> <span class='id query'>query</span><span class='lparen'>(</span><span class='id request'>request</span><span class='rparen'>)</span>
+  <span class='id tried'>tried</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id response'>response</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>begin</span>
+    <span class='id timeout'>timeout</span><span class='lparen'>(</span><span class='ivar'>@read_retry_timeout</span><span class='comma'>,</span> <span class='const'>ModBusTimeout</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id send_pdu'>send_pdu</span><span class='lparen'>(</span><span class='id request'>request</span><span class='rparen'>)</span>
+      <span class='id response'>response</span> <span class='op'>=</span> <span class='id read_pdu'>read_pdu</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>ModBusTimeout</span> <span class='op'>=&gt;</span> <span class='id err'>err</span>
+    <span class='id log'>log</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Timeout of read operation: (</span><span class='embexpr_beg'>#{</span><span class='ivar'>@read_retries</span> <span class='op'>-</span> <span class='id tried'>tried</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id tried'>tried</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='kw'>retry</span> <span class='kw'>unless</span> <span class='id tried'>tried</span> <span class='op'>&gt;=</span> <span class='ivar'>@read_retries</span>
+    <span class='id raise'>raise</span> <span class='const'>ModBusTimeout</span><span class='period'>.</span><span class='id new'>new</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Timed out during read attempt</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id response'>response</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>==</span> <span class='int'>0</span>
+
+  <span class='id read_func'>read_func</span> <span class='op'>=</span> <span class='id response'>response</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id read_func'>read_func</span> <span class='op'>&gt;=</span> <span class='int'>0x80</span>
+    <span class='id exc_id'>exc_id</span> <span class='op'>=</span> <span class='id response'>response</span><span class='period'>.</span><span class='id getbyte'>getbyte</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id raise'>raise</span> <span class='const'>Exceptions</span><span class='lbracket'>[</span><span class='id exc_id'>exc_id</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='const'>Exceptions</span><span class='lbracket'>[</span><span class='id exc_id'>exc_id</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id nil?'>nil?</span>
+
+    <span class='id raise'>raise</span> <span class='const'>ModBusException</span><span class='period'>.</span><span class='id new'>new</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unknown error</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id check_response_mismatch'>check_response_mismatch</span><span class='lparen'>(</span><span class='id request'>request</span><span class='comma'>,</span> <span class='id response'>response</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id raise_exception_on_mismatch'>raise_exception_on_mismatch</span>
+  <span class='id response'>response</span><span class='lbracket'>[</span><span class='int'>2</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_coils-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>) <strong>read_coils</strong>(addr, ncoils) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='read_coil-instance_method'>read_coil</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Read coils
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">read_coils(addr, ncoils) =&gt; [1, 0, ..]</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address first coil
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>ncoils</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+number coils
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+coils
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id read_coils'>read_coils</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id ncoils'>ncoils</span><span class='rparen'>)</span>
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x1</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id ncoils'>ncoils</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span><span class='period'>.</span><span class='id unpack_bits'>unpack_bits</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='id ncoils'>ncoils</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_discrete_inputs-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>) <strong>read_discrete_inputs</strong>(addr, ninputs) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='read_discrete_input-instance_method'>read_discrete_input</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Read discrete inputs
+</p>
+<p>
+@param[Integer] ninputs number inputs
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">read_discrete_inputs(addr, ninputs) =&gt; [1, 0, ..]</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address first input
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+inputs
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id read_discrete_inputs'>read_discrete_inputs</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id ninputs'>ninputs</span><span class='rparen'>)</span>
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x2</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id ninputs'>ninputs</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span><span class='period'>.</span><span class='id unpack_bits'>unpack_bits</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='id ninputs'>ninputs</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_holding_registers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>) <strong>read_holding_registers</strong>(addr, nregs) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='read_holding_register-instance_method'>read_holding_register</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Read holding registers
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">read_holding_registers(1, 5) =&gt; [1, 0, ..]</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address first registers
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nregs</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+number registers
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+registers
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 176</span>
+
+<span class='kw'>def</span> <span class='id read_holding_registers'>read_holding_registers</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id nregs'>nregs</span><span class='rparen'>)</span>
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x3</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id nregs'>nregs</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>n*</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="read_input_registers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>) <strong>read_input_registers</strong>(addr, nregs) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='read_input_register-instance_method'>read_input_register</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Read input registers
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">read_input_registers(1, 5) =&gt; [1, 0, ..]</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address first registers
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>nregs</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+number registers
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+registers
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='id read_input_registers'>read_input_registers</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id nregs'>nregs</span><span class='rparen'>)</span>
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x4</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id nregs'>nregs</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span><span class='period'>.</span><span class='id unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>n*</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write_multiple_coils-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>write_multiple_coils</strong>(addr, vals) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='write_coils-instance_method'>write_coils</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Write multiple coils
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">write_multiple_coils(1, [0,1,0,1]) =&gt; self</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address first coil
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>vals</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+written coils
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='id write_multiple_coils'>write_multiple_coils</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id vals'>vals</span><span class='rparen'>)</span>
+  <span class='id nbyte'>nbyte</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='id vals'>vals</span><span class='period'>.</span><span class='id size'>size</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span> <span class='op'>&gt;&gt;</span> <span class='int'>3</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span>
+  <span class='id sum'>sum</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='lparen'>(</span><span class='id vals'>vals</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id downto'>downto</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id i'>i</span><span class='op'>|</span>
+    <span class='id sum'>sum</span> <span class='op'>=</span> <span class='id sum'>sum</span> <span class='op'>&lt;&lt;</span> <span class='int'>1</span>
+    <span class='id sum'>sum</span> <span class='op'>|=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id vals'>vals</span><span class='lbracket'>[</span><span class='id i'>i</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+  <span class='kw'>end</span>
+
+  <span class='id s_val'>s_val</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id nbyte'>nbyte</span><span class='period'>.</span><span class='id times'>times</span> <span class='kw'>do</span>
+    <span class='id s_val'>s_val</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id sum'>sum</span> <span class='op'>&amp;</span> <span class='int'>0xff</span><span class='rparen'>)</span><span class='period'>.</span><span class='id chr'>chr</span>
+    <span class='id sum'>sum</span> <span class='op'>&gt;&gt;=</span> <span class='int'>8</span>
+  <span class='kw'>end</span>
+
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\xf</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id vals'>vals</span><span class='period'>.</span><span class='id size'>size</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id nbyte'>nbyte</span><span class='period'>.</span><span class='id chr'>chr</span> <span class='op'>+</span> <span class='id s_val'>s_val</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write_multiple_registers-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>write_multiple_registers</strong>(addr, vals) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='write_holding_registers-instance_method'>write_holding_registers</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Write multiple holding registers
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">write_multiple_registers(1, [0xaa, 0]) =&gt; self</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address first registers
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+written registers
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>
+self
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204
+205
+206
+207
+208
+209
+210
+211
+212</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='id write_multiple_registers'>write_multiple_registers</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id vals'>vals</span><span class='rparen'>)</span>
+  <span class='id s_val'>s_val</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id vals'>vals</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id reg'>reg</span><span class='op'>|</span>
+    <span class='id s_val'>s_val</span> <span class='op'>&lt;&lt;</span> <span class='id reg'>reg</span><span class='period'>.</span><span class='id to_word'>to_word</span>
+  <span class='kw'>end</span>
+
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x10</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id vals'>vals</span><span class='period'>.</span><span class='id size'>size</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id vals'>vals</span><span class='period'>.</span><span class='id size'>size</span> <span class='op'>*</span> <span class='int'>2</span><span class='rparen'>)</span><span class='period'>.</span><span class='id chr'>chr</span> <span class='op'>+</span> <span class='id s_val'>s_val</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write_single_coil-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>write_single_coil</strong>(addr, val) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='write_coil-instance_method'>write_coil</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Write a single coil
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">write_single_coil(1, 0) =&gt; self</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address coil
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+value coil (0 or other)
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>
+self
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73
+74
+75
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id write_single_coil'>write_single_coil</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id val'>val</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id val'>val</span> <span class='op'>==</span> <span class='int'>0</span>
+    <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x5</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='int'>0</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x5</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='int'>0xff00</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="write_single_register-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>write_single_register</strong>(addr, val) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='write_holding_register-instance_method'>write_holding_register</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Write a single holding register
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">write_single_register(1, 0xaa) =&gt; self</pre>
+    
+  </div>
+<h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>addr</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+address registers
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>val</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Integer.html" title="Integer (class)">Integer</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+written to register
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>
+self
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'rmodbus/lib/rmodbus/slave.rb', line 189</span>
+
+<span class='kw'>def</span> <span class='id write_single_register'>write_single_register</span><span class='lparen'>(</span><span class='id addr'>addr</span><span class='comma'>,</span> <span class='id val'>val</span><span class='rparen'>)</span>
+  <span class='id query'>query</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\x6</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id addr'>addr</span><span class='period'>.</span><span class='id to_word'>to_word</span> <span class='op'>+</span> <span class='id val'>val</span><span class='period'>.</span><span class='id to_word'>to_word</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Sun Oct 30 10:51:19 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.7.3 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
